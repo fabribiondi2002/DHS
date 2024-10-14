@@ -1,4 +1,4 @@
-# Generated from /home/fabri/Escritorio/dhs/proyecto/primerproyeco/src/main/python/primerproyecto/compiladores.g4 by ANTLR 4.13.1
+# Generated from /home/fabri/Escritorio/dhs/proyecto/primerproyecto/src/main/python/primerproyecto/compiladores.g4 by ANTLR 4.13.1
 from antlr4 import *
 if "." in __name__:
     from .compiladoresParser import compiladoresParser
@@ -8,6 +8,11 @@ else:
 # This class defines a complete generic visitor for a parse tree produced by compiladoresParser.
 
 class compiladoresVisitor(ParseTreeVisitor):
+
+    # Visit a parse tree produced by compiladoresParser#comparadores.
+    def visitComparadores(self, ctx:compiladoresParser.ComparadoresContext):
+        return self.visitChildren(ctx)
+
 
     # Visit a parse tree produced by compiladoresParser#programa.
     def visitPrograma(self, ctx:compiladoresParser.ProgramaContext):
@@ -36,6 +41,31 @@ class compiladoresVisitor(ParseTreeVisitor):
 
     # Visit a parse tree produced by compiladoresParser#opal.
     def visitOpal(self, ctx:compiladoresParser.OpalContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by compiladoresParser#lor.
+    def visitLor(self, ctx:compiladoresParser.LorContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by compiladoresParser#lorp.
+    def visitLorp(self, ctx:compiladoresParser.LorpContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by compiladoresParser#land.
+    def visitLand(self, ctx:compiladoresParser.LandContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by compiladoresParser#landp.
+    def visitLandp(self, ctx:compiladoresParser.LandpContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by compiladoresParser#comp.
+    def visitComp(self, ctx:compiladoresParser.CompContext):
         return self.visitChildren(ctx)
 
 

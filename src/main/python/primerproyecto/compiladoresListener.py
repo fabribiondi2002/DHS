@@ -1,4 +1,4 @@
-# Generated from /home/fabri/Escritorio/dhs/proyecto/primerproyeco/src/main/python/primerproyecto/compiladores.g4 by ANTLR 4.13.1
+# Generated from /home/fabri/Escritorio/dhs/proyecto/primerproyecto/src/main/python/primerproyecto/compiladores.g4 by ANTLR 4.13.1
 from antlr4 import *
 if "." in __name__:
     from .compiladoresParser import compiladoresParser
@@ -7,6 +7,15 @@ else:
 
 # This class defines a complete listener for a parse tree produced by compiladoresParser.
 class compiladoresListener(ParseTreeListener):
+
+    # Enter a parse tree produced by compiladoresParser#comparadores.
+    def enterComparadores(self, ctx:compiladoresParser.ComparadoresContext):
+        pass
+
+    # Exit a parse tree produced by compiladoresParser#comparadores.
+    def exitComparadores(self, ctx:compiladoresParser.ComparadoresContext):
+        pass
+
 
     # Enter a parse tree produced by compiladoresParser#programa.
     def enterPrograma(self, ctx:compiladoresParser.ProgramaContext):
@@ -59,6 +68,51 @@ class compiladoresListener(ParseTreeListener):
 
     # Exit a parse tree produced by compiladoresParser#opal.
     def exitOpal(self, ctx:compiladoresParser.OpalContext):
+        pass
+
+
+    # Enter a parse tree produced by compiladoresParser#lor.
+    def enterLor(self, ctx:compiladoresParser.LorContext):
+        pass
+
+    # Exit a parse tree produced by compiladoresParser#lor.
+    def exitLor(self, ctx:compiladoresParser.LorContext):
+        pass
+
+
+    # Enter a parse tree produced by compiladoresParser#lorp.
+    def enterLorp(self, ctx:compiladoresParser.LorpContext):
+        pass
+
+    # Exit a parse tree produced by compiladoresParser#lorp.
+    def exitLorp(self, ctx:compiladoresParser.LorpContext):
+        pass
+
+
+    # Enter a parse tree produced by compiladoresParser#land.
+    def enterLand(self, ctx:compiladoresParser.LandContext):
+        pass
+
+    # Exit a parse tree produced by compiladoresParser#land.
+    def exitLand(self, ctx:compiladoresParser.LandContext):
+        pass
+
+
+    # Enter a parse tree produced by compiladoresParser#landp.
+    def enterLandp(self, ctx:compiladoresParser.LandpContext):
+        pass
+
+    # Exit a parse tree produced by compiladoresParser#landp.
+    def exitLandp(self, ctx:compiladoresParser.LandpContext):
+        pass
+
+
+    # Enter a parse tree produced by compiladoresParser#comp.
+    def enterComp(self, ctx:compiladoresParser.CompContext):
+        pass
+
+    # Exit a parse tree produced by compiladoresParser#comp.
+    def exitComp(self, ctx:compiladoresParser.CompContext):
         pass
 
 

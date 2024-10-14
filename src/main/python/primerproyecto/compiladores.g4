@@ -14,12 +14,19 @@ PYC : ';' ;
 PUNTO : '.';
 
 //OPERACIONES
+
+// ARITMETICAS
 SUMA  : '+' ;
 RESTA : '-' ;
 MULT  : '*' ;
 DIV   : '/' ;
 MOD   : '%' ;
 ASIG  : '=' ;
+
+//LOGICAS
+AND : '&&';
+OR : '||';
+
 
 //COMPARADORES
 MENOR : '<' ;
@@ -28,6 +35,8 @@ IGUAL : '==' ;
 MENORIG : '<=';
 MAYORIG : '>=';
 DIF: '=!' ;
+
+comparadores : MENOR | MAYOR | IGUAL | MENORIG | MAYORIG | DIF;
 
 NUMERO : ENTERO
         | DECIMAL
@@ -94,7 +103,27 @@ asignacion : ID ASIG opal ;
 
 
 // Operacion aritmetica o logica
-opal : exp ; // completar
+opal : lor;
+
+// Logico AND
+lor : land lorp;
+
+//Logico OR prima
+lorp: OR land lorp
+  | 
+  ;
+
+//Logico AND
+land : comp landp;
+
+//Logico AND prima
+landp : AND comp landp 
+  |
+  ;
+
+// Comparacion 
+comp : exp comparadores exp
+  | exp;
 
 // Expresion aritmetica
 exp : term e ;
@@ -116,14 +145,12 @@ factor : NUMERO
        | PA exp PC
        ;
 
-iwhile : WHILE PA ID PC instruccion ;
-
-
+iwhile : WHILE PA cond PC (bloque | instruccion) ;
 
 bloque : LLA instrucciones LLC ;
 
-iif : IF PA cond PC instruccion ;
-ifor : FOR PA init PYC cond PYC iter PC instruccion ;
-init : ;
-cond : ;
-iter : ;
+iif : IF PA cond PC (bloque | instruccion)  ;
+ifor : FOR PA init PYC cond PYC iter PC (bloque | instruccion) ;
+init : asignacion;
+cond : opal;
+iter : (ID|NUMERO) ASIG exp;
