@@ -11,10 +11,10 @@ class ID ():
     def setAccedido(self):
         self.accedido=True
     
-class Variable (ID): 
-    def __init__(self, nombre, tipo, valor=None, inicializado=False, accedido=False):
-        super().__init__(nombre, tipo, inicializado, accedido)
-        self.valor = valor
+class Variable(ID): 
+    pass
 
 class Funcion :
-    list <Variable> parametros
+    def __init__(self, nombre, tipo, parametros,inicializado=False, accedido=False):
+        super().__init__(nombre, tipo, inicializado, accedido)
+        self.parametros = parametros

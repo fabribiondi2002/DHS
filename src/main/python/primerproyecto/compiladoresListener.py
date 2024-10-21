@@ -1,4 +1,4 @@
-# Generated from /home/fabri/Escritorio/DHS/proyecto/DHS/src/main/python/primerproyecto/compiladores.g4 by ANTLR 4.13.1
+# Generated from /home/fabri/Escritorio/dhs/proyecto/primerproyecto/src/main/python/primerproyecto/compiladores.g4 by ANTLR 4.13.1
 from antlr4 import *
 if "." in __name__:
     from .compiladoresParser import compiladoresParser
@@ -14,6 +14,24 @@ class compiladoresListener(ParseTreeListener):
 
     # Exit a parse tree produced by compiladoresParser#comparadores.
     def exitComparadores(self, ctx:compiladoresParser.ComparadoresContext):
+        pass
+
+
+    # Enter a parse tree produced by compiladoresParser#tdato.
+    def enterTdato(self, ctx:compiladoresParser.TdatoContext):
+        pass
+
+    # Exit a parse tree produced by compiladoresParser#tdato.
+    def exitTdato(self, ctx:compiladoresParser.TdatoContext):
+        pass
+
+
+    # Enter a parse tree produced by compiladoresParser#tfuncion.
+    def enterTfuncion(self, ctx:compiladoresParser.TfuncionContext):
+        pass
+
+    # Exit a parse tree produced by compiladoresParser#tfuncion.
+    def exitTfuncion(self, ctx:compiladoresParser.TfuncionContext):
         pass
 
 
@@ -221,6 +239,42 @@ class compiladoresListener(ParseTreeListener):
 
     # Exit a parse tree produced by compiladoresParser#iter.
     def exitIter(self, ctx:compiladoresParser.IterContext):
+        pass
+
+
+    # Enter a parse tree produced by compiladoresParser#ido.
+    def enterIdo(self, ctx:compiladoresParser.IdoContext):
+        pass
+
+    # Exit a parse tree produced by compiladoresParser#ido.
+    def exitIdo(self, ctx:compiladoresParser.IdoContext):
+        pass
+
+
+    # Enter a parse tree produced by compiladoresParser#funcion.
+    def enterFuncion(self, ctx:compiladoresParser.FuncionContext):
+        pass
+
+    # Exit a parse tree produced by compiladoresParser#funcion.
+    def exitFuncion(self, ctx:compiladoresParser.FuncionContext):
+        pass
+
+
+    # Enter a parse tree produced by compiladoresParser#parametros.
+    def enterParametros(self, ctx:compiladoresParser.ParametrosContext):
+        pass
+
+    # Exit a parse tree produced by compiladoresParser#parametros.
+    def exitParametros(self, ctx:compiladoresParser.ParametrosContext):
+        pass
+
+
+    # Enter a parse tree produced by compiladoresParser#parametrosp.
+    def enterParametrosp(self, ctx:compiladoresParser.ParametrospContext):
+        pass
+
+    # Exit a parse tree produced by compiladoresParser#parametrosp.
+    def exitParametrosp(self, ctx:compiladoresParser.ParametrospContext):
         pass
 
 

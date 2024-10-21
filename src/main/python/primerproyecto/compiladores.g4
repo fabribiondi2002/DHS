@@ -12,7 +12,7 @@ LLA : '{' ;
 LLC : '}' ;
 PYC : ';' ;
 PUNTO : '.';
-
+COMA : ',';
 //OPERACIONES
 
 // ARITMETICAS
@@ -49,11 +49,14 @@ LONG : 'long';
 CHAR : 'char';
 STRING : 'string';
 
-
 //FUNCIONES
+VOID : 'void';
 WHILE : 'while' ;
 FOR   : 'for' ;
 IF    : 'if' ;
+ELSE : 'else';
+RETURN : 'return';
+DO : 'do';
 
 ID : (LETRA | '_')(LETRA | DIGITO | '_')* ;
 ENTERO : DIGITO+;
@@ -61,6 +64,10 @@ DECIMAL : DIGITO+ PUNTO DIGITO+;
 
 
 WS : [ \t\n\r] -> skip;
+
+tdato : INT | DOUBLE | LONG | CHAR | STRING ;
+
+tfuncion : VOID | tdato;
 // OTRO : . ;
 
 // s : ID     {print("ID ->" + $ID.text + "<--") }         s
@@ -154,3 +161,15 @@ ifor : FOR PA init PYC cond PYC iter PC (bloque | instruccion) ;
 init : asignacion;
 cond : opal;
 iter : (ID|NUMERO) ASIG exp;
+
+ido: DO (bloque|instruccion) WHILE PA opal PC PYC ;
+
+funcion : tfuncion ID PA parametros PC (bloque | instruccion) ;
+
+parametros : tdato ID parametrosp
+            | 
+            ;
+
+parametrosp : COMA parametros parametrosp
+            | 
+            ;
