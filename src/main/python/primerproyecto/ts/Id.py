@@ -10,6 +10,9 @@ class ID ():
 
     def setAccedido(self):
         self.accedido=True
+
+    def getNombre(self) :
+        return self.nombre()
     
 class Variable(ID): 
     pass

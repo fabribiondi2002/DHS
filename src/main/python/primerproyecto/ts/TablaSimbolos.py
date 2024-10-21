@@ -13,8 +13,11 @@ class TablaSimbolos:
         self.listaContextos.pop()
 
     def agregarID (self, id):
-        
-        self.listaContextos[-1].agregarSimbolo(id)
+        if TablaSimbolos.buscarLocalID(self,id) == None :
+            self.listaContextos[-1].agregarSimbolo(id)
+            return id
+        else :
+            raise ValueError(f"El identificador "+ id.getNombre() +" ya existe en el contexto local.")
 
     def buscarLocalID (self, id):
         
@@ -29,7 +32,6 @@ class TablaSimbolos:
 
             if id in cont.getSimbolos() :
                 return id
-        
         return None
                 
 

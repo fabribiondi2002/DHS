@@ -67,47 +67,51 @@ WS : [ \t\n\r] -> skip;
 
 tdato : INT | DOUBLE | LONG | CHAR | STRING ;
 
-tfuncion : VOID | tdato;
-// OTRO : . ;
 
-// s : ID     {print("ID ->" + $ID.text + "<--") }         s
-//   | NUMERO {print("NUMERO ->" + $NUMERO.text + "<--") } s
-//   | WHILE  {print("WHILE ->" + $WHILE.text + "<--") }   s
-  // | OTRO   {print("Otro ->" + $OTRO.text + "<--") }     s
-  // | EOF
-  // ;
+programa : declaracion* funcion* EOF ;
 
-// si : s EOF ;
+funcion : funcionvoid | funcionreturn ;
 
-// s : PA s PC s
-//   |
-//   ;
+funcionvoid : VOID ID PA parametros PC (bloque | PYC);
 
-programa : instrucciones EOF ;
+funcionreturn : tdato ID PA parametros PC (bloquereturn | PYC);
+
+bloquereturn : LLA (instrucciones RETURN |  RETURN) opal PYC LLC ;
+
+parametros : tdato ID parametrosp
+            | 
+            ;
+
+parametrosp : COMA parametros parametrosp
+            | 
+            ;
+
+usofuncion : ID PA (argumentos) PC;
+
+argumentos : opal argumentosp
+            |;
+argumentosp : COMA argumentos argumentosp 
+            |;
 
 instrucciones : instruccion instrucciones
               |
               ;
 
-// instruccion : INST {print($INST.text[:-1])};
+
 instruccion : declaracion
             | iwhile
             | ifor
             | iif
             | bloque
             | asignacion 
+            | usofuncion
             | PYC
             ;
 
-declaracion : INT ID PYC ;
+declaracion : tdato ID PYC 
+            | tdato asignacion;
 
-asignacion : ID ASIG opal ;
-
-// TDATO: INT
-//         | DOUBLE
-//         | LONG
-//         ;
-
+asignacion : ID ASIG (usofuncion|opal) PYC;
 
 // Operacion aritmetica o logica
 opal : lor;
@@ -149,6 +153,7 @@ t    : MULT factor t
 
 factor : NUMERO
        | ID
+       | usofuncion
        | PA exp PC
        ;
 
@@ -157,19 +162,17 @@ iwhile : WHILE PA cond PC (bloque | instruccion) ;
 bloque : LLA instrucciones LLC ;
 
 iif : IF PA cond PC (bloque | instruccion)  ;
+
 ifor : FOR PA init PYC cond PYC iter PC (bloque | instruccion) ;
-init : asignacion;
+
+init : ID ASIG (usofuncion|opal)
+      | ID
+      | tdato ID
+      | tdato ID ASIG (usofuncion|opal)
+      ;
+
 cond : opal;
+
 iter : (ID|NUMERO) ASIG exp;
 
 ido: DO (bloque|instruccion) WHILE PA opal PC PYC ;
-
-funcion : tfuncion ID PA parametros PC (bloque | instruccion) ;
-
-parametros : tdato ID parametrosp
-            | 
-            ;
-
-parametrosp : COMA parametros parametrosp
-            | 
-            ;
