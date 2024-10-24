@@ -12,12 +12,21 @@ class ID ():
         self.accedido=True
 
     def getNombre(self) :
-        return self.nombre()
+        return self.nombre
+    
+    def getTipo(self) :
+        return self.tipo
+    
+    def getInicializado(self):
+        return self.inicializado
+    
+    def getAccedido(self):
+        return self.accedido
     
 class Variable(ID): 
     pass
 
-class Funcion :
-    def __init__(self, nombre, tipo, parametros,inicializado=False, accedido=False):
+class Funcion(ID):
+    def __init__(self, nombre, tipo, parametros, inicializado=False, accedido=False):
         super().__init__(nombre, tipo, inicializado, accedido)
         self.parametros = parametros

@@ -1,8 +1,9 @@
-from Contexto import Contexto
+from ts.Contexto import Contexto
 
 class TablaSimbolos:
-    listaContextos = []
+    
     def __init__(self):
+        self.listaContextos = []
         self.listaContextos.append(Contexto())
 
     def agregarContexto(self):
@@ -12,30 +13,28 @@ class TablaSimbolos:
     def borrarContexto (self, cont):
         self.listaContextos.pop()
 
-    def agregarID (self, id):
-        if TablaSimbolos.buscarLocalID(self,id) == None :
-            self.listaContextos[-1].agregarSimbolo(id)
-            return id
-        else :
-            raise ValueError(f"El identificador "+ id.getNombre() +" ya existe en el contexto local.")
-
-    def buscarLocalID (self, id):
+    def agregarID(self, id):
         
-        if id in self.listaContextos[-1].getSimbolos() :
-            return id
-        else :
-            return None
+        self.listaContextos[-1].agregarSimbolo(id)
+        return id
+        
+    def buscarLocalID(self, id):
+        return self.listaContextos[-1].getSimbolos().get(id)
 
-    def buscarID (self, id):
-
+    def buscarID(self, id):
         for cont in self.listaContextos:
-
-            if id in cont.getSimbolos() :
-                return id
+            simbolo = cont.getSimbolos().get(id)
+            if simbolo is not None:
+                return simbolo
         return None
+        
+    def getContextos (self) :
+        return self.listaContextos
                 
 
-    
-        
-    
-
+    def actualizarId(self, id):
+        if id.nombre in self.listaContextos[-1].getSimbolos():
+            self.listaContextos[-1].eliminarSimbolo(id.nombre)
+            self.listaContextos[-1].agregarSimbolo(id)
+        else:
+            raise ValueError(f"El identificador '{id.nombre}' no existe en el contexto actual.")

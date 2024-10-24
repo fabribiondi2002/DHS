@@ -1,4 +1,4 @@
-from Id import ID
+from ts.Id import ID
 
 class Contexto:
     def __init__(self):
@@ -9,3 +9,6 @@ class Contexto:
 
     def getSimbolos(self):
         return self.simbolos
+    
+    def eliminarSimbolo (self,id):
+        return self.simbolos.pop(id)
