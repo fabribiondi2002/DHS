@@ -1,12 +1,9 @@
-int x = 2;
-
-int agregarFuncion(int x);
-
 int main (){
-    int variable;
-    variable = agregarFuncion(variable);
-    agregarFuncion(variable)
+
+    double x = 2;
+    int y ;
+    int x;
+    x = 10;
+    y = x + 2;
     return 0;
 }
-
-int agregarFuncion(int x) {return x;}

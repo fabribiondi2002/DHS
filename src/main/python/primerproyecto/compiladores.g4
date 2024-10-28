@@ -109,9 +109,9 @@ instruccion : declaracion
             ;
 
 declaracion : tdato ID PYC 
-            | tdato asignacion;
+            | tdato ASIG opal PYC;
 
-asignacion : ID ASIG (usofuncion|opal) PYC;
+asignacion : ID ASIG opal PYC;
 
 // Operacion aritmetica o logica
 opal : lor;
@@ -157,13 +157,13 @@ factor : NUMERO
        | PA exp PC
        ;
 
-iwhile : WHILE PA cond PC (bloque | instruccion) ;
+iwhile : WHILE PA cond PC (LLA instrucciones LLC | instruccion) ;
 
 bloque : LLA instrucciones LLC ;
 
-iif : IF PA cond PC (bloque | instruccion)  ;
+iif : IF PA cond PC (LLA instrucciones LLC | instruccion)  ;
 
-ifor : FOR PA init PYC cond PYC iter PC (bloque | instruccion) ;
+ifor : FOR PA init PYC cond PYC iter PC (LLA instrucciones LLC | instruccion) ;
 
 init : ID ASIG (usofuncion|opal)
       | ID

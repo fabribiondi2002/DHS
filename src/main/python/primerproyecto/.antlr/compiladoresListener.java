@@ -1,4 +1,4 @@
-// Generated from /home/fabri/Escritorio/DHS/proyecto/DHS/src/main/python/primerproyecto/compiladores.g4 by ANTLR 4.13.1
+// Generated from /home/fabri/Escritorio/dhs/proyecto/primerproyecto/src/main/python/primerproyecto/compiladores.g4 by ANTLR 4.13.1
 import org.antlr.v4.runtime.tree.ParseTreeListener;
 
 /**
@@ -27,16 +27,6 @@ public interface compiladoresListener extends ParseTreeListener {
 	 */
 	void exitTdato(compiladoresParser.TdatoContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link compiladoresParser#tfuncion}.
-	 * @param ctx the parse tree
-	 */
-	void enterTfuncion(compiladoresParser.TfuncionContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link compiladoresParser#tfuncion}.
-	 * @param ctx the parse tree
-	 */
-	void exitTfuncion(compiladoresParser.TfuncionContext ctx);
-	/**
 	 * Enter a parse tree produced by {@link compiladoresParser#programa}.
 	 * @param ctx the parse tree
 	 */
@@ -46,6 +36,96 @@ public interface compiladoresListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitPrograma(compiladoresParser.ProgramaContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link compiladoresParser#funcion}.
+	 * @param ctx the parse tree
+	 */
+	void enterFuncion(compiladoresParser.FuncionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link compiladoresParser#funcion}.
+	 * @param ctx the parse tree
+	 */
+	void exitFuncion(compiladoresParser.FuncionContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link compiladoresParser#funcionvoid}.
+	 * @param ctx the parse tree
+	 */
+	void enterFuncionvoid(compiladoresParser.FuncionvoidContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link compiladoresParser#funcionvoid}.
+	 * @param ctx the parse tree
+	 */
+	void exitFuncionvoid(compiladoresParser.FuncionvoidContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link compiladoresParser#funcionreturn}.
+	 * @param ctx the parse tree
+	 */
+	void enterFuncionreturn(compiladoresParser.FuncionreturnContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link compiladoresParser#funcionreturn}.
+	 * @param ctx the parse tree
+	 */
+	void exitFuncionreturn(compiladoresParser.FuncionreturnContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link compiladoresParser#bloquereturn}.
+	 * @param ctx the parse tree
+	 */
+	void enterBloquereturn(compiladoresParser.BloquereturnContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link compiladoresParser#bloquereturn}.
+	 * @param ctx the parse tree
+	 */
+	void exitBloquereturn(compiladoresParser.BloquereturnContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link compiladoresParser#parametros}.
+	 * @param ctx the parse tree
+	 */
+	void enterParametros(compiladoresParser.ParametrosContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link compiladoresParser#parametros}.
+	 * @param ctx the parse tree
+	 */
+	void exitParametros(compiladoresParser.ParametrosContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link compiladoresParser#parametrosp}.
+	 * @param ctx the parse tree
+	 */
+	void enterParametrosp(compiladoresParser.ParametrospContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link compiladoresParser#parametrosp}.
+	 * @param ctx the parse tree
+	 */
+	void exitParametrosp(compiladoresParser.ParametrospContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link compiladoresParser#usofuncion}.
+	 * @param ctx the parse tree
+	 */
+	void enterUsofuncion(compiladoresParser.UsofuncionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link compiladoresParser#usofuncion}.
+	 * @param ctx the parse tree
+	 */
+	void exitUsofuncion(compiladoresParser.UsofuncionContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link compiladoresParser#argumentos}.
+	 * @param ctx the parse tree
+	 */
+	void enterArgumentos(compiladoresParser.ArgumentosContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link compiladoresParser#argumentos}.
+	 * @param ctx the parse tree
+	 */
+	void exitArgumentos(compiladoresParser.ArgumentosContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link compiladoresParser#argumentosp}.
+	 * @param ctx the parse tree
+	 */
+	void enterArgumentosp(compiladoresParser.ArgumentospContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link compiladoresParser#argumentosp}.
+	 * @param ctx the parse tree
+	 */
+	void exitArgumentosp(compiladoresParser.ArgumentospContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link compiladoresParser#instrucciones}.
 	 * @param ctx the parse tree
@@ -276,34 +356,4 @@ public interface compiladoresListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitIdo(compiladoresParser.IdoContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link compiladoresParser#funcion}.
-	 * @param ctx the parse tree
-	 */
-	void enterFuncion(compiladoresParser.FuncionContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link compiladoresParser#funcion}.
-	 * @param ctx the parse tree
-	 */
-	void exitFuncion(compiladoresParser.FuncionContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link compiladoresParser#parametros}.
-	 * @param ctx the parse tree
-	 */
-	void enterParametros(compiladoresParser.ParametrosContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link compiladoresParser#parametros}.
-	 * @param ctx the parse tree
-	 */
-	void exitParametros(compiladoresParser.ParametrosContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link compiladoresParser#parametrosp}.
-	 * @param ctx the parse tree
-	 */
-	void enterParametrosp(compiladoresParser.ParametrospContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link compiladoresParser#parametrosp}.
-	 * @param ctx the parse tree
-	 */
-	void exitParametrosp(compiladoresParser.ParametrospContext ctx);
 }

@@ -7,14 +7,12 @@ class TablaSimbolos:
         self.listaContextos.append(Contexto())
 
     def agregarContexto(self):
-
         self.listaContextos.append(Contexto())
 
     def borrarContexto (self, cont):
         self.listaContextos.pop()
 
     def agregarID(self, id):
-        
         self.listaContextos[-1].agregarSimbolo(id)
         return id
         
