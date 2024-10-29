@@ -1,4 +1,4 @@
-# Generated from /home/fabri/Escritorio/dhs/proyecto/primerproyecto/src/main/python/primerproyecto/compiladores.g4 by ANTLR 4.13.1
+# Generated from /home/fabri/Escritorio/DHS/proyecto/DHS/src/main/python/primerproyecto/compiladores.g4 by ANTLR 4.13.1
 from antlr4 import *
 if "." in __name__:
     from .compiladoresParser import compiladoresParser
@@ -41,33 +41,6 @@ class compiladoresListener(ParseTreeListener):
 
     # Exit a parse tree produced by compiladoresParser#funcion.
     def exitFuncion(self, ctx:compiladoresParser.FuncionContext):
-        pass
-
-
-    # Enter a parse tree produced by compiladoresParser#funcionvoid.
-    def enterFuncionvoid(self, ctx:compiladoresParser.FuncionvoidContext):
-        pass
-
-    # Exit a parse tree produced by compiladoresParser#funcionvoid.
-    def exitFuncionvoid(self, ctx:compiladoresParser.FuncionvoidContext):
-        pass
-
-
-    # Enter a parse tree produced by compiladoresParser#funcionreturn.
-    def enterFuncionreturn(self, ctx:compiladoresParser.FuncionreturnContext):
-        pass
-
-    # Exit a parse tree produced by compiladoresParser#funcionreturn.
-    def exitFuncionreturn(self, ctx:compiladoresParser.FuncionreturnContext):
-        pass
-
-
-    # Enter a parse tree produced by compiladoresParser#bloquereturn.
-    def enterBloquereturn(self, ctx:compiladoresParser.BloquereturnContext):
-        pass
-
-    # Exit a parse tree produced by compiladoresParser#bloquereturn.
-    def exitBloquereturn(self, ctx:compiladoresParser.BloquereturnContext):
         pass
 
 
@@ -134,6 +107,15 @@ class compiladoresListener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by compiladoresParser#bloque.
+    def enterBloque(self, ctx:compiladoresParser.BloqueContext):
+        pass
+
+    # Exit a parse tree produced by compiladoresParser#bloque.
+    def exitBloque(self, ctx:compiladoresParser.BloqueContext):
+        pass
+
+
     # Enter a parse tree produced by compiladoresParser#declaracion.
     def enterDeclaracion(self, ctx:compiladoresParser.DeclaracionContext):
         pass
@@ -149,6 +131,15 @@ class compiladoresListener(ParseTreeListener):
 
     # Exit a parse tree produced by compiladoresParser#asignacion.
     def exitAsignacion(self, ctx:compiladoresParser.AsignacionContext):
+        pass
+
+
+    # Enter a parse tree produced by compiladoresParser#return.
+    def enterReturn(self, ctx:compiladoresParser.ReturnContext):
+        pass
+
+    # Exit a parse tree produced by compiladoresParser#return.
+    def exitReturn(self, ctx:compiladoresParser.ReturnContext):
         pass
 
 
@@ -257,15 +248,6 @@ class compiladoresListener(ParseTreeListener):
 
     # Exit a parse tree produced by compiladoresParser#iwhile.
     def exitIwhile(self, ctx:compiladoresParser.IwhileContext):
-        pass
-
-
-    # Enter a parse tree produced by compiladoresParser#bloque.
-    def enterBloque(self, ctx:compiladoresParser.BloqueContext):
-        pass
-
-    # Exit a parse tree produced by compiladoresParser#bloque.
-    def exitBloque(self, ctx:compiladoresParser.BloqueContext):
         pass
 
 

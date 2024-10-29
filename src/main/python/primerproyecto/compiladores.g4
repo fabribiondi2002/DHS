@@ -65,18 +65,12 @@ DECIMAL : DIGITO+ PUNTO DIGITO+;
 
 WS : [ \t\n\r] -> skip;
 
-tdato : INT | DOUBLE | LONG | CHAR | STRING ;
+tdato : INT | DOUBLE | CHAR | VOID;
 
 
 programa : declaracion* funcion* EOF ;
 
-funcion : funcionvoid | funcionreturn ;
-
-funcionvoid : VOID ID PA parametros PC (bloque | PYC);
-
-funcionreturn : tdato ID PA parametros PC (bloquereturn | PYC);
-
-bloquereturn : LLA (instrucciones RETURN |  RETURN) opal PYC LLC ;
+funcion : tdato ID PA parametros PC (bloque | PYC);
 
 parametros : tdato ID parametrosp
             | 
@@ -88,7 +82,9 @@ parametrosp : COMA parametros parametrosp
 
 usofuncion : ID PA (argumentos) PC;
 
-argumentos : opal argumentosp
+
+
+argumentos : (NUMERO|ID) argumentosp
             |;
 argumentosp : COMA argumentos argumentosp 
             |;
@@ -105,13 +101,19 @@ instruccion : declaracion
             | bloque
             | asignacion 
             | usofuncion
+            | return
             | PYC
             ;
 
+bloque : LLA instrucciones LLC ;
+
+
 declaracion : tdato ID PYC 
-            | tdato ASIG opal PYC;
+            | tdato ID ASIG opal PYC;
 
 asignacion : ID ASIG opal PYC;
+
+return : RETURN opal PYC;
 
 // Operacion aritmetica o logica
 opal : lor;
@@ -159,7 +161,6 @@ factor : NUMERO
 
 iwhile : WHILE PA cond PC (LLA instrucciones LLC | instruccion) ;
 
-bloque : LLA instrucciones LLC ;
 
 iif : IF PA cond PC (LLA instrucciones LLC | instruccion)  ;
 
