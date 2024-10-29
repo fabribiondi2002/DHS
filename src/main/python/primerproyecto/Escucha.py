@@ -86,6 +86,15 @@ class Escucha (compiladoresListener):
                 print("parametros---------------")
                 print(lista_parametros)
                 print("parametros---------------")
+
+
+                for pa in param:
+                    aux 
+
+
+
+
+
                 # for pa in param:
                 #     aux = arg.pop()
                 #     if arg.isdigit():
