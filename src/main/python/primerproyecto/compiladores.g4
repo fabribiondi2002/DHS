@@ -101,6 +101,7 @@ instruccion : declaracion
             | bloque
             | asignacion 
             | usofuncion
+            | opal
             | return
             | PYC
             ;

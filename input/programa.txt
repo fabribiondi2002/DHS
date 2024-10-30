@@ -3,7 +3,7 @@ int sumar(int a,int b, int c){
 }
 
 int main (int a, int b){
-    double x = 2;
+    double x = a;
     int y ;
     int x;
     sumar(x,y, 10)

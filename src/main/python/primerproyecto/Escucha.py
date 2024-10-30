@@ -19,7 +19,7 @@ class Escucha (compiladoresListener):
         except ValueError:
             try:
                 float(cadena)  # Verifica si puede convertirse a flotante
-                return "float"
+                return "double"
             except ValueError:
                 return "no es un número"
 
@@ -30,7 +30,6 @@ class Escucha (compiladoresListener):
     # Exit a parse tree produced by compiladoresParser#programa.
     def exitPrograma(self, ctx:compiladoresParser.ProgramaContext):
         contextos = self.tablaSimbolos.getContextos()
-        print(self.funciones)
         # for cont in contextos :
         #     for var in cont.getSimbolos() :
         #         if var.getInicializado() == False :
@@ -44,6 +43,10 @@ class Escucha (compiladoresListener):
 
     def enterBloque(self, ctx: compiladoresParser.BloqueContext):
         contexto = self.tablaSimbolos.agregarContexto()
+        for par in self.parametros :
+            id = ID(par['nombre'],par['tipo'])
+            id.setInicializado()
+            self.tablaSimbolos.agregarID(id)
 
 
     def exitFuncion(self, ctx: compiladoresParser.FuncionContext):
@@ -53,18 +56,16 @@ class Escucha (compiladoresListener):
                 return
         func =  {"nombre": ctx.getChild(1).getText(), "tipo": ctx.getChild(0).getText(), "parametros": self.parametros}
         self.funciones.append(func)
+        
         self.parametros.clear()
 
     def exitParametros(self, ctx: compiladoresParser.ParametrosContext):
         if ctx.getChildCount() != 0 :
             param=  {"nombre": ctx.getChild(1).getText(), "tipo": ctx.getChild(0).getText()}
             self.parametros.append(param)
-            print(ctx.getChild(1).getText())
 
 
     def exitUsofuncion(self, ctx: compiladoresParser.UsofuncionContext):
-
-        #VER COMOL HACER
 
         for func in self.funciones :
             if ctx.getChild(0).getText() == func["nombre"] :
@@ -73,56 +74,24 @@ class Escucha (compiladoresListener):
                 param = func["parametros"]
                 lista_parametros = []
                 for simb in arg :
-                    print(simb)
-                    print(type(simb))
                     if not simb.isdigit():
                         if self.tablaSimbolos.buscarLocalID(simb) == None :
                             print("ERROR: La variable "+ simb + " no esta declarada.")
                         else :
-                            lista_parametros.append(self.tablaSimbolos.buscarLocalID(simb).getTipo())  
+                            lista_parametros.append({"nombre": simb, "tipo":self.tablaSimbolos.buscarLocalID(simb).getTipo()})  
                     else :
-                        lista_parametros.append(self.identificarTipo(simb))
-                
-                print("parametros---------------")
-                print(lista_parametros)
-                print("parametros---------------")
-
-
+                        lista_parametros.append({"nombre": simb, "tipo":self.identificarTipo(simb)})
+ 
                 for pa in param:
-                    aux 
-
-
-
-
-
-                # for pa in param:
-                #     aux = arg.pop()
-                #     if arg.isdigit():
-                #         if type(arg) is int and pa["tipo"] == "double":
-                #             print("\nWARNNING: El argumento " + arg + " no es de tipo double.\n")
-                #         if type(arg) is float and pa["tipo"] == "int":
-                #             print("\nWARNNING: El argumento " + arg + " no es de tipo int.\n")
-                #     else:
-                #         if aux != pa["nombre"] :
-                #             print("\nWARNNING: El argumento " + arg + " no es de tipo int.\n")
-                    
-
-
-                return    
+                    aux = lista_parametros.pop()
+                    if aux['tipo'] != pa['tipo'] :
+                        print("WARNNING: El argumento " + aux['nombre'] + " es de tipo " + aux['tipo'] + ". Se espera un argumento de tipo "+ pa['tipo'] + ".\n")
+                self.variablesAsignacion.clear()
+                return
 
         print("\nWARNING: La funcion " + ctx.getChild(0).getText() + " no ha sido declarada.\n")
+        self.variablesAsignacion.clear()
         return    
-
-
-        
-        #        aux2 = aux["parametros"]
-        #        if self.argumentos.pop() != aux2.pop():
-        #            print("E")
-
-
-        #        return
-
-        # 
 
     def exitArgumentos(self, ctx: compiladoresParser.ArgumentosContext):
         if ctx.getChildCount() != 0 :
@@ -134,18 +103,16 @@ class Escucha (compiladoresListener):
 
     def exitDeclaracion(self, ctx:compiladoresParser.DeclaracionContext):
 
-        print('Declaracion \n')
         #Si no esta declarada la variable, la declaramos
-        print('Se intentará declarar la variable ' + ctx.getChild(1).getText())
 
         if self.tablaSimbolos.buscarLocalID(ctx.getChild(1).getText()) == None :
             var = Variable(str(ctx.getChild(1).getText()), str(ctx.getChild(0).getText()))
-            print('Se declaró la variable ' + ctx.getChild(1).getText())
 
             #Si el tercer token es un igual, se esta inicializando
             if (str(ctx.getChild(2).getText()) == '='):
-                print('Se inicializo la variable ' + ctx.getChild(1).getText())
                 var.setInicializado()
+
+##HACER LO MISMO QUE EN ASIGNACION PORQUE ESTAN SEPARADOS           
 
             #Se agrega la variable al contexto
             self.tablaSimbolos.agregarID(var)
@@ -156,10 +123,7 @@ class Escucha (compiladoresListener):
 
     def exitFactor(self, ctx: compiladoresParser.FactorContext):
 
-        print('Factor \n')
-
         nombre = ctx.getChild(0).getText()
-        print('nombre '+ nombre)
         if not nombre.isdigit():
             var = self.tablaSimbolos.buscarLocalID(ctx.getChild(0).getText())
             if  var != None :
@@ -167,7 +131,6 @@ class Escucha (compiladoresListener):
                 if var.getInicializado() == False :
                     print("ERROR: La variable "+ ctx.getChild(0).getText() + " no esta inicializada.\n")
                     return
-                print('Se accedio a la variable ' + ctx.getChild(0).getText())
                 aux = {'tipo' : var.getTipo(), 'nombre' : var.getNombre()}
                 self.variablesAsignacion.append(aux)
                 var.setAccedido()
@@ -178,31 +141,26 @@ class Escucha (compiladoresListener):
 
             self.tablaSimbolos.actualizarId(var)
         else :
-            aux = {'tipo' : 'int', 'nombre' : ctx.getChild(0).getText()}
+            
+            aux = {'tipo' : self.identificarTipo(ctx.getChild(0).getText()), 'nombre' : ctx.getChild(0).getText()}
             self.variablesAsignacion.append(aux)
-            print('El factor es el numero ' + ctx.getChild(0).getText())
 
     def exitAsignacion(self, ctx: compiladoresParser.AsignacionContext):
 
 
-        print('Se intentara asignar un valor a la variable ' + ctx.getChild(0).getText())
         var = self.tablaSimbolos.buscarLocalID(ctx.getChild(0).getText())
         if var != None :
+            print(self.variablesAsignacion)
             for aux in self.variablesAsignacion :
                 if aux["tipo"] != var.getTipo():
                     print("WARNING: La variable " + aux["nombre"] + " es de tipo " + aux["tipo"] + ". Se espera una variable tipo "+ var.getTipo()+ "\n")
 
             var.setInicializado()
             self.tablaSimbolos.actualizarId(var)
-            print('Se asigno un valor a la variable ' + ctx.getChild(0).getText() )
             self.variablesAsignacion.clear()
         else :
-            print('La variable ' + ctx.getChild(0).getText() + ' no esta declarada.\n')
-        print('Fin asignacion \n')
-        return
-
-    def enterAsignacion(self, ctx: compiladoresParser.AsignacionContext):
-        print('Inicio asignacion.')
+            print('ERROR: La variable ' + ctx.getChild(0).getText() + ' no esta declarada.\n')
+            self.variablesAsignacion.clear()
         return
 
     
