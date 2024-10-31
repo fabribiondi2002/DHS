@@ -1,14 +1,13 @@
-int sumar(int a,int b, int c){
-    a + b;
+double sumar(int a,int b, int c){
+    return 0;
 }
 
-int main (int a, int b){
-    double x = a;
-    int y ;
-    int x;
-    sumar(x,y, 10)
+int main (double a, int b){
+    int x = a;
+    double y;
+    x = sumar(x,y, 10);
     x = 10;
-    y = x + 2;
+    y = x + 2.0;
     return 0;
 }
 
