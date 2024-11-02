@@ -2,6 +2,7 @@ from antlr4 import ErrorNode, TerminalNode
 from compiladoresListener import compiladoresListener
 from compiladoresParser import compiladoresParser
 from ts.TablaSimbolos import TablaSimbolos
+from ts.Contexto import *
 from ts.Id import *
 import copy
 class Escucha (compiladoresListener):
@@ -57,7 +58,7 @@ class Escucha (compiladoresListener):
             print("\nWARNING: La funcion " + ctx.getChild(1).getText() + " ya ha sido declarada.\n")
             return
         
-        func =Funcion(ctx.getChild(1).getText(),ctx.getChild(0).getText(),copy.deepcopy(self.parametros))
+        func = Funcion(ctx.getChild(1).getText(),ctx.getChild(0).getText(),copy.deepcopy(self.parametros))
         self.tablaSimbolos.agregarID(func)
         self.variablesAsignacion.clear()
         self.parametros.clear()
@@ -77,7 +78,7 @@ class Escucha (compiladoresListener):
             param = func.getParametros()
             lista_parametros = []
             for simb in arg :
-                if not simb.isdigit():
+                if self.identificarTipo(simb) != "int" and self.identificarTipo(simb) != "double":
                     if self.tablaSimbolos.buscarLocalID(simb) == None :
                         print("ERROR: La variable "+ simb + " no esta declarada.")
                     else :
@@ -88,7 +89,7 @@ class Escucha (compiladoresListener):
             for pa in param:
                 aux = lista_parametros.pop()
                 if aux['tipo'] != pa['tipo'] :
-                    print("WARNNING: El argumento " + aux['nombre'] + " es de tipo " + aux['tipo'] + ". Se espera un argumento de tipo "+ pa['tipo'] + ".\n")
+                    print("WARNING: El argumento " + aux['nombre'] + " es de tipo " + aux['tipo'] + ". Se espera un argumento de tipo "+ pa['tipo'] + ".\n")
             self.variablesAsignacion.clear()
             func.setAccedido()
             self.tablaSimbolos.actualizarFuncion(func)
@@ -177,7 +178,7 @@ class Escucha (compiladoresListener):
 
         var = self.tablaSimbolos.buscarLocalID(ctx.getChild(0).getText())
         if var != None :
-            print(self.variablesAsignacion)
+
             for aux in self.variablesAsignacion :
                 
                 if aux["tipo"] != var.getTipo():
@@ -191,10 +192,56 @@ class Escucha (compiladoresListener):
             self.variablesAsignacion.clear()
         return
 
+    def enterIControl(self, ctx: compiladoresParser.IforContext):
+        nuevo_contexto = Contexto()
     
+        # Copia los símbolos del contexto actual
+        contexto_actual = self.tablaSimbolos.getContextos()[-1]
+        for id in contexto_actual.getSimbolos().values():
+            nuevo_contexto.agregarSimbolo(id)  # Copia el símbolo
+
+        # Agrega el nuevo contexto
+        self.tablaSimbolos.agregarContexto(nuevo_contexto)
+
+    def exitInit(self, ctx: compiladoresParser.InitContext):
+        
+        if ctx.getChild(0).getText() in {"int", "double", "char"}:
+            if self.tablaSimbolos.buscarLocalID(ctx.getChild(1).getText()) == None :
+                var = Variable(str(ctx.getChild(1).getText()), str(ctx.getChild(0).getText()))
+
+                #Si el tercer token es un igual, se esta inicializando
+                if (str(ctx.getChild(2).getText()) == '='):
+
+                    
+                    for aux in self.variablesAsignacion :
+                        if aux["tipo"] != var.getTipo():
+                            print("WARNING: La variable " + aux["nombre"] + " es de tipo " + aux["tipo"] + ". Se espera una variable tipo "+ var.getTipo()+ "\n")
+                    var.setInicializado()
+                    
+                    self.variablesAsignacion.clear()         
+                #Se agrega la variable al contexto
+                self.tablaSimbolos.agregarID(var)
+            else :
+                #Si esta declara la variable, mandamos un error
+                print("ERROR: Ya existe una variable llamada " + str(ctx.getChild(1).getText())+ ".\n")
+                return
+        elif ctx.getChild(1).getText() == "=":
+            var = self.tablaSimbolos.buscarLocalID(ctx.getChild(0).getText())
+            if var != None :
+
+                for aux in self.variablesAsignacion :
+                    
+                    if aux["tipo"] != var.getTipo():
+                        print("WARNING: La variable o funcion " + aux["nombre"] + " es de tipo " + aux["tipo"] + ". Se espera una variable tipo "+ var.getTipo()+ "\n")
+
+                var.setInicializado()
+                self.tablaSimbolos.actualizarId(var)
+                self.variablesAsignacion.clear()
+            else :
+                print('ERROR: La variable ' + ctx.getChild(0).getText() + ' no esta declarada.\n')
+                self.variablesAsignacion.clear()
+            return
             
-
-
     # # Enter a parse tree produced by compiladoresParser#iwhile.
     # def enterIwhile(self, ctx:compiladoresParser.IwhileContext):
     #     print('Encontre WHILE')

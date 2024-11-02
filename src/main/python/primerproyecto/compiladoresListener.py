@@ -26,6 +26,15 @@ class compiladoresListener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by compiladoresParser#tfuncion.
+    def enterTfuncion(self, ctx:compiladoresParser.TfuncionContext):
+        pass
+
+    # Exit a parse tree produced by compiladoresParser#tfuncion.
+    def exitTfuncion(self, ctx:compiladoresParser.TfuncionContext):
+        pass
+
+
     # Enter a parse tree produced by compiladoresParser#programa.
     def enterPrograma(self, ctx:compiladoresParser.ProgramaContext):
         pass
@@ -113,6 +122,15 @@ class compiladoresListener(ParseTreeListener):
 
     # Exit a parse tree produced by compiladoresParser#bloque.
     def exitBloque(self, ctx:compiladoresParser.BloqueContext):
+        pass
+
+
+    # Enter a parse tree produced by compiladoresParser#icontrol.
+    def enterIcontrol(self, ctx:compiladoresParser.IcontrolContext):
+        pass
+
+    # Exit a parse tree produced by compiladoresParser#icontrol.
+    def exitIcontrol(self, ctx:compiladoresParser.IcontrolContext):
         pass
 
 
@@ -293,15 +311,6 @@ class compiladoresListener(ParseTreeListener):
 
     # Exit a parse tree produced by compiladoresParser#iter.
     def exitIter(self, ctx:compiladoresParser.IterContext):
-        pass
-
-
-    # Enter a parse tree produced by compiladoresParser#ido.
-    def enterIdo(self, ctx:compiladoresParser.IdoContext):
-        pass
-
-    # Exit a parse tree produced by compiladoresParser#ido.
-    def exitIdo(self, ctx:compiladoresParser.IdoContext):
         pass
 
 

@@ -65,12 +65,13 @@ DECIMAL : DIGITO+ PUNTO DIGITO+;
 
 WS : [ \t\n\r] -> skip;
 
-tdato : INT | DOUBLE | CHAR | VOID;
+tdato: INT | DOUBLE | CHAR;
+tfuncion : INT | DOUBLE | CHAR | VOID;
 
 
 programa : declaracion* funcion* EOF ;
 
-funcion : tdato ID PA parametros PC (bloque | PYC);
+funcion : tfuncion ID PA parametros PC bloque;
 
 parametros : tdato ID parametrosp
             | 
@@ -95,9 +96,7 @@ instrucciones : instruccion instrucciones
 
 
 instruccion : declaracion
-            | iwhile
-            | ifor
-            | iif
+            | icontrol
             | bloque
             | asignacion 
             | usofuncion
@@ -108,6 +107,9 @@ instruccion : declaracion
 
 bloque : LLA instrucciones LLC ;
 
+icontrol: iwhile
+        | ifor
+        | iif;
 
 declaracion : tdato ID PYC 
             | tdato ID ASIG opal PYC;
@@ -167,14 +169,15 @@ iif : IF PA cond PC (LLA instrucciones LLC | instruccion)  ;
 
 ifor : FOR PA init PYC cond PYC iter PC (LLA instrucciones LLC | instruccion) ;
 
-init : ID ASIG (usofuncion|opal)
-      | ID
+init : ID ASIG opal
       | tdato ID
-      | tdato ID ASIG (usofuncion|opal)
+      | tdato ID ASIG opal
+      | opal
+      |
       ;
 
 cond : opal;
 
-iter : (ID|NUMERO) ASIG exp;
-
-ido: DO (bloque|instruccion) WHILE PA opal PC PYC ;
+iter : asignacion
+      | opal
+      |;
