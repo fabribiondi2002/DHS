@@ -12,7 +12,9 @@ class Escucha (compiladoresListener):
     tablaSimbolos = TablaSimbolos()
     parametros = []
     argumentos = []
-
+    conjunto_argumento = []
+    pila_contador_arg = []
+    uso_func = False
     def identificarTipo(self, cadena):
         #Verifica si la cadena ingresada es tipo int
         try:
@@ -80,48 +82,61 @@ class Escucha (compiladoresListener):
             param =  {"nombre": ctx.getChild(1).getText(), "tipo": ctx.getChild(0).getText()}
             self.parametros.append(param)
 
+    def enterUsofuncion(self, ctx: compiladoresParser.UsofuncionContext):
+        self.uso_func = True
+        self.pila_contador_arg.append(0)
+    
 
     def exitUsofuncion(self, ctx: compiladoresParser.UsofuncionContext):
+        self.uso_func = False
         #Se busca la funcion a utilizar por el nombre
         func =self.tablaSimbolos.buscarID(ctx.getChild(0).getText())
         #Si la funcion existe se hace el checkeo de parametros y argumentos
         if  func != None :
             #Se inicializa una lista de argumentos auxiliar donde se van a juntar los IDs con las constantes y se les va a dar un tipo para poder comparar con los parametros
             lista_argumentos = []
-            #Se trae la lista de argumentos pasados a la funcion
-            arg = self.argumentos
+            lista_aux = []
+            #Se trae la lista que contiene la lista de cada espacio de argumentos pasados a la funcion
+            listaArgumentosLlamadaAFuncion = self.argumentos
             #Se trae la lista de parametros almacenada en el objeto tipo Funcion
             param = func.getParametros()
             
-            #Se identifica el tipo de argumento
-            for simb in arg :
-                #Si es un ID
-                if self.identificarTipo(simb) != "int" and self.identificarTipo(simb) != "double":
-                    #Se checkea que la variable haya sido declarad
-                    if self.tablaSimbolos.buscarLocalID(simb) == None :
-                        print("ERROR: La variable "+ simb + " no esta declarada.")
+            for arg in listaArgumentosLlamadaAFuncion :
+                #Se identifica el tipo de argumento
+                for simb in arg :
+                    #Si es un ID
+                    if simb["tipo"] != "int" and simb["tipo"] != "double":
+                        #Se checkea que la variable haya sido declarada
+                        if self.tablaSimbolos.buscarLocalID(simb["nombre"]) == None :
+                            print("ERROR: La variable "+ simb["nombre"] + " no esta declarada.")
+                        else :
+                            
+                            lista_aux.append(simb)
+                            id = self.tablaSimbolos.buscarLocalID(simb["nombre"])
+                            id.setAccedido()  
+                            self.tablaSimbolos.actualizarId(id)
+                    #Si es una constante, se identifica el tipo y se agrega a la lista de argumentos
                     else :
-                        
-                        lista_argumentos.append({"nombre": simb, "tipo":self.tablaSimbolos.buscarLocalID(simb).getTipo()})
-                        id = self.tablaSimbolos.buscarLocalID(simb)
-                        id.setAccedido()  
-                        self.tablaSimbolos.actualizarId(id)
-                #Si es una constante, se identifica el tipo y se agrega a la lista de argumentos
-                else :
-                    lista_argumentos.append({"nombre": simb, "tipo":self.identificarTipo(simb)})
-            
+                        lista_aux.append(simb)
+                lista_argumentos.append(lista_aux)
+                lista_aux = []
+        
             #Se comparan los argumentos con los parametros
             for pa in param:
-                #Se checkea si la pila de argumentos esta vacia
-                if len(lista_argumentos) == 0:
-                    print("WARNING: Falta agregar argumentos a la llamada de la funcion.\n")
+                
                 #Se recorre la lista de parametros mientras se va desapilando la lista de argumentos
                 aux = lista_argumentos.pop()
-                if aux['tipo'] != pa['tipo'] :
-                    print("WARNING: El argumento " + aux['nombre'] + " es de tipo " + aux['tipo'] + ". Se espera un argumento de tipo "+ pa['tipo'] + ".\n")
+                for aux_argumento in aux:
+                    
+                    if aux_argumento['tipo'] != pa['tipo'] :
+                        print("WARNING: El argumento " + aux_argumento['nombre'] + " es de tipo " + aux_argumento['tipo'] + ". Se espera un argumento de tipo "+ pa['tipo'] + ".\n")
             
+            #Se checkea si la pila de argumentos esta vacia
+            cant_arg = self.pila_contador_arg.pop()
+            if cant_arg < len(param):
+                print("WARNING: Falta agregar argumentos a la llamada de la funcion.\n")
             #Se checkea no la pila de argumentos esta vacia despues de haber finalizado la comparacion
-            if len(lista_argumentos) != 0:
+            elif cant_arg > len(param):
                 print("WARNING: Sobran argumentos en la llamada a la funcion.\n")
             
             #Se actualiza el atributo de accedido de la funcion
@@ -131,15 +146,15 @@ class Escucha (compiladoresListener):
 
         print("\nWARNING: La funcion " + ctx.getChild(0).getText() + " no ha sido declarada.\n")
         return    
+    
 
     def exitArgumentos(self, ctx: compiladoresParser.ArgumentosContext):
         #Si la llamada a funcion tiene argumentos, se agregan a la lista de argumentos
         if ctx.getChildCount() != 0 :
-            self.argumentos.append(ctx.getChild(0).getText())
-    
-
-
-
+            self.argumentos.append(self.conjunto_argumento)
+            if self.pila_contador_arg:
+                self.pila_contador_arg[-1] += 1 
+            self.conjunto_argumento =[]
 
     def exitDeclaracion(self, ctx:compiladoresParser.DeclaracionContext):
 
@@ -178,28 +193,35 @@ class Escucha (compiladoresListener):
 
                     if var.getInicializado() == False :
                         print("ERROR: La variable "+ nombre + " no esta inicializada.\n")
-                        return
                     aux = {'tipo' : var.getTipo(), 'nombre' : var.getNombre()}
-                    self.variablesAsignacion.append(aux)
+                    if self.uso_func :
+                        self.conjunto_argumento.append(aux)
+                    else :
+                        self.variablesAsignacion.append(aux)
                     var.setAccedido()
                     self.tablaSimbolos.actualizarId(var)
 
                 else :
                     print("ERROR: La variable "+ nombre + " no esta declarada\n")
                     return
-                
-                
-                
+
             else :
                 
                 aux = {'tipo' : self.identificarTipo(ctx.getChild(0).getText()), 'nombre' : ctx.getChild(0).getText()}
-                self.variablesAsignacion.append(aux)
+                if self.uso_func :
+                    self.conjunto_argumento.append(aux)
+                else :
+                    self.variablesAsignacion.append(aux)
+            
         else:
             nombre = ctx.getChild(0).getChild(0).getText()
             func = self.tablaSimbolos.buscarID(nombre)
             if  func != None :
                     aux = {'tipo' : func.getTipo(), 'nombre' : func.getNombre()}
-                    self.variablesAsignacion.append(aux)
+                    if self.uso_func :
+                        self.conjunto_argumento.append(aux)
+                    else :
+                        self.variablesAsignacion.append(aux)
                     func.setAccedido()
                     self.tablaSimbolos.actualizarId(func)
             else :

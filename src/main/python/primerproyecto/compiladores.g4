@@ -85,7 +85,7 @@ usofuncion : ID PA (argumentos) PC;
 
 
 
-argumentos : (NUMERO|ID) argumentosp
+argumentos : (opal) argumentosp
             |;
 argumentosp : COMA argumentos argumentosp 
             |;

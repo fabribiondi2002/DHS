@@ -5,7 +5,7 @@ double sumar(int a,int b, int c){
 int main (double a, int b){
     int x = a;
     double y;
-    x = sumar(x,y, 10)
+    x = sumar(x + sumar(x + y , x , x), y , 10)
     x = 10;
     y = x + 2.0;
     return 0;
