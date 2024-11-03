@@ -1,4 +1,4 @@
-// Generated from /home/fabri/Escritorio/DHS/proyecto/DHS/src/main/python/primerproyecto/compiladores.g4 by ANTLR 4.13.1
+// Generated from /home/fabri/Escritorio/dhs/proyecto/primerproyecto/src/main/python/primerproyecto/compiladores.g4 by ANTLR 4.13.1
 
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.tree.ErrorNode;
@@ -40,6 +40,18 @@ public class compiladoresBaseListener implements compiladoresListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterTfuncion(compiladoresParser.TfuncionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitTfuncion(compiladoresParser.TfuncionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterPrograma(compiladoresParser.ProgramaContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -59,42 +71,6 @@ public class compiladoresBaseListener implements compiladoresListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitFuncion(compiladoresParser.FuncionContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterFuncionvoid(compiladoresParser.FuncionvoidContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitFuncionvoid(compiladoresParser.FuncionvoidContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterFuncionreturn(compiladoresParser.FuncionreturnContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitFuncionreturn(compiladoresParser.FuncionreturnContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterBloquereturn(compiladoresParser.BloquereturnContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitBloquereturn(compiladoresParser.BloquereturnContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -184,6 +160,30 @@ public class compiladoresBaseListener implements compiladoresListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterBloque(compiladoresParser.BloqueContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitBloque(compiladoresParser.BloqueContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterIcontrol(compiladoresParser.IcontrolContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitIcontrol(compiladoresParser.IcontrolContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterDeclaracion(compiladoresParser.DeclaracionContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -203,6 +203,18 @@ public class compiladoresBaseListener implements compiladoresListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitAsignacion(compiladoresParser.AsignacionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterReturn(compiladoresParser.ReturnContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitReturn(compiladoresParser.ReturnContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -352,18 +364,6 @@ public class compiladoresBaseListener implements compiladoresListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterBloque(compiladoresParser.BloqueContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitBloque(compiladoresParser.BloqueContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
 	@Override public void enterIif(compiladoresParser.IifContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -419,18 +419,6 @@ public class compiladoresBaseListener implements compiladoresListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitIter(compiladoresParser.IterContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterIdo(compiladoresParser.IdoContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitIdo(compiladoresParser.IdoContext ctx) { }
 
 	/**
 	 * {@inheritDoc}

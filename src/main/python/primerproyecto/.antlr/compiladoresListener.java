@@ -1,4 +1,4 @@
-// Generated from /home/fabri/Escritorio/DHS/proyecto/DHS/src/main/python/primerproyecto/compiladores.g4 by ANTLR 4.13.1
+// Generated from /home/fabri/Escritorio/dhs/proyecto/primerproyecto/src/main/python/primerproyecto/compiladores.g4 by ANTLR 4.13.1
 import org.antlr.v4.runtime.tree.ParseTreeListener;
 
 /**
@@ -27,6 +27,16 @@ public interface compiladoresListener extends ParseTreeListener {
 	 */
 	void exitTdato(compiladoresParser.TdatoContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link compiladoresParser#tfuncion}.
+	 * @param ctx the parse tree
+	 */
+	void enterTfuncion(compiladoresParser.TfuncionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link compiladoresParser#tfuncion}.
+	 * @param ctx the parse tree
+	 */
+	void exitTfuncion(compiladoresParser.TfuncionContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link compiladoresParser#programa}.
 	 * @param ctx the parse tree
 	 */
@@ -46,36 +56,6 @@ public interface compiladoresListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitFuncion(compiladoresParser.FuncionContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link compiladoresParser#funcionvoid}.
-	 * @param ctx the parse tree
-	 */
-	void enterFuncionvoid(compiladoresParser.FuncionvoidContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link compiladoresParser#funcionvoid}.
-	 * @param ctx the parse tree
-	 */
-	void exitFuncionvoid(compiladoresParser.FuncionvoidContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link compiladoresParser#funcionreturn}.
-	 * @param ctx the parse tree
-	 */
-	void enterFuncionreturn(compiladoresParser.FuncionreturnContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link compiladoresParser#funcionreturn}.
-	 * @param ctx the parse tree
-	 */
-	void exitFuncionreturn(compiladoresParser.FuncionreturnContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link compiladoresParser#bloquereturn}.
-	 * @param ctx the parse tree
-	 */
-	void enterBloquereturn(compiladoresParser.BloquereturnContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link compiladoresParser#bloquereturn}.
-	 * @param ctx the parse tree
-	 */
-	void exitBloquereturn(compiladoresParser.BloquereturnContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link compiladoresParser#parametros}.
 	 * @param ctx the parse tree
@@ -147,6 +127,26 @@ public interface compiladoresListener extends ParseTreeListener {
 	 */
 	void exitInstruccion(compiladoresParser.InstruccionContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link compiladoresParser#bloque}.
+	 * @param ctx the parse tree
+	 */
+	void enterBloque(compiladoresParser.BloqueContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link compiladoresParser#bloque}.
+	 * @param ctx the parse tree
+	 */
+	void exitBloque(compiladoresParser.BloqueContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link compiladoresParser#icontrol}.
+	 * @param ctx the parse tree
+	 */
+	void enterIcontrol(compiladoresParser.IcontrolContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link compiladoresParser#icontrol}.
+	 * @param ctx the parse tree
+	 */
+	void exitIcontrol(compiladoresParser.IcontrolContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link compiladoresParser#declaracion}.
 	 * @param ctx the parse tree
 	 */
@@ -166,6 +166,16 @@ public interface compiladoresListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitAsignacion(compiladoresParser.AsignacionContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link compiladoresParser#return}.
+	 * @param ctx the parse tree
+	 */
+	void enterReturn(compiladoresParser.ReturnContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link compiladoresParser#return}.
+	 * @param ctx the parse tree
+	 */
+	void exitReturn(compiladoresParser.ReturnContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link compiladoresParser#opal}.
 	 * @param ctx the parse tree
@@ -287,16 +297,6 @@ public interface compiladoresListener extends ParseTreeListener {
 	 */
 	void exitIwhile(compiladoresParser.IwhileContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link compiladoresParser#bloque}.
-	 * @param ctx the parse tree
-	 */
-	void enterBloque(compiladoresParser.BloqueContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link compiladoresParser#bloque}.
-	 * @param ctx the parse tree
-	 */
-	void exitBloque(compiladoresParser.BloqueContext ctx);
-	/**
 	 * Enter a parse tree produced by {@link compiladoresParser#iif}.
 	 * @param ctx the parse tree
 	 */
@@ -346,14 +346,4 @@ public interface compiladoresListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitIter(compiladoresParser.IterContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link compiladoresParser#ido}.
-	 * @param ctx the parse tree
-	 */
-	void enterIdo(compiladoresParser.IdoContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link compiladoresParser#ido}.
-	 * @param ctx the parse tree
-	 */
-	void exitIdo(compiladoresParser.IdoContext ctx);
 }
