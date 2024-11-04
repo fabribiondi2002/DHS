@@ -45,18 +45,14 @@ NUMERO : ENTERO
 //TIPO DE DATO
 INT   : 'int' ;
 DOUBLE : 'double';
-LONG : 'long';
 CHAR : 'char';
-STRING : 'string';
 
 //FUNCIONES
 VOID : 'void';
 WHILE : 'while' ;
 FOR   : 'for' ;
 IF    : 'if' ;
-ELSE : 'else';
 RETURN : 'return';
-DO : 'do';
 
 ID : (LETRA | '_')(LETRA | DIGITO | '_')* ;
 ENTERO : DIGITO+;
