@@ -27,7 +27,7 @@ class Variable(ID):
     pass
 
 class Funcion(ID):
-    def __init__(self, nombre, tipo, parametros, inicializado=False, accedido=False):
+    def __init__(self, nombre, tipo, parametros, inicializado=True, accedido=False):
         super().__init__(nombre, tipo, inicializado, accedido)
         self.parametros = parametros
     def getParametros(self):

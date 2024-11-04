@@ -15,6 +15,9 @@ class Escucha (compiladoresListener):
     conjunto_argumento = []
     pila_contador_arg = []
     uso_func = False
+    contextos = []
+    simbolos_anteriores = dict()
+
     def identificarTipo(self, cadena):
         #Verifica si la cadena ingresada es tipo int
         try:
@@ -32,20 +35,27 @@ class Escucha (compiladoresListener):
      # Enter a parse tree produced by compiladoresParser#programa.
     def enterPrograma(self, ctx:compiladoresParser.ProgramaContext):
         print('Comienzo de la compilacion\n')   
-        contexto = self.tablaSimbolos.agregarContexto()
+        self.tablaSimbolos.agregarContexto()
 
     # Exit a parse tree produced by compiladoresParser#programa.
     def exitPrograma(self, ctx:compiladoresParser.ProgramaContext):
-        
-        
-        # for cont in contextos :
-        #     for var in cont.getSimbolos() :
-        #         if var.getInicializado() == False :
-        #             print("Variable " + var.getNombre() + " no inicialiada.\n")
-        #         else :
-        #             if var.getAccedido() == False :
-        #                 print("Variable " + var.getNombre() + " no accedida.\n")
+        func = self.tablaSimbolos.buscarID("main")
 
+        if func != None :
+            func.setAccedido()
+            self.tablaSimbolos.actualizarId(func)
+        
+        for cont in self.tablaSimbolos.listaContextos :
+            for var in cont.getSimbolos().values() :
+                if isinstance(var,Funcion) : 
+                    if var.getAccedido() == False :
+                        print("WARNING: La funcion " + var.getNombre() + " no ha sido accedida.\n")
+                else :
+                        if var.getInicializado() == False :
+                            print("WARNING: La variable " + var.getNombre() + " no ha sido inicializada.\n")
+                        else :
+                            if var.getAccedido() == False :
+                                print("WARNING: La variable " + var.getNombre() + " no ha sido accedida.\n")
 
         print('Fin de la compilacion')
 
@@ -55,7 +65,7 @@ class Escucha (compiladoresListener):
         self.tablaSimbolos.agregarContexto()
         #Se toman los IDs que estan en los parametros de la funcion y se los agrega a la tabla de simbolos del contexto creado
         for par in self.parametros :
-            id = ID(par['nombre'],par['tipo'])
+            id = Variable(par['nombre'],par['tipo'])
             id.setInicializado()
             self.tablaSimbolos.agregarID(id)
 
@@ -144,7 +154,7 @@ class Escucha (compiladoresListener):
             self.tablaSimbolos.actualizarId(func)
             return
 
-        print("\nWARNING: La funcion " + ctx.getChild(0).getText() + " no ha sido declarada.\n")
+        print("ERROR: La funcion " + ctx.getChild(0).getText() + " no ha sido declarada.\n")
         return    
     
 
@@ -224,9 +234,6 @@ class Escucha (compiladoresListener):
                         self.variablesAsignacion.append(aux)
                     func.setAccedido()
                     self.tablaSimbolos.actualizarId(func)
-            else :
-                print("ERROR: La funcion"+ nombre + " no esta declarada\n")
-                return
 
 
     def exitAsignacion(self, ctx: compiladoresParser.AsignacionContext):
@@ -247,17 +254,38 @@ class Escucha (compiladoresListener):
             self.variablesAsignacion.clear()
         return
 
-    def enterIControl(self, ctx: compiladoresParser.IforContext):
-        nuevo_contexto = Contexto()
+    def enterIcontrol(self, ctx: compiladoresParser.IcontrolContext):
+        contexto_anterior = self.tablaSimbolos.getContextos()[-1]
+        self.simbolos_anteriores = contexto_anterior.getSimbolos()
     
-        # Copia los símbolos del contexto actual
+        self.tablaSimbolos.agregarContexto()
+
+        for simbolo in self.simbolos_anteriores.values():
+            simbolo_copiado = copy.deepcopy(simbolo)
+            self.tablaSimbolos.agregarID(simbolo_copiado)       
+
+    def exitIcontrol(self, ctx: compiladoresParser.IcontrolContext):
         contexto_actual = self.tablaSimbolos.getContextos()[-1]
-        for id in contexto_actual.getSimbolos().values():
-            nuevo_contexto.agregarSimbolo(id)  # Copia el símbolo
+        simbolos_actuales = contexto_actual.getSimbolos()
 
-        # Agrega el nuevo contexto
-        self.tablaSimbolos.agregarContexto(nuevo_contexto)
+        # Crear conjuntos de nombres de los símbolos actuales y anteriores
+        nombres_simbolos_actuales = set(simbolo.getNombre() for simbolo in simbolos_actuales.values())
+        nombres_simbolos_anteriores = set(simbolo.getNombre() for simbolo in self.simbolos_anteriores.values())
 
+        # Identificar nuevos símbolos
+        nombres_nuevos_simbolos = nombres_simbolos_actuales - nombres_simbolos_anteriores
+
+        # Imprimir los ID no accedidos
+        for nombre_nuevo_simbolo in nombres_nuevos_simbolos:
+            simbolo_nuevo = simbolos_actuales[nombre_nuevo_simbolo] 
+            if not simbolo_nuevo.getAccedido():  
+                print("WARNING: La variable " + simbolo_nuevo.getNombre() + " no ha sido accedido.\n")
+            if not simbolo_nuevo.getInicializado():  
+                print("WARNING: La variable " + simbolo_nuevo.getNombre() + " no ha sido inicializada.\n")    
+
+        # Borrar el contexto actual
+        self.tablaSimbolos.borrarContexto()
+        
     def exitInit(self, ctx: compiladoresParser.InitContext):
         
         if ctx.getChild(0).getText() in {"int", "double", "char"}:
@@ -266,7 +294,6 @@ class Escucha (compiladoresListener):
 
                 #Si el tercer token es un igual, se esta inicializando
                 if (str(ctx.getChild(2).getText()) == '='):
-
                     
                     for aux in self.variablesAsignacion :
                         if aux["tipo"] != var.getTipo():

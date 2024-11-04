@@ -11,7 +11,7 @@ class TablaSimbolos:
         #Agrega un contexto al final de la pila
         self.listaContextos.append(Contexto())
 
-    def borrarContexto (self, cont):
+    def borrarContexto (self):
         #Elimina el contexto actual
         self.listaContextos.pop()
 

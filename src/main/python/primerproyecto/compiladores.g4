@@ -178,6 +178,6 @@ init : ID ASIG opal
 
 cond : opal;
 
-iter : asignacion
+iter : ID ASIG opal
       | opal
       |;

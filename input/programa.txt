@@ -1,12 +1,20 @@
 double sumar(int a,int b, int c){
-    return 0;
+    return a + b;
 }
 
 int main (double a, int b){
-    int x = a;
+    int x = a + b;
     double y;
-    x = sumar(x + sumar(x + y , x , x), y , 10)
+    x = armar(x + sumar(x + y , x , x), y , 10)
     x = 10;
+    while( x < 20){
+        int i = 0;
+        x = 1 + i;
+        if( i > 0){
+            x = x + 1;
+            int z;
+        }
+    }
     y = x + 2.0;
     return 0;
 }
