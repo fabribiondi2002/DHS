@@ -51,6 +51,7 @@ class TablaSimbolos:
             else:
                 raise ValueError(f"La funcion '{id.nombre}' no existe.")
         else:
+            #Se busca la variable en el contexto local
             if id.nombre in self.listaContextos[-1].getSimbolos():
                 self.listaContextos[-1].eliminarSimbolo(id.nombre)
                 self.listaContextos[-1].agregarSimbolo(id)

@@ -6,14 +6,21 @@ from ts.Contexto import *
 from ts.Id import *
 import copy
 class Escucha (compiladoresListener):
+    #Lista utilizada para contener todos los factores que se utilizan en una asignacion
     variablesAsignacion = []
+    #Se crea un objeto tabla de simbolos
     tablaSimbolos = TablaSimbolos()
+    #Lista utilizada para guardar los parametros de una funcion
     parametros = []
+    #Lista utilizada para guardar la lista que representa el conjunto de factores utilizados en un espacio de argumentos en una llamada a funcion
     argumentos = []
+    #Lista utilizada para guardar el conjunto de factores utilizados en un espacio de argumentos en una llamada a funcion
     conjunto_argumento = []
+    #Lista utilizada como pila para guardar la cantidad de espacios de argumentos que tiene una llamada a la funcio, sirve para poder anidar llamadas de funcion
     pila_contador_arg = []
+    #Variable que sirve como bandera para saber si estamos en una llamada a funcion, se utiliza para hacer las listas de argumentos
     uso_func = False
-    contextos = []
+    #Diccionario utilizado en la construccion de los contextos en las estructuras de control
     simbolos_anteriores = dict()
 
     def identificarTipo(self, cadena):
@@ -135,7 +142,6 @@ class Escucha (compiladoresListener):
         
             #Se comparan los argumentos con los parametros
             for pa in param:
-                
                 #Se recorre la lista de parametros mientras se va desapilando la lista de argumentos
                 aux = lista_argumentos.pop()
                 for aux_argumento in aux:
@@ -234,6 +240,7 @@ class Escucha (compiladoresListener):
             nombre = ctx.getChild(0).getChild(0).getText()
             func = self.tablaSimbolos.buscarID(nombre)
             if  func != None :
+                    #Se checkea si el factor tipo funcion pertenece a un argumento o a una asignacion
                     aux = {'tipo' : func.getTipo(), 'nombre' : func.getNombre()}
                     if self.uso_func :
                         self.conjunto_argumento.append(aux)
@@ -243,17 +250,17 @@ class Escucha (compiladoresListener):
                     self.tablaSimbolos.actualizarId(func)
 
     def enterAsignacion(self, ctx: compiladoresParser.AsignacionContext):
+        #Se limpia la lista de varibles de asignacion (Esto es por si hubo una operacion que no haya sido una asignacion que use la lista CORREGIR)
         self.variablesAsignacion.clear()
     def exitAsignacion(self, ctx: compiladoresParser.AsignacionContext):
-
+        #Se checkea si la variable a la cual queremos hacerle una asignacion existe
         var = self.tablaSimbolos.buscarLocalID(ctx.getChild(0).getText())
         if var != None :
-
+            #Se checkea los tipos de datos de los IDs o constantes que se van a asignar sean los mismos que la variable a hacerle asignacion
             for aux in self.variablesAsignacion :
-                
                 if aux["tipo"] != var.getTipo():
                     print("WARNING: La variable o funcion " + aux["nombre"] + " es de tipo " + aux["tipo"] + ". Se espera una variable tipo "+ var.getTipo()+ "\n")
-
+            #Se actualiza la varible
             var.setInicializado()
             self.tablaSimbolos.actualizarId(var)
             self.variablesAsignacion.clear()
@@ -262,28 +269,36 @@ class Escucha (compiladoresListener):
             self.variablesAsignacion.clear()
         return
 
+    #Las estructuras de control van a generar un contexto que tenga los mismos IDs del contexto anterior
+    #pero a la salida de la estructura de control se va a eliminar el contexto generado para que no se superponga al contexto
+    #de donde se creó la estructura de control
     def enterIcontrol(self, ctx: compiladoresParser.IcontrolContext):
+        #Se toma los simbolos del contexto anterior donde fue declarada la estructura de control
         contexto_anterior = self.tablaSimbolos.getContextos()[-1]
         self.simbolos_anteriores = contexto_anterior.getSimbolos()
-    
-        self.tablaSimbolos.agregarContexto()
 
+        #Se agrega el nuevo contexto de la estructura de control y se copian a este los del contexto anterior
+        self.tablaSimbolos.agregarContexto()
         for simbolo in self.simbolos_anteriores.values():
             simbolo_copiado = copy.deepcopy(simbolo)
             self.tablaSimbolos.agregarID(simbolo_copiado)       
 
+    #Como el contexto de las estructuras de control van a ser borrados al salir de estos
+    #se cheackea cuales de las nuevas variables del contexto de la estructura de control
+    #no fueron inicializadas o no fueron accedidas
     def exitIcontrol(self, ctx: compiladoresParser.IcontrolContext):
+        #Se traen las variables del contexto  de la estructura de control
         contexto_actual = self.tablaSimbolos.getContextos()[-1]
         simbolos_actuales = contexto_actual.getSimbolos()
 
-        # Crear conjuntos de nombres de los símbolos actuales y anteriores
+        #Se crea los conjuntos de nombres de las variables actuales y anteriores
         nombres_simbolos_actuales = set(simbolo.getNombre() for simbolo in simbolos_actuales.values())
         nombres_simbolos_anteriores = set(simbolo.getNombre() for simbolo in self.simbolos_anteriores.values())
 
-        # Identificar nuevos símbolos
+        #Se toman las variables declaradas solo en el contexto de la estructura de control
         nombres_nuevos_simbolos = nombres_simbolos_actuales - nombres_simbolos_anteriores
 
-        # Imprimir los ID no accedidos
+        #Se checkea las variables no accedidas o no inicializadas
         for nombre_nuevo_simbolo in nombres_nuevos_simbolos:
             simbolo_nuevo = simbolos_actuales[nombre_nuevo_simbolo] 
             if not simbolo_nuevo.getAccedido():  
@@ -291,12 +306,13 @@ class Escucha (compiladoresListener):
             if not simbolo_nuevo.getInicializado():  
                 print("WARNING: La variable " + simbolo_nuevo.getNombre() + " no ha sido inicializada.\n")    
 
-        # Borrar el contexto actual
+        #Se borra el contexto de la estructura de control
         self.tablaSimbolos.borrarContexto()
         
     def exitInit(self, ctx: compiladoresParser.InitContext):
-        
+        #Se checkea si se esta declarando el contador
         if ctx.getChild(0).getText() in {"int", "double", "char"}:
+            #Se checkea si la variable esta declarada
             if self.tablaSimbolos.buscarLocalID(ctx.getChild(1).getText()) == None :
                 var = Variable(str(ctx.getChild(1).getText()), str(ctx.getChild(0).getText()))
 
@@ -315,19 +331,21 @@ class Escucha (compiladoresListener):
                 #Si esta declara la variable, mandamos un error
                 print("ERROR: Ya existe una variable llamada " + str(ctx.getChild(1).getText())+ ".\n")
                 return
+        #Si se esta asignando un factor a una variable
         elif ctx.getChild(1).getText() == "=":
+            #Se checkea si la variable esta declarada
             var = self.tablaSimbolos.buscarLocalID(ctx.getChild(0).getText())
             if var != None :
-
+                #Se cheackean los tipos de IDs o constantes que se estan agregando
                 for aux in self.variablesAsignacion :
-                    
                     if aux["tipo"] != var.getTipo():
                         print("WARNING: La variable o funcion " + aux["nombre"] + " es de tipo " + aux["tipo"] + ". Se espera una variable tipo "+ var.getTipo()+ "\n")
-
+                #Se actualiza la variable
                 var.setInicializado()
                 self.tablaSimbolos.actualizarId(var)
-                self.variablesAsignacion.clear()
+                
             else :
                 print('ERROR: La variable ' + ctx.getChild(0).getText() + ' no esta declarada.\n')
-                self.variablesAsignacion.clear()
+            #Se limpia la lista de asignacion
+            self.variablesAsignacion.clear()
             return
