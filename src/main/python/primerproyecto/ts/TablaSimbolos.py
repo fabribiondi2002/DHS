@@ -13,7 +13,7 @@ class TablaSimbolos:
 
     def borrarContexto (self):
         #Elimina el contexto actual
-        self.listaContextos.pop()
+        return self.listaContextos.pop()
 
     def agregarID(self, id):
         #Si es una funcion, se la agrega al contexto global
@@ -30,7 +30,7 @@ class TablaSimbolos:
 
     def buscarID(self, id):
         #Se busca el ID en todos los contextos
-        for cont in self.listaContextos:
+        for cont in reversed(self.listaContextos):
             simbolo = cont.getSimbolos().get(id)
             if simbolo is not None:
                 return simbolo
@@ -41,6 +41,7 @@ class TablaSimbolos:
         return self.listaContextos
                 
     def actualizarId(self, id):
+        existe = False
         #Busca el ID a actualizar por el nombre en el contexto local, lo elimina y agrega el ID modificado
         if isinstance(id, Funcion):
             #Busca la funcion en el contexto global por el nombre, la elimina y agrega la funcion modificada
@@ -49,13 +50,15 @@ class TablaSimbolos:
                 self.listaContextos[0].agregarSimbolo(id)
                 return id
             else:
-                raise ValueError(f"La funcion '{id.nombre}' no existe.")
+                print(f"La funcion '{id.nombre}' no existe.")
         else:
-            #Se busca la variable en el contexto local
-            if id.nombre in self.listaContextos[-1].getSimbolos():
-                self.listaContextos[-1].eliminarSimbolo(id.nombre)
-                self.listaContextos[-1].agregarSimbolo(id)
-                return id
-            else:
-                raise ValueError(f"La variable '{id.nombre}' no existe en el contexto actual.")
+            #Se busca la variable en los contextos
+            for context in reversed(self.listaContextos):
+
+                if id.nombre in context.getSimbolos():
+                    context.eliminarSimbolo(id.nombre)
+                    context.agregarSimbolo(id)
+                    return id
+            
+            print(f"La variable '{id.nombre}' no existe en el contexto actual.")
         return None

@@ -20,9 +20,7 @@ class Escucha (compiladoresListener):
     pila_contador_arg = []
     #Variable que sirve como bandera para saber si estamos en una llamada a funcion, se utiliza para hacer las listas de argumentos
     uso_func = False
-    #Diccionario utilizado en la construccion de los contextos en las estructuras de control
-    simbolos_anteriores = dict()
-
+    EsFuncion = False
     def identificarTipo(self, cadena):
         #Verifica si la cadena ingresada es tipo int
         try:
@@ -40,8 +38,6 @@ class Escucha (compiladoresListener):
      # Enter a parse tree produced by compiladoresParser#programa.
     def enterPrograma(self, ctx:compiladoresParser.ProgramaContext):
         print('Comienzo de la compilacion\n')   
-        #Se agrega el contexto global
-        self.tablaSimbolos.agregarContexto()
 
     # Exit a parse tree produced by compiladoresParser#programa.
     def exitPrograma(self, ctx:compiladoresParser.ProgramaContext):
@@ -50,32 +46,53 @@ class Escucha (compiladoresListener):
         if func != None :
             func.setAccedido()
             self.tablaSimbolos.actualizarId(func)
-        
-        #Se checkea si las variables y funciones fueron accedidas e inicializadas
-        for cont in self.tablaSimbolos.listaContextos :
-            for var in cont.getSimbolos().values() :
-                if isinstance(var,Funcion) : 
-                    if var.getAccedido() == False :
-                        print("WARNING: La funcion " + var.getNombre() + " no ha sido accedida.\n")
-                else :
-                        if var.getInicializado() == False :
-                            print("WARNING: La variable " + var.getNombre() + " no ha sido inicializada.\n")
-                        else :
-                            if var.getAccedido() == False :
-                                print("WARNING: La variable " + var.getNombre() + " no ha sido accedida.\n")
 
+        cont = self.tablaSimbolos.borrarContexto()
+        for var in cont.getSimbolos().values() :
+            if isinstance(var,Funcion) : 
+                if var.getAccedido() == False :
+                    print("WARNING: La funcion " + var.getNombre() + " no ha sido accedida.\n")
+            else :
+                    if var.getInicializado() == False :
+                        print("WARNING: La variable " + var.getNombre() + " no ha sido inicializada.\n")
+                    else :
+                        if var.getAccedido() == False :
+                            print("WARNING: La variable " + var.getNombre() + " no ha sido accedida.\n")
+        
+        
+        
         print('Fin de la compilacion')
 
+    def enterFuncion(self, ctx: compiladoresParser.FuncionContext):
+        self.EsFuncion = True
     #Se entra a un nuevo bloque cada vez que se declara una funcion
+    
     def enterBloque(self, ctx: compiladoresParser.BloqueContext):
         #Cada vez que se entra a un nuevo bloque, se agrega un nuevo contexto
         self.tablaSimbolos.agregarContexto()
-        #Se toman los IDs que estan en los parametros de la funcion y se los agrega a la tabla de simbolos del contexto creado
-        for par in self.parametros :
-            id = Variable(par['nombre'],par['tipo'])
-            id.setInicializado()
-            self.tablaSimbolos.agregarID(id)
+        if self.EsFuncion == True :
+            #Se toman los IDs que estan en los parametros de la funcion y se los agrega a la tabla de simbolos del contexto creado
+            for par in self.parametros :
+                id = Variable(par['nombre'],par['tipo'])
+                id.setInicializado()
+                self.tablaSimbolos.agregarID(id)
+            self.EsFuncion = False
 
+    def exitBloque(self, ctx: compiladoresParser.BloqueContext):
+        #Se checkea si las variables y funciones fueron accedidas e inicializadas
+        
+        cont = self.tablaSimbolos.borrarContexto()
+        for var in cont.getSimbolos().values() :
+            if isinstance(var,Funcion) : 
+                if var.getAccedido() == False :
+                    print("WARNING: La funcion " + var.getNombre() + " no ha sido accedida.\n")
+            else :
+                    if var.getInicializado() == False :
+                        print("WARNING: La variable " + var.getNombre() + " no ha sido inicializada.\n")
+                    else :
+                        if var.getAccedido() == False :
+                            print("WARNING: La variable " + var.getNombre() + " no ha sido accedida.\n")
+        
     def exitFuncion(self, ctx: compiladoresParser.FuncionContext):
 
         #Se verifica que la funcion no haya sido declarada anteriormente
@@ -127,11 +144,11 @@ class Escucha (compiladoresListener):
                     #Si es un ID
                     if simb["tipo"] != "int" and simb["tipo"] != "double":
                         #Se checkea que la variable haya sido declarada
-                        if self.tablaSimbolos.buscarLocalID(simb["nombre"]) == None :
+                        if self.tablaSimbolos.buscarID(simb["nombre"]) == None :
                             print("ERROR: La variable "+ simb["nombre"] + " no esta declarada.")
                         else :
                             lista_aux.append(simb)
-                            id = self.tablaSimbolos.buscarLocalID(simb["nombre"])
+                            id = self.tablaSimbolos.buscarID(simb["nombre"])
                             id.setAccedido()  
                             self.tablaSimbolos.actualizarId(id)
                     #Si es una constante, se identifica el tipo y se agrega a la lista de argumentos
@@ -181,7 +198,7 @@ class Escucha (compiladoresListener):
             var = Variable(str(ctx.getChild(1).getText()), str(ctx.getChild(0).getText()))
 
             #Si el tercer token es un igual, se esta inicializando
-            if (str(ctx.getChild(2).getText()) == '='):
+            if (ctx.getChildCount() > 2):
 
                 #Se checkea que las variables o constantes que se van a asignar son del mismo tipo que la variable a declarar
                 for aux in self.variablesAsignacion :
@@ -207,7 +224,7 @@ class Escucha (compiladoresListener):
                 #Se checkea si es una Variable o una constante
                 if self.identificarTipo(nombre) != "int" and self.identificarTipo(nombre) != "double":
                     #Si es una variable se checkea que exista 
-                    var = self.tablaSimbolos.buscarLocalID(nombre)
+                    var = self.tablaSimbolos.buscarID(nombre)
                     if  var != None :
                         #Se checkea si la variable esta inicializada
                         if var.getInicializado() == False :
@@ -252,9 +269,10 @@ class Escucha (compiladoresListener):
     def enterAsignacion(self, ctx: compiladoresParser.AsignacionContext):
         #Se limpia la lista de varibles de asignacion (Esto es por si hubo una operacion que no haya sido una asignacion que use la lista CORREGIR)
         self.variablesAsignacion.clear()
+        
     def exitAsignacion(self, ctx: compiladoresParser.AsignacionContext):
         #Se checkea si la variable a la cual queremos hacerle una asignacion existe
-        var = self.tablaSimbolos.buscarLocalID(ctx.getChild(0).getText())
+        var = self.tablaSimbolos.buscarID(ctx.getChild(0).getText())
         if var != None :
             #Se checkea los tipos de datos de los IDs o constantes que se van a asignar sean los mismos que la variable a hacerle asignacion
             for aux in self.variablesAsignacion :
@@ -269,83 +287,3 @@ class Escucha (compiladoresListener):
             self.variablesAsignacion.clear()
         return
 
-    #Las estructuras de control van a generar un contexto que tenga los mismos IDs del contexto anterior
-    #pero a la salida de la estructura de control se va a eliminar el contexto generado para que no se superponga al contexto
-    #de donde se creó la estructura de control
-    def enterIcontrol(self, ctx: compiladoresParser.IcontrolContext):
-        #Se toma los simbolos del contexto anterior donde fue declarada la estructura de control
-        contexto_anterior = self.tablaSimbolos.getContextos()[-1]
-        self.simbolos_anteriores = contexto_anterior.getSimbolos()
-
-        #Se agrega el nuevo contexto de la estructura de control y se copian a este los del contexto anterior
-        self.tablaSimbolos.agregarContexto()
-        for simbolo in self.simbolos_anteriores.values():
-            simbolo_copiado = copy.deepcopy(simbolo)
-            self.tablaSimbolos.agregarID(simbolo_copiado)       
-
-    #Como el contexto de las estructuras de control van a ser borrados al salir de estos
-    #se cheackea cuales de las nuevas variables del contexto de la estructura de control
-    #no fueron inicializadas o no fueron accedidas
-    def exitIcontrol(self, ctx: compiladoresParser.IcontrolContext):
-        #Se traen las variables del contexto  de la estructura de control
-        contexto_actual = self.tablaSimbolos.getContextos()[-1]
-        simbolos_actuales = contexto_actual.getSimbolos()
-
-        #Se crea los conjuntos de nombres de las variables actuales y anteriores
-        nombres_simbolos_actuales = set(simbolo.getNombre() for simbolo in simbolos_actuales.values())
-        nombres_simbolos_anteriores = set(simbolo.getNombre() for simbolo in self.simbolos_anteriores.values())
-
-        #Se toman las variables declaradas solo en el contexto de la estructura de control
-        nombres_nuevos_simbolos = nombres_simbolos_actuales - nombres_simbolos_anteriores
-
-        #Se checkea las variables no accedidas o no inicializadas
-        for nombre_nuevo_simbolo in nombres_nuevos_simbolos:
-            simbolo_nuevo = simbolos_actuales[nombre_nuevo_simbolo] 
-            if not simbolo_nuevo.getAccedido():  
-                print("WARNING: La variable " + simbolo_nuevo.getNombre() + " no ha sido accedido.\n")
-            if not simbolo_nuevo.getInicializado():  
-                print("WARNING: La variable " + simbolo_nuevo.getNombre() + " no ha sido inicializada.\n")    
-
-        #Se borra el contexto de la estructura de control
-        self.tablaSimbolos.borrarContexto()
-        
-    def exitInit(self, ctx: compiladoresParser.InitContext):
-        #Se checkea si se esta declarando el contador
-        if ctx.getChild(0).getText() in {"int", "double", "char"}:
-            #Se checkea si la variable esta declarada
-            if self.tablaSimbolos.buscarLocalID(ctx.getChild(1).getText()) == None :
-                var = Variable(str(ctx.getChild(1).getText()), str(ctx.getChild(0).getText()))
-
-                #Si el tercer token es un igual, se esta inicializando
-                if (str(ctx.getChild(2).getText()) == '='):
-                    
-                    for aux in self.variablesAsignacion :
-                        if aux["tipo"] != var.getTipo():
-                            print("WARNING: La variable " + aux["nombre"] + " es de tipo " + aux["tipo"] + ". Se espera una variable tipo "+ var.getTipo()+ "\n")
-                    var.setInicializado()
-                    
-                    self.variablesAsignacion.clear()         
-                #Se agrega la variable al contexto
-                self.tablaSimbolos.agregarID(var)
-            else :
-                #Si esta declara la variable, mandamos un error
-                print("ERROR: Ya existe una variable llamada " + str(ctx.getChild(1).getText())+ ".\n")
-                return
-        #Si se esta asignando un factor a una variable
-        elif ctx.getChild(1).getText() == "=":
-            #Se checkea si la variable esta declarada
-            var = self.tablaSimbolos.buscarLocalID(ctx.getChild(0).getText())
-            if var != None :
-                #Se cheackean los tipos de IDs o constantes que se estan agregando
-                for aux in self.variablesAsignacion :
-                    if aux["tipo"] != var.getTipo():
-                        print("WARNING: La variable o funcion " + aux["nombre"] + " es de tipo " + aux["tipo"] + ". Se espera una variable tipo "+ var.getTipo()+ "\n")
-                #Se actualiza la variable
-                var.setInicializado()
-                self.tablaSimbolos.actualizarId(var)
-                
-            else :
-                print('ERROR: La variable ' + ctx.getChild(0).getText() + ' no esta declarada.\n')
-            #Se limpia la lista de asignacion
-            self.variablesAsignacion.clear()
-            return

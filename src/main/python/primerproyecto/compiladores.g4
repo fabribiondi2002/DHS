@@ -52,6 +52,7 @@ VOID : 'void';
 WHILE : 'while' ;
 FOR   : 'for' ;
 IF    : 'if' ;
+ELSE  : 'else';
 RETURN : 'return';
 
 ID : (LETRA | '_')(LETRA | DIGITO | '_')* ;
@@ -65,7 +66,7 @@ tdato: INT | DOUBLE | CHAR;
 tfuncion : INT | DOUBLE | CHAR | VOID;
 
 
-programa : declaracion* funcion* EOF ;
+programa : (declaracion PYC)* funcion* EOF ;
 
 funcion : tfuncion ID PA parametros PC bloque;
 
@@ -91,28 +92,26 @@ instrucciones : instruccion instrucciones
               ;
 
 
-instruccion : declaracion
-            | icontrol
+instruccion : declaracion PYC
             | bloque
-            | asignacion 
-            | usofuncion
-            | opal
-            | return
+            | asignacion PYC
+            | usofuncion PYC
+            | opal PYC
+            | return  PYC
+            | ifor
+            | iwhile
+            | iif
             | PYC
             ;
 
 bloque : LLA instrucciones LLC ;
 
-icontrol: iwhile
-        | ifor
-        | iif;
+declaracion : tdato ID
+            | tdato ID ASIG opal;
 
-declaracion : tdato ID PYC 
-            | tdato ID ASIG opal PYC;
+asignacion : ID ASIG opal;
 
-asignacion : ID ASIG opal PYC;
-
-return : RETURN opal PYC;
+return : RETURN opal;
 
 // Operacion aritmetica o logica
 opal : lor;
@@ -158,17 +157,16 @@ factor : NUMERO
        | PA exp PC
        ;
 
-iwhile : WHILE PA cond PC (LLA instrucciones LLC | instruccion) ;
+iwhile : WHILE PA cond PC instruccion ;
 
+iif : IF PA cond PC instruccion 
+      | IF PA cond PC instruccion ielse;
 
-iif : IF PA cond PC (LLA instrucciones LLC | instruccion)  ;
+ielse: ELSE instruccion ;
 
-ifor : FOR PA init PYC cond PYC iter PC (LLA instrucciones LLC | instruccion) ;
+ifor : FOR PA init PYC cond PYC iter PC instruccion ;
 
-init : ID ASIG opal
-      | tdato ID
-      | tdato ID ASIG opal
-      | opal
+init : asignacion
       |
       ;
 

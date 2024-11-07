@@ -1,4 +1,4 @@
-# Generated from /home/fabri/Escritorio/dhs/proyecto/primerproyecto/src/main/python/primerproyecto/compiladores.g4 by ANTLR 4.13.1
+# Generated from /home/fabri/Escritorio/DHS/proyecto/DHS/src/main/python/primerproyecto/compiladores.g4 by ANTLR 4.13.1
 from antlr4 import *
 if "." in __name__:
     from .compiladoresParser import compiladoresParser
@@ -122,15 +122,6 @@ class compiladoresListener(ParseTreeListener):
 
     # Exit a parse tree produced by compiladoresParser#bloque.
     def exitBloque(self, ctx:compiladoresParser.BloqueContext):
-        pass
-
-
-    # Enter a parse tree produced by compiladoresParser#icontrol.
-    def enterIcontrol(self, ctx:compiladoresParser.IcontrolContext):
-        pass
-
-    # Exit a parse tree produced by compiladoresParser#icontrol.
-    def exitIcontrol(self, ctx:compiladoresParser.IcontrolContext):
         pass
 
 
@@ -275,6 +266,15 @@ class compiladoresListener(ParseTreeListener):
 
     # Exit a parse tree produced by compiladoresParser#iif.
     def exitIif(self, ctx:compiladoresParser.IifContext):
+        pass
+
+
+    # Enter a parse tree produced by compiladoresParser#ielse.
+    def enterIelse(self, ctx:compiladoresParser.IelseContext):
+        pass
+
+    # Exit a parse tree produced by compiladoresParser#ielse.
+    def exitIelse(self, ctx:compiladoresParser.IelseContext):
         pass
 
 
