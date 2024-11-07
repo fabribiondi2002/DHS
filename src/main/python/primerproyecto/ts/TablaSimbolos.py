@@ -41,7 +41,6 @@ class TablaSimbolos:
         return self.listaContextos
                 
     def actualizarId(self, id):
-        existe = False
         #Busca el ID a actualizar por el nombre en el contexto local, lo elimina y agrega el ID modificado
         if isinstance(id, Funcion):
             #Busca la funcion en el contexto global por el nombre, la elimina y agrega la funcion modificada

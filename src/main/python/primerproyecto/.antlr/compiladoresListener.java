@@ -1,4 +1,4 @@
-// Generated from /home/fabri/Escritorio/DHS/proyecto/DHS/src/main/python/primerproyecto/compiladores.g4 by ANTLR 4.13.1
+// Generated from /home/fabri/Escritorio/dhs/proyecto/primerproyecto/src/main/python/primerproyecto/compiladores.g4 by ANTLR 4.13.1
 import org.antlr.v4.runtime.tree.ParseTreeListener;
 
 /**
@@ -136,16 +136,6 @@ public interface compiladoresListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitBloque(compiladoresParser.BloqueContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link compiladoresParser#icontrol}.
-	 * @param ctx the parse tree
-	 */
-	void enterIcontrol(compiladoresParser.IcontrolContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link compiladoresParser#icontrol}.
-	 * @param ctx the parse tree
-	 */
-	void exitIcontrol(compiladoresParser.IcontrolContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link compiladoresParser#declaracion}.
 	 * @param ctx the parse tree
@@ -306,6 +296,16 @@ public interface compiladoresListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitIif(compiladoresParser.IifContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link compiladoresParser#ielse}.
+	 * @param ctx the parse tree
+	 */
+	void enterIelse(compiladoresParser.IelseContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link compiladoresParser#ielse}.
+	 * @param ctx the parse tree
+	 */
+	void exitIelse(compiladoresParser.IelseContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link compiladoresParser#ifor}.
 	 * @param ctx the parse tree

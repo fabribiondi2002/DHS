@@ -21,6 +21,7 @@ class Escucha (compiladoresListener):
     #Variable que sirve como bandera para saber si estamos en una llamada a funcion, se utiliza para hacer las listas de argumentos
     uso_func = False
     EsFuncion = False
+    tipo_declaracion = None
     def identificarTipo(self, cadena):
         #Verifica si la cadena ingresada es tipo int
         try:
@@ -92,17 +93,52 @@ class Escucha (compiladoresListener):
                     else :
                         if var.getAccedido() == False :
                             print("WARNING: La variable " + var.getNombre() + " no ha sido accedida.\n")
-        
-    def exitFuncion(self, ctx: compiladoresParser.FuncionContext):
 
-        #Se verifica que la funcion no haya sido declarada anteriormente
+    def exitPrototipo(self, ctx: compiladoresParser.PrototipoContext):
+        #Se verifica que el prototipo de la funcion no haya sido declarado anteriormente
         if self.tablaSimbolos.buscarID(ctx.getChild(1).getText()) != None:
-            print("\nWARNING: La funcion " + ctx.getChild(1).getText() + " ya ha sido declarada.\n")
+            print("\nWARNING: El prototipo de la funcion " + ctx.getChild(1).getText() + " ya ha sido declarada.\n")
             return
         
         #Crea un objeto funcion y le asigna los parametros en la lista de parametros de la declaracion de la funcion
         func = Funcion(ctx.getChild(1).getText(),ctx.getChild(0).getText(),copy.deepcopy(self.parametros))
-        
+        #Se agrega la funcion a la tabla de simbolos al contexto global
+        self.tablaSimbolos.agregarID(func)
+
+        #Se limpia la lista utilizada para guaradar los parametros
+        self.parametros.clear()
+
+    def exitFuncion(self, ctx: compiladoresParser.FuncionContext):
+        func = Funcion(ctx.getChild(1).getText(),ctx.getChild(0).getText(),copy.deepcopy(self.parametros))
+        #Se verifica que la funcion no haya sido declarada anteriormente
+        func_aux = self.tablaSimbolos.buscarID(ctx.getChild(1).getText())
+        if func_aux != None:
+            if func_aux.getInicializado() :
+                print("\nWARNING: La funcion " + ctx.getChild(1).getText() + " ya ha sido declarada.\n")
+                self.parametros.clear()
+                return
+            
+            aux_par_prot = func_aux.getParametros()
+            aux_par_func = copy.deepcopy(self.parametros)
+
+            if len(aux_par_func) > len(aux_par_prot):
+                print("ERROR: Hay mas parametros en la declaracion de la funcion que en su prototipo./n")
+            elif len(aux_par_func) < len(aux_par_prot)  :
+                print("ERROR: Hay mas parametros en el prototipo de la funcion que en su declaracion./n")
+
+            for par in aux_par_prot:
+                aux = aux_par_func.pop()
+                if aux["tipo"]  != par["tipo"]:
+                    print("WARNING: El parametro de la declaracion de funcion " + aux['nombre'] + " es de tipo " + aux['tipo'] + ". Se espera un argumento de tipo "+ par['tipo'] + " segun el prototipo.\n")
+            func.setInicializado()
+            self.tablaSimbolos.actualizarId(func)
+            self.parametros.clear()
+            return
+
+
+        #Crea un objeto funcion y le asigna los parametros en la lista de parametros de la declaracion de la funcion
+        func = Funcion(ctx.getChild(1).getText(),ctx.getChild(0).getText(),copy.deepcopy(self.parametros))
+        func.setInicializado()
         #Se agrega la funcion a la tabla de simbolos al contexto global
         self.tablaSimbolos.agregarID(func)
 
@@ -192,7 +228,7 @@ class Escucha (compiladoresListener):
             self.conjunto_argumento =[]
 
     def exitDeclaracion(self, ctx:compiladoresParser.DeclaracionContext):
-
+        self.tipo_declaracion = str(ctx.getChild(0).getText())
         #Si no esta declarada la variable, la declaramos
         if self.tablaSimbolos.buscarLocalID(ctx.getChild(1).getText()) == None :
             var = Variable(str(ctx.getChild(1).getText()), str(ctx.getChild(0).getText()))
@@ -214,7 +250,35 @@ class Escucha (compiladoresListener):
             #Si esta declara la variable, mandamos un error
             print("ERROR: Ya existe una variable llamada " + str(ctx.getChild(1).getText())+ ".\n")
             return
+        
 
+    def exitDeclaracionp(self, ctx: compiladoresParser.DeclaracionpContext):
+        if ctx.getChildCount() > 0:
+            #Si no esta declarada la variable, la declaramos
+            if self.tablaSimbolos.buscarLocalID(ctx.getChild(1).getText()) == None :
+                var = Variable(str(ctx.getChild(1).getText()), self.tipo_declaracion)
+
+                #Si el tercer token es un igual, se esta inicializando
+                if (ctx.getChildCount() > 3):
+
+                    #Se checkea que las variables o constantes que se van a asignar son del mismo tipo que la variable a declarar
+                    for aux in self.variablesAsignacion :
+                        if aux["tipo"] != var.getTipo():
+                            print("WARNING: La variable " + aux["nombre"] + " es de tipo " + aux["tipo"] + ". Se espera una variable tipo "+ var.getTipo()+ "\n")
+                    
+                    var.setInicializado()
+                    #Se limpia la lista de variables de asignacion
+                    self.variablesAsignacion.clear()         
+                #Se agrega la variable al contexto
+                self.tablaSimbolos.agregarID(var)
+            else :
+                #Si esta declara la variable, mandamos un error
+                print("ERROR: Ya existe una variable llamada " + str(ctx.getChild(1).getText())+ ".\n")
+                return
+
+    def exitDeclaraciones(self, ctx: compiladoresParser.DeclaracionesContext):
+        self.tipo_declaracion = None
+        
     def exitFactor(self, ctx: compiladoresParser.FactorContext):
         #Se checkea si el factor es una funcion
         if  not ctx.getChild(0).getChildCount() > 1 :

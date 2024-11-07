@@ -1,4 +1,4 @@
-# Generated from /home/fabri/Escritorio/DHS/proyecto/DHS/src/main/python/primerproyecto/compiladores.g4 by ANTLR 4.13.1
+# Generated from /home/fabri/Escritorio/dhs/proyecto/primerproyecto/src/main/python/primerproyecto/compiladores.g4 by ANTLR 4.13.1
 from antlr4 import *
 if "." in __name__:
     from .compiladoresParser import compiladoresParser
@@ -26,6 +26,11 @@ class compiladoresVisitor(ParseTreeVisitor):
 
     # Visit a parse tree produced by compiladoresParser#programa.
     def visitPrograma(self, ctx:compiladoresParser.ProgramaContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by compiladoresParser#prototipo.
+    def visitPrototipo(self, ctx:compiladoresParser.PrototipoContext):
         return self.visitChildren(ctx)
 
 
@@ -74,8 +79,18 @@ class compiladoresVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
+    # Visit a parse tree produced by compiladoresParser#declaraciones.
+    def visitDeclaraciones(self, ctx:compiladoresParser.DeclaracionesContext):
+        return self.visitChildren(ctx)
+
+
     # Visit a parse tree produced by compiladoresParser#declaracion.
     def visitDeclaracion(self, ctx:compiladoresParser.DeclaracionContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by compiladoresParser#declaracionp.
+    def visitDeclaracionp(self, ctx:compiladoresParser.DeclaracionpContext):
         return self.visitChildren(ctx)
 
 

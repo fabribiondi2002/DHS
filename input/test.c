@@ -1,4 +1,6 @@
 
+double sumar (int c, int a);
+
 double sumar( int a , int b){
     return 1.5;
 }

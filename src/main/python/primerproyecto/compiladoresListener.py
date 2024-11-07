@@ -1,4 +1,4 @@
-# Generated from /home/fabri/Escritorio/DHS/proyecto/DHS/src/main/python/primerproyecto/compiladores.g4 by ANTLR 4.13.1
+# Generated from /home/fabri/Escritorio/dhs/proyecto/primerproyecto/src/main/python/primerproyecto/compiladores.g4 by ANTLR 4.13.1
 from antlr4 import *
 if "." in __name__:
     from .compiladoresParser import compiladoresParser
@@ -41,6 +41,15 @@ class compiladoresListener(ParseTreeListener):
 
     # Exit a parse tree produced by compiladoresParser#programa.
     def exitPrograma(self, ctx:compiladoresParser.ProgramaContext):
+        pass
+
+
+    # Enter a parse tree produced by compiladoresParser#prototipo.
+    def enterPrototipo(self, ctx:compiladoresParser.PrototipoContext):
+        pass
+
+    # Exit a parse tree produced by compiladoresParser#prototipo.
+    def exitPrototipo(self, ctx:compiladoresParser.PrototipoContext):
         pass
 
 
@@ -125,12 +134,30 @@ class compiladoresListener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by compiladoresParser#declaraciones.
+    def enterDeclaraciones(self, ctx:compiladoresParser.DeclaracionesContext):
+        pass
+
+    # Exit a parse tree produced by compiladoresParser#declaraciones.
+    def exitDeclaraciones(self, ctx:compiladoresParser.DeclaracionesContext):
+        pass
+
+
     # Enter a parse tree produced by compiladoresParser#declaracion.
     def enterDeclaracion(self, ctx:compiladoresParser.DeclaracionContext):
         pass
 
     # Exit a parse tree produced by compiladoresParser#declaracion.
     def exitDeclaracion(self, ctx:compiladoresParser.DeclaracionContext):
+        pass
+
+
+    # Enter a parse tree produced by compiladoresParser#declaracionp.
+    def enterDeclaracionp(self, ctx:compiladoresParser.DeclaracionpContext):
+        pass
+
+    # Exit a parse tree produced by compiladoresParser#declaracionp.
+    def exitDeclaracionp(self, ctx:compiladoresParser.DeclaracionpContext):
         pass
 
 

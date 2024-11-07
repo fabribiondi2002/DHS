@@ -66,7 +66,9 @@ tdato: INT | DOUBLE | CHAR;
 tfuncion : INT | DOUBLE | CHAR | VOID;
 
 
-programa : (declaracion PYC)* funcion* EOF ;
+programa : (declaraciones PYC)* funcion* EOF ;
+
+prototipo: tfuncion ID PA parametros PC PYC;
 
 funcion : tfuncion ID PA parametros PC bloque;
 
@@ -92,7 +94,7 @@ instrucciones : instruccion instrucciones
               ;
 
 
-instruccion : declaracion PYC
+instruccion : declaraciones PYC
             | bloque
             | asignacion PYC
             | usofuncion PYC
@@ -106,8 +108,13 @@ instruccion : declaracion PYC
 
 bloque : LLA instrucciones LLC ;
 
-declaracion : tdato ID
-            | tdato ID ASIG opal;
+declaraciones : declaracion  declaracionp;
+
+declaracion : tdato ID (ASIG opal)?;
+
+declaracionp : COMA ID (ASIG opal)? declaracionp
+              |
+              ;
 
 asignacion : ID ASIG opal;
 
