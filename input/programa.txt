@@ -1,4 +1,6 @@
-double sumar(int a,int b, int c){
+int sumar(int a , int b, int c);
+
+double sumar(int a,int b){
     return a + b;
 }
 double restar (int a, int b){

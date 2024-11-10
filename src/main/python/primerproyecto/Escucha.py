@@ -118,6 +118,8 @@ class Escucha (compiladoresListener):
                 self.parametros.clear()
                 return
             
+            if func_aux.getTipo() != func.getTipo():
+                print("WARNING: El tipo de dato de retorno de la funcion es " + func.getTipo() +". Segun el prototipo de la misma, se espera un tipo de dato de retorno " + func_aux.getTipo() + ".\n")
             aux_par_prot = func_aux.getParametros()
             aux_par_func = copy.deepcopy(self.parametros)
 
@@ -127,6 +129,8 @@ class Escucha (compiladoresListener):
                 print("ERROR: Hay mas parametros en el prototipo de la funcion que en su declaracion./n")
 
             for par in aux_par_prot:
+                if not aux_par_func :
+                    break
                 aux = aux_par_func.pop()
                 if aux["tipo"]  != par["tipo"]:
                     print("WARNING: El parametro de la declaracion de funcion " + aux['nombre'] + " es de tipo " + aux['tipo'] + ". Se espera un argumento de tipo "+ par['tipo'] + " segun el prototipo.\n")

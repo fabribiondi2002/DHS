@@ -66,7 +66,7 @@ tdato: INT | DOUBLE | CHAR;
 tfuncion : INT | DOUBLE | CHAR | VOID;
 
 
-programa : (declaraciones PYC)* funcion* EOF ;
+programa : (declaraciones PYC)* prototipo* funcion* EOF ;
 
 prototipo: tfuncion ID PA parametros PC PYC;
 
