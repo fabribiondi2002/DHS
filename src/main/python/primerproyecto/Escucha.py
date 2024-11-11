@@ -124,9 +124,9 @@ class Escucha (compiladoresListener):
             aux_par_func = copy.deepcopy(self.parametros)
 
             if len(aux_par_func) > len(aux_par_prot):
-                print("ERROR: Hay mas parametros en la declaracion de la funcion que en su prototipo./n")
+                print("ERROR: Hay mas parametros en la declaracion de la funcion que en su prototipo.\n")
             elif len(aux_par_func) < len(aux_par_prot)  :
-                print("ERROR: Hay mas parametros en el prototipo de la funcion que en su declaracion./n")
+                print("ERROR: Hay mas parametros en el prototipo de la funcion que en su declaracion.\n")
 
             for par in aux_par_prot:
                 if not aux_par_func :

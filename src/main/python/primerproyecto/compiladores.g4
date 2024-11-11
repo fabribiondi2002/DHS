@@ -23,6 +23,13 @@ DIV   : '/' ;
 MOD   : '%' ;
 ASIG  : '=' ;
 
+INCRE : '++' ;
+DECRE : '--' ;
+
+SUMAIGUAL : '+=' ;
+RESTAIGUAL : '-=' ;
+
+
 //LOGICAS
 AND : '&&';
 OR : '||';
@@ -110,9 +117,9 @@ bloque : LLA instrucciones LLC ;
 
 declaraciones : declaracion  declaracionp;
 
-declaracion : tdato ID (ASIG opal)?;
+declaracion : tdato ID ((ASIG|RESTAIGUAL|SUMAIGUAL) opal)?;
 
-declaracionp : COMA ID (ASIG opal)? declaracionp
+declaracionp : COMA ID ((ASIG|RESTAIGUAL|SUMAIGUAL) opal)? declaracionp
               |
               ;
 
@@ -162,6 +169,7 @@ factor : NUMERO
        | ID
        | usofuncion
        | PA exp PC
+       | ID (DECRE|INCRE)
        ;
 
 iwhile : WHILE PA cond PC instruccion ;
@@ -173,12 +181,12 @@ ielse: ELSE instruccion ;
 
 ifor : FOR PA init PYC cond PYC iter PC instruccion ;
 
-init : asignacion
+init : (asignacion|opal) (COMA (asignacion|opal))*
       |
       ;
 
-cond : opal;
+cond : opal
+      |;
 
-iter : ID ASIG opal
-      | opal
+iter : (asignacion|opal) (COMA (asignacion|opal))*
       |;

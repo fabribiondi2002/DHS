@@ -7,11 +7,10 @@ double sumar( int a , int b){
 int main(int argc, char const *argv[])
 {
     double x = 10.10;
-    double y;
+    double y = x + sumar(x,y);
     int i;
-    for( i =0 ; i<10; i++) {
+    for( x++ , y += 10; i<10; i++, x+y) {
         int y;
     }
     return 0;
 }
-
