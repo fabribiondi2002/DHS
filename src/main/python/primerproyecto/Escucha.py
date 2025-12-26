@@ -5,6 +5,9 @@ from ts.TablaSimbolos import TablaSimbolos
 from ts.Contexto import *
 from ts.Id import *
 import copy
+
+ERRORS_PATH = "output/errores.txt"
+
 class Escucha (compiladoresListener):
     #Lista utilizada para contener todos los factores que se utilizan en una asignacion
     variablesAsignacion = []
@@ -22,6 +25,24 @@ class Escucha (compiladoresListener):
     uso_func = False
     EsFuncion = False
     tipo_declaracion = None
+    errores_semanticos = False
+    errores_sintacticos = False
+    def _write_error(self, mensaje: str, linea: int | None = None):
+        if "Error Semantico" in mensaje:
+            self.errores_semanticos = True
+        if "Error Sintactico" in mensaje or "ERROR [Sintactico]" in mensaje:
+            self.errores_sintacticos = True
+        if linea is not None:
+            mensaje = mensaje.rstrip("\n")
+            mensaje = f"{mensaje} (linea {linea})"
+        if not mensaje.endswith("\n"):
+            mensaje += "\n"
+        try:
+            with open(ERRORS_PATH, "a", encoding="utf-8") as f:
+                f.write(mensaje)
+        except OSError:
+            pass
+
     def identificarTipo(self, cadena):
         #Verifica si la cadena ingresada es tipo int
         try:
@@ -52,14 +73,16 @@ class Escucha (compiladoresListener):
         for var in cont.getSimbolos().values() :
             if isinstance(var,Funcion) : 
                 if var.getAccedido() == False :
-                    print("WARNING: La funcion " + var.getNombre() + " no ha sido accedida.\n")
+                    print(f"WARNING: La funcion " + var.getNombre() + " no ha sido accedida.\n")
+                    self._write_error(f"WARNING: La funcion " + var.getNombre() + " no ha sido accedida.\n")
             else :
                     if var.getInicializado() == False :
-                        print("WARNING: La variable " + var.getNombre() + " no ha sido inicializada.\n")
+                        print(f"WARNING: La variable " + var.getNombre() + " no ha sido inicializada.\n")
+                        self._write_error(f"WARNING: La variable " + var.getNombre() + " no ha sido inicializada.\n")
                     else :
                         if var.getAccedido() == False :
-                            print("WARNING: La variable " + var.getNombre() + " no ha sido accedida.\n")
-        
+                            print(f"WARNING: La variable " + var.getNombre() + " no ha sido accedida.\n")
+                            self._write_error(f"WARNING: La variable " + var.getNombre() + " no ha sido accedida.\n")
         
         
         print('Fin de la compilacion')
@@ -86,18 +109,22 @@ class Escucha (compiladoresListener):
         for var in cont.getSimbolos().values() :
             if isinstance(var,Funcion) : 
                 if var.getAccedido() == False :
-                    print("WARNING: La funcion " + var.getNombre() + " no ha sido accedida.\n")
+                    print(f"WARNING: La funcion " + var.getNombre() + " no ha sido accedida.\n")
+                    self._write_error(f"WARNING: La funcion " + var.getNombre() + " no ha sido accedida.\n")
             else :
                     if var.getInicializado() == False :
-                        print("WARNING: La variable " + var.getNombre() + " no ha sido inicializada.\n")
+                        print(f"WARNING: La variable " + var.getNombre() + " no ha sido inicializada.\n")
+                        self._write_error(f"WARNING: La variable " + var.getNombre() + " no ha sido inicializada.\n")
                     else :
                         if var.getAccedido() == False :
-                            print("WARNING: La variable " + var.getNombre() + " no ha sido accedida.\n")
+                            print(f"WARNING: La variable " + var.getNombre() + " no ha sido accedida.\n")
+                            self._write_error(f"WARNING: La variable " + var.getNombre() + " no ha sido accedida.\n")
 
     def exitPrototipo(self, ctx: compiladoresParser.PrototipoContext):
         #Se verifica que el prototipo de la funcion no haya sido declarado anteriormente
         if self.tablaSimbolos.buscarID(ctx.getChild(1).getText()) != None:
-            print("\nWARNING: El prototipo de la funcion " + ctx.getChild(1).getText() + " ya ha sido declarada.\n")
+            print(f"\nWARNING[línea {ctx.start.line}]: El prototipo de la funcion " + ctx.getChild(1).getText() + " ya ha sido declarada.\n")
+            self._write_error(f"\nWARNING[línea {ctx.start.line}]: El prototipo de la funcion " + ctx.getChild(1).getText() + " ya ha sido declarada.\n", ctx.start.line)
             return
         
         #Crea un objeto funcion y le asigna los parametros en la lista de parametros de la declaracion de la funcion
@@ -114,26 +141,28 @@ class Escucha (compiladoresListener):
         func_aux = self.tablaSimbolos.buscarID(ctx.getChild(1).getText())
         if func_aux != None:
             if func_aux.getInicializado() :
-                print("\nWARNING: La funcion " + ctx.getChild(1).getText() + " ya ha sido declarada.\n")
+                print(f"\nWARNING[línea {ctx.start.line}]: La funcion " + ctx.getChild(1).getText() + " ya ha sido declarada.\n")
+                self._write_error(f"\nWARNING[línea {ctx.start.line}]: La funcion " + ctx.getChild(1).getText() + " ya ha sido declarada.\n", ctx.start.line)
                 self.parametros.clear()
                 return
             
             if func_aux.getTipo() != func.getTipo():
-                print("WARNING: El tipo de dato de retorno de la funcion es " + func.getTipo() +". Segun el prototipo de la misma, se espera un tipo de dato de retorno " + func_aux.getTipo() + ".\n")
+                self._write_error(f"WARNING[línea {ctx.start.line}]: El tipo de dato de retorno de la funcion es " + func.getTipo() +". Segun el prototipo de la misma, se espera un tipo de dato de retorno " + func_aux.getTipo() + ".\n", ctx.start.line)
+                print(f"WARNING[línea {ctx.start.line}]: El tipo de dato de retorno de la funcion es " + func.getTipo() +". Segun el prototipo de la misma, se espera un tipo de dato de retorno " + func_aux.getTipo() + ".\n")
             aux_par_prot = func_aux.getParametros()
             aux_par_func = copy.deepcopy(self.parametros)
 
             if len(aux_par_func) > len(aux_par_prot):
-                print("ERROR: Hay mas parametros en la declaracion de la funcion que en su prototipo.\n")
+                self._write_error(f"ERROR[línea {ctx.start.line}]: Hay mas parametros en la declaracion de la funcion que en su prototipo.\n", ctx.start.line)
+                print(f"ERROR[línea {ctx.start.line}]: Hay mas parametros en la declaracion de la funcion que en su prototipo.\n")
             elif len(aux_par_func) < len(aux_par_prot)  :
-                print("ERROR: Hay mas parametros en el prototipo de la funcion que en su declaracion.\n")
+                self._write_error(f"ERROR[línea {ctx.start.line}]: Hay mas parametros en el prototipo de la funcion que en su declaracion.\n", ctx.start.line)
+                print(f"ERROR[línea {ctx.start.line}]: Hay mas parametros en el prototipo de la funcion que en su declaracion.\n")
 
-            for par in aux_par_prot:
-                if not aux_par_func :
-                    break
-                aux = aux_par_func.pop()
-                if aux["tipo"]  != par["tipo"]:
-                    print("WARNING: El parametro de la declaracion de funcion " + aux['nombre'] + " es de tipo " + aux['tipo'] + ". Se espera un argumento de tipo "+ par['tipo'] + " segun el prototipo.\n")
+            for i in range(min(len(aux_par_prot), len(aux_par_func))):
+                if aux_par_func[i]["tipo"] != aux_par_prot[i]["tipo"]:
+                    self._write_error(f"WARNING[línea {ctx.start.line}]: El parametro de la declaracion de funcion " + aux_par_func[i]['nombre'] + " es de tipo " + aux_par_func[i]['tipo'] + ". Se espera un argumento de tipo "+ aux_par_prot[i]['tipo'] + " segun el prototipo.\n", ctx.start.line)
+                    print(f"WARNING[línea {ctx.start.line}]: El parametro de la declaracion de funcion " + aux_par_func[i]['nombre'] + " es de tipo " + aux_par_func[i]['tipo'] + ". Se espera un argumento de tipo "+ aux_par_prot[i]['tipo'] + " segun el prototipo.\n")
             func.setInicializado()
             self.tablaSimbolos.actualizarId(func)
             self.parametros.clear()
@@ -185,7 +214,8 @@ class Escucha (compiladoresListener):
                     if simb["tipo"] != "int" and simb["tipo"] != "double":
                         #Se checkea que la variable haya sido declarada
                         if self.tablaSimbolos.buscarID(simb["nombre"]) == None :
-                            print("ERROR: La variable "+ simb["nombre"] + " no esta declarada.")
+                            self._write_error(f"ERROR[línea {ctx.start.line}]: La variable "+ simb["nombre"] + " no esta declarada.\n", ctx.start.line)
+                            print(f"ERROR[línea {ctx.start.line}]: La variable "+ simb["nombre"] + " no esta declarada.")
                         else :
                             lista_aux.append(simb)
                             id = self.tablaSimbolos.buscarID(simb["nombre"])
@@ -198,27 +228,39 @@ class Escucha (compiladoresListener):
                 lista_aux = []
         
             #Se comparan los argumentos con los parametros
-            for pa in param:
-                #Se recorre la lista de parametros mientras se va desapilando la lista de argumentos
-                aux = lista_argumentos.pop()
+            for i in range(min(len(param), len(lista_argumentos))):
+                aux = lista_argumentos[i]
+                pa = param[i]
                 for aux_argumento in aux:
-                    #Se checkea si los tipos de datos de los argumentos son iguales a los de los parametros
-                    if aux_argumento['tipo'] != pa['tipo'] :
-                        print("WARNING: El argumento " + aux_argumento['nombre'] + " es de tipo " + aux_argumento['tipo'] + ". Se espera un argumento de tipo "+ pa['tipo'] + ".\n")
-            
+                    if aux_argumento['tipo'] != pa['tipo']:
+                        print(
+                            f"WARNING[línea {ctx.start.line}]: "
+                            f"El argumento {aux_argumento['nombre']} es de tipo "
+                            f"{aux_argumento['tipo']}. Se espera un argumento de tipo {pa['tipo']}.\n"
+                        )
+                        self._write_error(
+                            f"WARNING[línea {ctx.start.line}]: "
+                            f"El argumento {aux_argumento['nombre']} es de tipo "
+                            f"{aux_argumento['tipo']}. Se espera un argumento de tipo {pa['tipo']}.\n",
+                            ctx.start.line
+                        )
+
             #Se checkea si la pila de argumentos esta vacia utilizando el contador de argumentos para comparar la cantidad de argumentos con la cnatida de parametros
             cant_arg = self.pila_contador_arg.pop()
             if cant_arg < len(param):
-                print("WARNING: Falta agregar argumentos a la llamada de la funcion.\n")
+                print(f"WARNING[línea {ctx.start.line}]: Falta agregar argumentos a la llamada de la funcion.\n")
+                self._write_error(f"WARNING[línea {ctx.start.line}]: Falta agregar argumentos a la llamada de la funcion.\n", ctx.start.line)
             elif cant_arg > len(param):
-                print("WARNING: Sobran argumentos en la llamada a la funcion.\n")
+                self._write_error(f"WARNING[línea {ctx.start.line}]: Sobran argumentos en la llamada a la funcion.\n", ctx.start.line)
+                print(f"WARNING[línea {ctx.start.line}]: Sobran argumentos en la llamada a la funcion.\n")
             
             #Se actualiza el atributo de accedido de la funcion
             func.setAccedido()
             self.tablaSimbolos.actualizarId(func)
             return
         
-        print("ERROR: La funcion " + ctx.getChild(0).getText() + " no ha sido declarada.\n")
+        print(f"ERROR[línea {ctx.start.line}]: La funcion " + ctx.getChild(0).getText() + " no ha sido declarada.\n")
+        self._write_error(f"ERROR[línea {ctx.start.line}]: La funcion " + ctx.getChild(0).getText() + " no ha sido declarada.\n", ctx.start.line)
         return    
     
 
@@ -232,8 +274,8 @@ class Escucha (compiladoresListener):
             self.conjunto_argumento =[]
 
     def exitDeclaracion(self, ctx:compiladoresParser.DeclaracionContext):
-        self.tipo_declaracion = str(ctx.getChild(0).getText())
-        #Si no esta declarada la variable, la declaramos
+        self.variablesAsignacion.clear()
+        self.tipo_declaracion = str(ctx.getChild(0).getText())        #Si no esta declarada la variable, la declaramos
         if self.tablaSimbolos.buscarLocalID(ctx.getChild(1).getText()) == None :
             var = Variable(str(ctx.getChild(1).getText()), str(ctx.getChild(0).getText()))
 
@@ -243,7 +285,8 @@ class Escucha (compiladoresListener):
                 #Se checkea que las variables o constantes que se van a asignar son del mismo tipo que la variable a declarar
                 for aux in self.variablesAsignacion :
                     if aux["tipo"] != var.getTipo():
-                        print("WARNING: La variable " + aux["nombre"] + " es de tipo " + aux["tipo"] + ". Se espera una variable tipo "+ var.getTipo()+ "\n")
+                        print(f"WARNING[línea {ctx.start.line}]: La variable " + aux["nombre"] + " es de tipo " + aux["tipo"] + ". Se espera una variable tipo "+ var.getTipo()+ "\n")
+                        self._write_error(f"WARNING[línea {ctx.start.line}]: La variable " + aux["nombre"] + " es de tipo " + aux["tipo"] + ". Se espera una variable tipo "+ var.getTipo()+ "\n", ctx.start.line)
                 
                 var.setInicializado()
                 #Se limpia la lista de variables de asignacion
@@ -252,7 +295,8 @@ class Escucha (compiladoresListener):
             self.tablaSimbolos.agregarID(var)
         else :
             #Si esta declara la variable, mandamos un error
-            print("ERROR: Ya existe una variable llamada " + str(ctx.getChild(1).getText())+ ".\n")
+            print(f"ERROR[línea {ctx.start.line}]: Ya existe una variable llamada " + str(ctx.getChild(1).getText())+ ".\n")
+            self._write_error(f"ERROR[línea {ctx.start.line}]: Ya existe una variable llamada " + str(ctx.getChild(1).getText())+ ".\n", ctx.start.line)
             return
         
 
@@ -268,8 +312,8 @@ class Escucha (compiladoresListener):
                     #Se checkea que las variables o constantes que se van a asignar son del mismo tipo que la variable a declarar
                     for aux in self.variablesAsignacion :
                         if aux["tipo"] != var.getTipo():
-                            print("WARNING: La variable " + aux["nombre"] + " es de tipo " + aux["tipo"] + ". Se espera una variable tipo "+ var.getTipo()+ "\n")
-                    
+                            print(f"WARNING[línea {ctx.start.line}]: La variable " + aux["nombre"] + " es de tipo " + aux["tipo"] + ". Se espera una variable tipo "+ var.getTipo()+ "\n")
+                            self._write_error(f"WARNING[línea {ctx.start.line}]: La variable " + aux["nombre"] + " es de tipo " + aux["tipo"] + ". Se espera una variable tipo "+ var.getTipo()+ "\n", ctx.start.line)
                     var.setInicializado()
                     #Se limpia la lista de variables de asignacion
                     self.variablesAsignacion.clear()         
@@ -277,8 +321,11 @@ class Escucha (compiladoresListener):
                 self.tablaSimbolos.agregarID(var)
             else :
                 #Si esta declara la variable, mandamos un error
-                print("ERROR: Ya existe una variable llamada " + str(ctx.getChild(1).getText())+ ".\n")
+                print(f"ERROR[línea {ctx.start.line}]: Ya existe una variable llamada " + str(ctx.getChild(1).getText())+ ".\n")
+                self._write_error(f"ERROR[línea {ctx.start.line}]: Ya existe una variable llamada " + str(ctx.getChild(1).getText())+ ".\n", ctx.start.line)
                 return
+        self.argumentos.clear()
+
 
     def exitDeclaraciones(self, ctx: compiladoresParser.DeclaracionesContext):
         self.tipo_declaracion = None
@@ -296,8 +343,8 @@ class Escucha (compiladoresListener):
                     if  var != None :
                         #Se checkea si la variable esta inicializada
                         if var.getInicializado() == False :
-                            print("ERROR: La variable "+ nombre + " no esta inicializada.\n")
-
+                            print(f"ERROR[línea {ctx.start.line}]: La variable "+ nombre + " no esta inicializada.\n")
+                            self._write_error(f"ERROR[línea {ctx.start.line}]: La variable "+ nombre + " no esta inicializada.\n", ctx.start.line)
                         #Se checkea si el factor tipo variable pertenece a un argumento o a una asignacion
                         aux = {'tipo' : var.getTipo(), 'nombre' : var.getNombre()}
                         if self.uso_func :
@@ -309,7 +356,8 @@ class Escucha (compiladoresListener):
                         self.tablaSimbolos.actualizarId(var)
 
                     else :
-                        print("ERROR: La variable "+ nombre + " no esta declarada\n")
+                        print(f"ERROR[línea {ctx.start.line}]: La variable "+ nombre + " no esta declarada\n")
+                        self._write_error(f"ERROR[línea {ctx.start.line}]: La variable "+ nombre + " no esta declarada\n", ctx.start.line)
                         return
 
                 else :
@@ -345,13 +393,15 @@ class Escucha (compiladoresListener):
             #Se checkea los tipos de datos de los IDs o constantes que se van a asignar sean los mismos que la variable a hacerle asignacion
             for aux in self.variablesAsignacion :
                 if aux["tipo"] != var.getTipo():
-                    print("WARNING: La variable o funcion " + aux["nombre"] + " es de tipo " + aux["tipo"] + ". Se espera una variable tipo "+ var.getTipo()+ "\n")
+                    print(f"WARNING[línea {ctx.start.line}]: La variable o funcion " + aux["nombre"] + " es de tipo " + aux["tipo"] + ". Se espera una variable tipo "+ var.getTipo()+ "\n")
+                    self._write_error(f"WARNING[línea {ctx.start.line}]: La variable o funcion " + aux["nombre"] + " es de tipo " + aux["tipo"] + ". Se espera una variable tipo "+ var.getTipo()+ "\n", ctx.start.line)
             #Se actualiza la varible
             var.setInicializado()
             self.tablaSimbolos.actualizarId(var)
             self.variablesAsignacion.clear()
         else :
-            print('ERROR: La variable ' + ctx.getChild(0).getText() + ' no esta declarada.\n')
+            print(f"ERROR[línea {ctx.start.line}]: La variable " + ctx.getChild(0).getText() + " no esta declarada.\n")
+            self._write_error(f"ERROR[línea {ctx.start.line}]: La variable " + ctx.getChild(0).getText() + " no esta declarada.\n", ctx.start.line)
             self.variablesAsignacion.clear()
         return
 

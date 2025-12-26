@@ -72,8 +72,8 @@ WS : [ \t\n\r] -> skip;
 tdato: INT | DOUBLE | CHAR;
 tfuncion : INT | DOUBLE | CHAR | VOID;
 
-
-programa : (declaraciones PYC)* prototipo* funcion* EOF ;
+programa : instrucciones EOF ;
+//programa : (declaraciones PYC)* prototipo* funcion* EOF ;
 
 prototipo: tfuncion ID PA parametros PC PYC;
 
@@ -102,6 +102,8 @@ instrucciones : instruccion instrucciones
 
 
 instruccion : declaraciones PYC
+            | funcion
+            | prototipo     
             | bloque
             | asignacion PYC
             | usofuncion PYC

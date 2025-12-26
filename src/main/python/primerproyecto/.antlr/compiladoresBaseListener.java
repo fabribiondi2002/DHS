@@ -1,4 +1,4 @@
-// Generated from /home/fabri/Escritorio/dhs/proyecto/primerproyecto/src/main/python/primerproyecto/compiladores.g4 by ANTLR 4.13.1
+// Generated from /home/leandro/Desktop/DHS/DHS/src/main/python/primerproyecto/compiladores.g4 by ANTLR 4.13.1
 
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.tree.ErrorNode;
@@ -59,6 +59,18 @@ public class compiladoresBaseListener implements compiladoresListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitPrograma(compiladoresParser.ProgramaContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterPrototipo(compiladoresParser.PrototipoContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitPrototipo(compiladoresParser.PrototipoContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -172,6 +184,18 @@ public class compiladoresBaseListener implements compiladoresListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterDeclaraciones(compiladoresParser.DeclaracionesContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitDeclaraciones(compiladoresParser.DeclaracionesContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterDeclaracion(compiladoresParser.DeclaracionContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -179,6 +203,18 @@ public class compiladoresBaseListener implements compiladoresListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitDeclaracion(compiladoresParser.DeclaracionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterDeclaracionp(compiladoresParser.DeclaracionpContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitDeclaracionp(compiladoresParser.DeclaracionpContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

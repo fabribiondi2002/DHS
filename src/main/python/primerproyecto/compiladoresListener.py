@@ -1,4 +1,4 @@
-# Generated from /home/fabri/Escritorio/DHS/proyecto/DHS/src/main/python/primerproyecto/compiladores.g4 by ANTLR 4.13.1
+# Generated from /home/leandro/Desktop/DHS/DHS/src/main/python/primerproyecto/compiladores.g4 by ANTLR 4.13.1
 from antlr4 import *
 if "." in __name__:
     from .compiladoresParser import compiladoresParser

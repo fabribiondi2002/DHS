@@ -1,4 +1,4 @@
-// Generated from /home/fabri/Escritorio/dhs/proyecto/primerproyecto/src/main/python/primerproyecto/compiladores.g4 by ANTLR 4.13.1
+// Generated from /home/leandro/Desktop/DHS/DHS/src/main/python/primerproyecto/compiladores.g4 by ANTLR 4.13.1
 import org.antlr.v4.runtime.tree.ParseTreeListener;
 
 /**
@@ -46,6 +46,16 @@ public interface compiladoresListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitPrograma(compiladoresParser.ProgramaContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link compiladoresParser#prototipo}.
+	 * @param ctx the parse tree
+	 */
+	void enterPrototipo(compiladoresParser.PrototipoContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link compiladoresParser#prototipo}.
+	 * @param ctx the parse tree
+	 */
+	void exitPrototipo(compiladoresParser.PrototipoContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link compiladoresParser#funcion}.
 	 * @param ctx the parse tree
@@ -137,6 +147,16 @@ public interface compiladoresListener extends ParseTreeListener {
 	 */
 	void exitBloque(compiladoresParser.BloqueContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link compiladoresParser#declaraciones}.
+	 * @param ctx the parse tree
+	 */
+	void enterDeclaraciones(compiladoresParser.DeclaracionesContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link compiladoresParser#declaraciones}.
+	 * @param ctx the parse tree
+	 */
+	void exitDeclaraciones(compiladoresParser.DeclaracionesContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link compiladoresParser#declaracion}.
 	 * @param ctx the parse tree
 	 */
@@ -146,6 +166,16 @@ public interface compiladoresListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitDeclaracion(compiladoresParser.DeclaracionContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link compiladoresParser#declaracionp}.
+	 * @param ctx the parse tree
+	 */
+	void enterDeclaracionp(compiladoresParser.DeclaracionpContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link compiladoresParser#declaracionp}.
+	 * @param ctx the parse tree
+	 */
+	void exitDeclaracionp(compiladoresParser.DeclaracionpContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link compiladoresParser#asignacion}.
 	 * @param ctx the parse tree
