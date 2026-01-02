@@ -17,3 +17,75 @@ WARNING[línea 28]: Sobran argumentos en la llamada a la funcion. (linea 28)
 WARNING: La variable c no ha sido accedida.
 WARNING: La variable f no ha sido accedida.
 WARNING: La funcion restar no ha sido accedida.
+WARNING[línea 5]: El tipo de dato de retorno de la funcion es double. Segun el prototipo de la misma, se espera un tipo de dato de retorno int. (linea 5)
+ERROR[línea 5]: Hay mas parametros en el prototipo de la funcion que en su declaracion. (linea 5)
+WARNING[línea 8]: El tipo de dato de retorno de la funcion es double. Segun el prototipo de la misma, se espera un tipo de dato de retorno int. (linea 8)
+WARNING[línea 12]: La variable a es de tipo double. Se espera una variable tipo int (linea 12)
+WARNING[línea 14]: La variable o funcion 10 es de tipo int. Se espera una variable tipo double (linea 14)
+WARNING[línea 15]: El argumento y es de tipo double. Se espera un argumento de tipo int. (linea 15)
+WARNING[línea 15]: Sobran argumentos en la llamada a la funcion. (linea 15)
+WARNING[línea 15]: El argumento y es de tipo double. Se espera un argumento de tipo int. (linea 15)
+WARNING[línea 15]: Sobran argumentos en la llamada a la funcion. (linea 15)
+WARNING[línea 15]: La variable o funcion sumar es de tipo double. Se espera una variable tipo int (linea 15)
+WARNING[línea 15]: La variable o funcion y es de tipo double. Se espera una variable tipo int (linea 15)
+WARNING[línea 15]: La variable o funcion sumar es de tipo double. Se espera una variable tipo int (linea 15)
+WARNING: La variable z no ha sido inicializada.
+WARNING[línea 26]: Sobran argumentos en la llamada a la funcion. (linea 26)
+WARNING[línea 28]: Sobran argumentos en la llamada a la funcion. (linea 28)
+WARNING: La variable c no ha sido accedida.
+WARNING: La variable f no ha sido accedida.
+WARNING: La funcion restar no ha sido accedida.
+WARNING[línea 5]: El tipo de dato de retorno de la funcion es double. Segun el prototipo de la misma, se espera un tipo de dato de retorno int. (linea 5)
+ERROR[línea 5]: Hay mas parametros en el prototipo de la funcion que en su declaracion. (linea 5)
+WARNING[línea 8]: El tipo de dato de retorno de la funcion es double. Segun el prototipo de la misma, se espera un tipo de dato de retorno int. (linea 8)
+WARNING[línea 12]: La variable a es de tipo double. Se espera una variable tipo int (linea 12)
+WARNING[línea 14]: La variable o funcion 10 es de tipo int. Se espera una variable tipo double (linea 14)
+WARNING[línea 15]: El argumento y es de tipo double. Se espera un argumento de tipo int. (linea 15)
+WARNING[línea 15]: Sobran argumentos en la llamada a la funcion. (linea 15)
+WARNING[línea 15]: El argumento y es de tipo double. Se espera un argumento de tipo int. (linea 15)
+WARNING[línea 15]: Sobran argumentos en la llamada a la funcion. (linea 15)
+WARNING[línea 15]: La variable o funcion sumar es de tipo double. Se espera una variable tipo int (linea 15)
+WARNING[línea 15]: La variable o funcion y es de tipo double. Se espera una variable tipo int (linea 15)
+WARNING[línea 15]: La variable o funcion sumar es de tipo double. Se espera una variable tipo int (linea 15)
+WARNING: La variable z no ha sido inicializada.
+WARNING[línea 26]: Sobran argumentos en la llamada a la funcion. (linea 26)
+WARNING[línea 28]: Sobran argumentos en la llamada a la funcion. (linea 28)
+WARNING: La variable c no ha sido accedida.
+WARNING: La variable f no ha sido accedida.
+WARNING: La funcion restar no ha sido accedida.
+WARNING[línea 5]: El tipo de dato de retorno de la funcion es double. Segun el prototipo de la misma, se espera un tipo de dato de retorno int. (linea 5)
+ERROR[línea 5]: Hay mas parametros en el prototipo de la funcion que en su declaracion. (linea 5)
+WARNING[línea 8]: El tipo de dato de retorno de la funcion es double. Segun el prototipo de la misma, se espera un tipo de dato de retorno int. (linea 8)
+WARNING[línea 12]: La variable a es de tipo double. Se espera una variable tipo int (linea 12)
+WARNING[línea 14]: La variable o funcion 10 es de tipo int. Se espera una variable tipo double (linea 14)
+WARNING[línea 15]: El argumento y es de tipo double. Se espera un argumento de tipo int. (linea 15)
+WARNING[línea 15]: Sobran argumentos en la llamada a la funcion. (linea 15)
+WARNING[línea 15]: El argumento y es de tipo double. Se espera un argumento de tipo int. (linea 15)
+WARNING[línea 15]: Sobran argumentos en la llamada a la funcion. (linea 15)
+WARNING[línea 15]: La variable o funcion sumar es de tipo double. Se espera una variable tipo int (linea 15)
+WARNING[línea 15]: La variable o funcion y es de tipo double. Se espera una variable tipo int (linea 15)
+WARNING[línea 15]: La variable o funcion sumar es de tipo double. Se espera una variable tipo int (linea 15)
+WARNING: La variable z no ha sido inicializada.
+WARNING[línea 26]: Sobran argumentos en la llamada a la funcion. (linea 26)
+WARNING[línea 28]: Sobran argumentos en la llamada a la funcion. (linea 28)
+WARNING: La variable c no ha sido accedida.
+WARNING: La variable f no ha sido accedida.
+WARNING: La funcion restar no ha sido accedida.
+WARNING[línea 5]: El tipo de dato de retorno de la funcion es double. Segun el prototipo de la misma, se espera un tipo de dato de retorno int. (linea 5)
+ERROR[línea 5]: Hay mas parametros en el prototipo de la funcion que en su declaracion. (linea 5)
+WARNING[línea 8]: El tipo de dato de retorno de la funcion es double. Segun el prototipo de la misma, se espera un tipo de dato de retorno int. (linea 8)
+WARNING[línea 12]: La variable a es de tipo double. Se espera una variable tipo int (linea 12)
+WARNING[línea 14]: La variable o funcion 10 es de tipo int. Se espera una variable tipo double (linea 14)
+WARNING[línea 15]: El argumento y es de tipo double. Se espera un argumento de tipo int. (linea 15)
+WARNING[línea 15]: Sobran argumentos en la llamada a la funcion. (linea 15)
+WARNING[línea 15]: El argumento y es de tipo double. Se espera un argumento de tipo int. (linea 15)
+WARNING[línea 15]: Sobran argumentos en la llamada a la funcion. (linea 15)
+WARNING[línea 15]: La variable o funcion sumar es de tipo double. Se espera una variable tipo int (linea 15)
+WARNING[línea 15]: La variable o funcion y es de tipo double. Se espera una variable tipo int (linea 15)
+WARNING[línea 15]: La variable o funcion sumar es de tipo double. Se espera una variable tipo int (linea 15)
+WARNING: La variable z no ha sido inicializada.
+WARNING[línea 26]: Sobran argumentos en la llamada a la funcion. (linea 26)
+WARNING[línea 28]: Sobran argumentos en la llamada a la funcion. (linea 28)
+WARNING: La variable c no ha sido accedida.
+WARNING: La variable f no ha sido accedida.
+WARNING: La funcion restar no ha sido accedida.
