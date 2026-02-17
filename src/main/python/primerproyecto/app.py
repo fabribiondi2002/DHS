@@ -5,8 +5,10 @@ from compiladoresParser import compiladoresParser
 from Escucha import Escucha
 from Walker import Walker
 from CustonErrorListener import *
+from optimizador import Optimizador
+
 def main(argv):
-    archivo = "input/testCod.txt"
+    archivo = "input/programaCorrecto.txt"
     if len(argv) > 1 :
         archivo = argv[1]
     input = FileStream(archivo)
@@ -23,6 +25,12 @@ def main(argv):
     caminante = Walker()
     caminante.visitPrograma(tree)
     caminante.close()
+
+    opt = Optimizador()
+    opt.optimizar()
+
+
+
 
 if __name__ == '__main__':
     main(sys.argv)

@@ -24,7 +24,7 @@ class Walker(compiladoresVisitor):
         self.labelCount += 1
         return l
     def emit(self, text):
-        print(text)
+       # print(text)
         self.out.write(text + "\n")
 
     def visitPrograma(self, ctx):
