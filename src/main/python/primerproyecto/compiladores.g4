@@ -41,7 +41,7 @@ MAYOR : '>' ;
 IGUAL : '==' ;
 MENORIG : '<=';
 MAYORIG : '>=';
-DIF: '=!' ;
+DIF: '!=' ;
 
 comparadores : MENOR | MAYOR | IGUAL | MENORIG | MAYORIG | DIF;
 
@@ -170,7 +170,7 @@ t    : MULT factor t
 factor : NUMERO
        | ID
        | usofuncion
-       | PA exp PC
+       | PA opal PC
        | ID (DECRE|INCRE)
        ;
 
@@ -183,7 +183,7 @@ ielse: ELSE instruccion ;
 
 ifor : FOR PA init PYC cond PYC iter PC instruccion ;
 
-init : (asignacion|opal) (COMA (asignacion|opal))*
+init : (declaracion|asignacion|opal) (COMA (asignacion|opal))*
       |
       ;
 

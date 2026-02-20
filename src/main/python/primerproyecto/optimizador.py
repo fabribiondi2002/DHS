@@ -128,43 +128,89 @@ class Optimizador:
         def flush_env():
             env.clear()
 
+        def is_number_local(x):
+            return re.fullmatch(r"-?\d+(\.\d+)?", x) is not None
+
+        def eval_binop(left, op, right):
+            """Evalúa operación estilo C pero en Python"""
+
+            # traducir operadores lógicos
+            if op == "&&":
+                expr = f"{left} and {right}"
+                return "1" if eval(expr) else "0"
+
+            if op == "||":
+                expr = f"{left} or {right}"
+                return "1" if eval(expr) else "0"
+
+            # comparadores (devuelven 0/1)
+            if op in ("<", ">", "<=", ">=", "==", "!="):
+                expr = f"{left}{op}{right}"
+                return "1" if eval(expr) else "0"
+
+            # aritméticos normales
+            expr = f"{left}{op}{right}"
+
+            try:
+                val = eval(expr)
+                # normalizar salida
+                if isinstance(val, bool):
+                    return "1" if val else "0"
+                if float(val).is_integer():
+                    return str(int(val))
+                return str(val)
+            except Exception:
+                return None
+
         for instr in self.code:
 
+            # --- instrucciones que rompen flujo ---
             if isinstance(instr, (Label, Jump, Call, Return)):
                 flush_env()
 
+            # --- ASSIGN ---
             if isinstance(instr, Assign):
 
+                # propagación simple
                 if instr.value in env:
                     instr.value = env[instr.value]
 
-                if is_number(instr.value):
+                # guardar constante
+                if is_number_local(instr.value):
                     env[instr.dest] = instr.value
                 else:
                     env.pop(instr.dest, None)
 
-
+            # --- BINOP ---
             elif isinstance(instr, BinOp):
 
                 left = env.get(instr.left, instr.left)
                 right = env.get(instr.right, instr.right)
 
-                if is_number(left) and is_number(right):
+                # intentar fold
+                if is_number_local(left) and is_number_local(right):
 
-                    result = str(int(eval(f"{left}{instr.op}{right}")))
-                    instr = Assign(instr.dest, result)
-                    env[instr.dest] = result
+                    result = eval_binop(left, instr.op, right)
+
+                    if result is not None:
+                        instr = Assign(instr.dest, result)
+                        env[instr.dest] = result
+                    else:
+                        instr.left = left
+                        instr.right = right
+                        env.pop(instr.dest, None)
 
                 else:
                     instr.left = left
                     instr.right = right
                     env.pop(instr.dest, None)
 
+            # --- COND JUMP ---
             elif isinstance(instr, CondJump):
 
                 if instr.cond in env:
                     instr.cond = env[instr.cond]
-            
+
             new_code.append(instr)
 
         self.code = new_code
@@ -283,49 +329,77 @@ class Optimizador:
         self.code = new_code
 
     def dead_store_elimination(self):
+
         live = set()
         new_code = []
 
-        # recorrer hacia atrás
         for instr in reversed(self.code):
 
+            # ---------- ASSIGN ----------
             if isinstance(instr, Assign):
 
-                # si la variable ya no es live y nunca se usa, eliminar
-                if instr.dest not in live:
+                # 🔥 SOLO eliminar temporales muertos
+                if instr.dest.startswith("t") and instr.dest not in live:
                     continue
 
-                # actualizar live
-                live.discard(instr.dest)
+                # actualizar liveness
+                if instr.dest in live:
+                    live.discard(instr.dest)
+
                 if not is_number(instr.value):
                     live.add(instr.value)
 
+            # ---------- BINOP ----------
             elif isinstance(instr, BinOp):
 
-                if instr.dest not in live:
+                # 🔥 SOLO eliminar temporales muertos
+                if instr.dest.startswith("t") and instr.dest not in live:
                     continue
 
-                live.discard(instr.dest)
+                if instr.dest in live:
+                    live.discard(instr.dest)
+
                 live.add(instr.left)
                 live.add(instr.right)
 
+            # ---------- COND ----------
             elif isinstance(instr, CondJump):
-                live.add(instr.cond)
+                if not is_number(instr.cond):
+                    live.add(instr.cond)
 
+            # ---------- PARAM ----------
             elif isinstance(instr, Param):
                 live.add(instr.value)
 
+            # ---------- RETURN ----------
             elif isinstance(instr, Return) and instr.value:
                 live.add(instr.value)
 
-            elif isinstance(instr, Label):
-                # los labels no afectan liveness
-                pass
+            # labels y jumps no afectan
 
             new_code.append(instr)
 
-        # invertir para recuperar orden original
         self.code = list(reversed(new_code))
+
+    def remove_unused_labels(self):
+
+        used = set()
+
+        # --- recolectar labels usados ---
+        for instr in self.code:
+            if isinstance(instr, Jump):
+                used.add(instr.label)
+            elif isinstance(instr, CondJump):
+                used.add(instr.label)
+
+        # --- filtrar labels muertos ---
+        new_code = []
+        for instr in self.code:
+            if isinstance(instr, Label) and instr.name not in used:
+                continue
+            new_code.append(instr)
+
+        self.code = new_code
 
     # -------- Save IR → TAC --------
 
@@ -374,6 +448,7 @@ class Optimizador:
             self.dead_store_elimination()
             self.remove_unreachable()
             self.remove_redundant_jumps()
+            self.remove_unused_labels()
 
         self.save()
 

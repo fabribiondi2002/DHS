@@ -8,7 +8,7 @@ from CustonErrorListener import *
 from optimizador import Optimizador
 
 def main(argv):
-    archivo = "input/programaCorrecto.txt"
+    archivo = "input/entrada.txt"
     if len(argv) > 1 :
         archivo = argv[1]
     input = FileStream(archivo)

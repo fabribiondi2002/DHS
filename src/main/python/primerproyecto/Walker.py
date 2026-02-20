@@ -65,7 +65,7 @@ class Walker(compiladoresVisitor):
         if ctx.usofuncion():
             return self.visit(ctx.usofuncion())
 
-        return self.visit(ctx.exp())
+        return self.visit(ctx.opal())
 
     def visitTerm(self, ctx):
         left = self.visit(ctx.factor())

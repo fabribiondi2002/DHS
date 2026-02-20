@@ -163,8 +163,8 @@ class Escucha (compiladoresListener):
                 if aux_par_func[i]["tipo"] != aux_par_prot[i]["tipo"]:
                     self._write_error(f"WARNING[línea {ctx.start.line}]: El parametro de la declaracion de funcion " + aux_par_func[i]['nombre'] + " es de tipo " + aux_par_func[i]['tipo'] + ". Se espera un argumento de tipo "+ aux_par_prot[i]['tipo'] + " segun el prototipo.\n", ctx.start.line)
                     print(f"WARNING[línea {ctx.start.line}]: El parametro de la declaracion de funcion " + aux_par_func[i]['nombre'] + " es de tipo " + aux_par_func[i]['tipo'] + ". Se espera un argumento de tipo "+ aux_par_prot[i]['tipo'] + " segun el prototipo.\n")
-            func.setInicializado()
-            self.tablaSimbolos.actualizarId(func)
+            func_aux.setInicializado()
+            self.tablaSimbolos.actualizarId(func_aux)
             self.parametros.clear()
             return
 
