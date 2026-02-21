@@ -1,47 +1,67 @@
 import re
 
 # ===============================
-# IR INSTRUCTIONS
+# IR INSTRUCTIONS (Representación Intermedia)
 # ===============================
+# Estas clases representan las distintas instrucciones
+# del código intermedio en forma estructurada (IR).
+# Cada clase modela un tipo de instrucción TAC.
 
 class Instr:
+    # Clase base para todas las instrucciones
     pass
 
+
+# Asignación simple:  a = b
 class Assign(Instr):
     def __init__(self, dest, value):
-        self.dest = dest
-        self.value = value
+        self.dest = dest      # variable destino
+        self.value = value    # valor asignado
 
+
+# Operación binaria: t1 = a + b
 class BinOp(Instr):
     def __init__(self, dest, left, op, right):
-        self.dest = dest
-        self.left = left
-        self.op = op
-        self.right = right
+        self.dest = dest      # destino
+        self.left = left      # operando izquierdo
+        self.op = op          # operador (+,-,*,/,&&, etc)
+        self.right = right    # operando derecho
 
+
+# Etiqueta: label L1
 class Label(Instr):
     def __init__(self, name):
         self.name = name
 
+
+# Salto incondicional: jump L1
 class Jump(Instr):
     def __init__(self, label):
         self.label = label
 
+
+# Salto condicional: ifntjmp t1 , L1
 class CondJump(Instr):
     def __init__(self, cond, label):
         self.cond = cond
         self.label = label
 
+
+# Parámetro de función: param x
 class Param(Instr):
     def __init__(self, value):
         self.value = value
 
+
+# Llamada a función: t1 = call foo, 2
 class Call(Instr):
     def __init__(self, dest, name, argc):
         self.dest = dest
         self.name = name
         self.argc = argc
 
+
+# Retorno de función: return x
 class Return(Instr):
     def __init__(self, value):
         self.value = value
@@ -50,46 +70,58 @@ class Return(Instr):
 # ===============================
 # PARSER TAC → IR
 # ===============================
+# Convierte el archivo de texto (TAC)
+# en objetos IR manipulables.
 
 def is_number(x):
     return re.fullmatch(r"-?\d+", x) is not None
 
+
 def parse_line(line):
+
     line = line.strip()
 
+    # ---------- LABEL ----------
     if line.startswith("label"):
         return Label(line.split()[1])
 
+    # ---------- JUMP ----------
     if line.startswith("jump"):
         return Jump(line.split()[1])
 
+    # ---------- COND JUMP ----------
     if line.startswith("ifntjmp"):
         _, cond, _, label = line.split()
         return CondJump(cond, label)
 
+    # ---------- PARAM ----------
     if line.startswith("param"):
         return Param(line.split()[1])
 
+    # ---------- RETURN ----------
     if line.startswith("return"):
         parts = line.split()
         return Return(parts[1] if len(parts) > 1 else None)
 
+    # ---------- CALL ----------
     if "call" in line:
         dest, rest = line.split("=")
         rest = rest.strip()
         _, name, argc = rest.split()
         return Call(dest.strip(), name.strip(","), int(argc))
 
+    # ---------- ASSIGN / BINOP ----------
     if "=" in line:
 
         dest, expr = line.split("=", 1)
-
         dest = dest.strip()
         tokens = expr.strip().split()
 
+        # asignación simple
         if len(tokens) == 1:
             return Assign(dest, tokens[0])
 
+        # operación binaria
         if len(tokens) == 3:
             return BinOp(dest, tokens[0], tokens[1], tokens[2])
 
@@ -97,97 +129,104 @@ def parse_line(line):
 
 
 # ===============================
-# OPTIMIZER
+# OPTIMIZADOR
 # ===============================
 
 class Optimizador:
 
+    # Constructor
     def __init__(self,
                  input_file="output/CodigoIntermedio.txt",
                  output_file="output/CodigoOptimizado.txt"):
+
         self.input_file = input_file
         self.output_file = output_file
-        self.code = []
+        self.code = []   # lista de instrucciones IR
 
-    # -------- Load IR --------
+
+    # ===============================
+    # CARGA DEL IR
+    # ===============================
 
     def load(self):
+        # Lee el archivo TAC y lo convierte en IR
         with open(self.input_file) as f:
             for line in f:
                 instr = parse_line(line)
                 if instr:
                     self.code.append(instr)
 
-    # -------- Constant Propagation --------
 
+    # ===============================
+    # CONSTANT PROPAGATION + FOLDING
+    # ===============================
+    # Propaga constantes conocidas a lo largo del código y evalúa operaciones con operandos constantes (constant folding). También simplifica saltos condicionales con condiciones constantes.
     def constant_propagation(self):
 
+        # Entorno que guarda constantes conocidas
         env = {}
         new_code = []
 
+        # Limpia el entorno (cuando se rompe flujo)
         def flush_env():
             env.clear()
 
+        # Detecta número entero o decimal
         def is_number_local(x):
             return re.fullmatch(r"-?\d+(\.\d+)?", x) is not None
 
+        # Evalúa operación binaria
         def eval_binop(left, op, right):
-            """Evalúa operación estilo C pero en Python"""
 
-            # traducir operadores lógicos
+            # Operadores lógicos
             if op == "&&":
-                expr = f"{left} and {right}"
-                return "1" if eval(expr) else "0"
+                return "1" if eval(f"{left} and {right}") else "0"
 
             if op == "||":
-                expr = f"{left} or {right}"
-                return "1" if eval(expr) else "0"
+                return "1" if eval(f"{left} or {right}") else "0"
 
-            # comparadores (devuelven 0/1)
+            # Comparadores
             if op in ("<", ">", "<=", ">=", "==", "!="):
-                expr = f"{left}{op}{right}"
-                return "1" if eval(expr) else "0"
+                return "1" if eval(f"{left}{op}{right}") else "0"
 
-            # aritméticos normales
-            expr = f"{left}{op}{right}"
-
+            # Aritméticos
             try:
-                val = eval(expr)
-                # normalizar salida
+                val = eval(f"{left}{op}{right}")
                 if isinstance(val, bool):
                     return "1" if val else "0"
                 if float(val).is_integer():
                     return str(int(val))
                 return str(val)
-            except Exception:
+            except:
                 return None
 
+        # Recorre instrucciones
         for instr in self.code:
 
-            # --- instrucciones que rompen flujo ---
+            # Instrucciones que rompen flujo
             if isinstance(instr, (Label, Jump, Call, Return)):
                 flush_env()
 
-            # --- ASSIGN ---
+            # -------- ASSIGN --------
             if isinstance(instr, Assign):
 
-                # propagación simple
+                # Propagar constante conocida
                 if instr.value in env:
                     instr.value = env[instr.value]
 
-                # guardar constante
+                # Guardar en entorno si es constante
                 if is_number_local(instr.value):
                     env[instr.dest] = instr.value
                 else:
                     env.pop(instr.dest, None)
 
-            # --- BINOP ---
+            # -------- BINOP --------
             elif isinstance(instr, BinOp):
 
                 left = env.get(instr.left, instr.left)
                 right = env.get(instr.right, instr.right)
 
-                # intentar fold
+                # Intentar constant folding
                 if is_number_local(left) and is_number_local(right):
 
                     result = eval_binop(left, instr.op, right)
@@ -205,7 +244,7 @@ class Optimizador:
                     instr.right = right
                     env.pop(instr.dest, None)
 
-            # --- COND JUMP ---
+            # -------- COND JUMP --------
             elif isinstance(instr, CondJump):
 
                 if instr.cond in env:
@@ -216,7 +255,10 @@ class Optimizador:
         self.code = new_code
 
 
-    # -------- Dead Code Elimination --------
+    # ===============================
+    # DEAD CODE ELIMINATION (temporales)
+    # ===============================
+    # Elimina asignaciones a temporales que no se usan posteriormente.
 
     def dead_code(self):
 
@@ -227,6 +269,7 @@ class Optimizador:
             changed = False
             used = set()
 
+            # Detectar variables usadas
             for instr in self.code:
 
                 if isinstance(instr, BinOp):
@@ -247,6 +290,7 @@ class Optimizador:
 
             new_code = []
 
+            # Eliminar temporales no usados
             for instr in self.code:
 
                 if isinstance(instr, (Assign, BinOp)):
@@ -258,6 +302,11 @@ class Optimizador:
 
             self.code = new_code
 
+
+    # ===============================
+    # SIMPLIFICACIÓN DE SALTOS
+    # ===============================
+    # Convierte saltos condicionales con condiciones constantes en saltos incondicionales o los elimina si la condición es siempre verdadera.
 
     def simplify_jumps(self):
 
@@ -273,10 +322,9 @@ class Optimizador:
                 if is_number(instr.cond):
 
                     if instr.cond == "0":
-                        # siempre salta → jump incondicional
                         new_code.append(Jump(instr.label))
 
-                    # si es 1 → nunca salta → eliminar
+                    # si es 1 → eliminar
 
                     i += 1
                     continue
@@ -285,6 +333,12 @@ class Optimizador:
             i += 1
 
         self.code = new_code
+
+
+    # ===============================
+    # ELIMINAR CÓDIGO INALCANZABLE
+    # ===============================
+    # Elimina instrucciones que no pueden ser alcanzadas debido a saltos incondicionales JUMP o retornos anteriores RETURN.
 
     def remove_unreachable(self):
 
@@ -308,6 +362,10 @@ class Optimizador:
         self.code = new_code
 
 
+    # ===============================
+    # ELIMINAR JUMPS REDUNDANTES
+    # ===============================
+    # Elimina saltos incondicionales que van directamente a una etiqueta que sigue inmediatamente después.
     def remove_redundant_jumps(self):
 
         new_code = []
@@ -322,37 +380,39 @@ class Optimizador:
                     next_instr = self.code[i + 1]
 
                     if isinstance(next_instr, Label) and next_instr.name == instr.label:
-                        continue  # eliminar jump redundante
+                        continue
 
             new_code.append(instr)
 
         self.code = new_code
+
+
+    # ===============================
+    # DEAD STORE ELIMINATION
+    # ===============================
+    # Elimina asignaciones a variables (especialmente temporales) que no se usan posteriormente en el código. Esto es similar a la eliminación de código muerto, pero se enfoca específicamente en las asignaciones que no tienen efecto observable.
 
     def dead_store_elimination(self):
 
         live = set()
         new_code = []
 
+        # recorrido hacia atrás
         for instr in reversed(self.code):
 
-            # ---------- ASSIGN ----------
             if isinstance(instr, Assign):
 
-                # 🔥 SOLO eliminar temporales muertos
                 if instr.dest.startswith("t") and instr.dest not in live:
                     continue
 
-                # actualizar liveness
                 if instr.dest in live:
                     live.discard(instr.dest)
 
                 if not is_number(instr.value):
                     live.add(instr.value)
 
-            # ---------- BINOP ----------
             elif isinstance(instr, BinOp):
 
-                # 🔥 SOLO eliminar temporales muertos
                 if instr.dest.startswith("t") and instr.dest not in live:
                     continue
 
@@ -362,37 +422,35 @@ class Optimizador:
                 live.add(instr.left)
                 live.add(instr.right)
 
-            # ---------- COND ----------
             elif isinstance(instr, CondJump):
                 if not is_number(instr.cond):
                     live.add(instr.cond)
 
-            # ---------- PARAM ----------
             elif isinstance(instr, Param):
                 live.add(instr.value)
 
-            # ---------- RETURN ----------
             elif isinstance(instr, Return) and instr.value:
                 live.add(instr.value)
-
-            # labels y jumps no afectan
 
             new_code.append(instr)
 
         self.code = list(reversed(new_code))
 
+
+    # ===============================
+    # ELIMINAR LABELS MUERTOS
+    # ===============================
+    # Elimina etiquetas que no son el destino de ningún salto (JUMP o COND JUMP) y que no son el punto de entrada del programa. 
     def remove_unused_labels(self):
 
         used = set()
 
-        # --- recolectar labels usados ---
         for instr in self.code:
             if isinstance(instr, Jump):
                 used.add(instr.label)
             elif isinstance(instr, CondJump):
                 used.add(instr.label)
 
-        # --- filtrar labels muertos ---
         new_code = []
         for instr in self.code:
             if isinstance(instr, Label) and instr.name not in used:
@@ -401,7 +459,10 @@ class Optimizador:
 
         self.code = new_code
 
-    # -------- Save IR → TAC --------
+
+    # ===============================
+    # GUARDAR IR → TAC
+    # ===============================
 
     def save(self):
 
@@ -435,13 +496,18 @@ class Optimizador:
             for instr in self.code:
                 f.write(emit(instr) + "\n")
 
-    # -------- Pipeline --------
+
+    # ===============================
+    # PIPELINE COMPLETO
+    # ===============================
 
     def optimizar(self):
 
+        # Cargar IR
         self.load()
 
-        for _ in range(3):  # iterar optimizaciones
+        # Iterar varias veces para estabilizar optimizaciones
+        for _ in range(3):
             self.constant_propagation()
             self.simplify_jumps()
             self.dead_code()
@@ -450,5 +516,5 @@ class Optimizador:
             self.remove_redundant_jumps()
             self.remove_unused_labels()
 
+        # Guardar resultado final
         self.save()
-
