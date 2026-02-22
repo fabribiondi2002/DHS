@@ -1,31 +1,40 @@
-int sumar(int a , int b, int c);
 
-int restar(int a , int b);
+int pot(int f);
+int mul(int l,int m,int n);
+int main () {
+    int a,c, x, y, i,z;
+	a = 0;
+	x = 7;
+	z = 8;
+	x = x + a + z;
+	if ( x == 10 ){
+	x = (x * 7) + 1;
+	}
 
-double sumar(int a,int b){
-    return a + b;
-}
-double restar (int a, int b){
-    return a - b;
-}
-int main (double a, int b, int c){
-    int x = a + b, f = a;
-    double y;
-    y = 10;
-    x = sumar((x) + (sumar(x + y , x ,x)), y , 10);
-    x = 10 + x++;
-    while( x < 20){
-        int i = 0;
-        x = 1 + i;
-        if( i > 0){
-            x = x + 1;
-            int z;
-        }
-    }
-    for( x++ , x = 0 ;;){
-        sumar(x, x , x);
-    }
-    sumar(x, x , x);
-    return 0;
+
+	x = pot(x);
+
+	for(i = 0; i < 7; i = i + 1){
+		z = z * i;
+	}
+
+	int b;
+	b = 10;
+	c = b + 10;
+	b = b + 10;
+	y = mul(z,x,b);
+
+    return a;
 }
 
+
+int pot(int f){
+	f = f * f + 8;
+	return f;
+}
+
+int mul(int l, int m, int n){
+	int o;
+	o = (l + m )*n + 8;
+	return o;
+}

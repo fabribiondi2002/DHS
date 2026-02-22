@@ -1,35 +1,56 @@
 import sys
 from antlr4 import *
-from compiladoresLexer  import compiladoresLexer
+from antlr4.error.ErrorStrategy import BailErrorStrategy
+
+from compiladoresLexer import compiladoresLexer
 from compiladoresParser import compiladoresParser
 from Escucha import Escucha
 from Walker import Walker
 from CustonErrorListener import *
 from optimizador import Optimizador
 
+
 def main(argv):
     archivo = "input/entrada.txt"
-    if len(argv) > 1 :
+    if len(argv) > 1:
         archivo = argv[1]
-    input = FileStream(archivo)
-    lexer = compiladoresLexer(input)
+
+    input_stream = FileStream(archivo)
+
+    # 🔥 INSTANCIA UNICA DEL LISTENER
+    error_listener = CustomErrorListener()
+
+    lexer = compiladoresLexer(input_stream)
     lexer.removeErrorListeners()
-    lexer.addErrorListener(CustomErrorListener())
+    lexer.addErrorListener(error_listener)
+
     stream = CommonTokenStream(lexer)
+
     parser = compiladoresParser(stream)
     parser.removeErrorListeners()
-    parser.addErrorListener(CustomErrorListener())
+    parser.addErrorListener(error_listener)
+
+    parser._errHandler = BailErrorStrategy()
+
     escucha = Escucha()
     parser.addParseListener(escucha)
-    tree = parser.programa()
+
+    try:
+        tree = parser.programa()
+    except Exception:
+        print("Se encontraron errores sintácticos. Compilación detenida.")
+        return
+
+    if error_listener.hayErrores or escucha.errores_semanticos:
+        print("Se encontraron errores. No se generará código intermedio.")
+        return
+
     caminante = Walker()
     caminante.visitPrograma(tree)
     caminante.close()
 
     opt = Optimizador()
     opt.optimizar()
-
-
 
 
 if __name__ == '__main__':

@@ -1,3 +1,76 @@
-x
-probando 2 3 4
-Hola 1234
+int suma(int a, int b);
+
+int main() {
+    int x = 10;
+    int y = 5;
+    int variable1 = x;        
+    int variable2 = y;        
+    int r1, r2, z;
+    int w = y * x;      
+    int p = x + w;     
+    r1 = p;
+    
+    int m = y * x;      
+    int n = x + m / 5 + p;     
+    r2 = n;
+
+    int variable3 = x + 0;   
+    int variable4 = variable3 * 1; 
+
+    int cond = x > 0;    
+    if ((cond || m > n) && (y < 10)) {
+        x = 1;
+        int dummy = x + 0; 
+    } else {
+        x = 2;           
+    }
+
+    r1 = x;
+    r1 = 1;              
+    int 
+    z = 0;
+    int i = 0;
+    int k = 0;
+
+    for (int j = 0; j < 5; j = j + 1) {
+        int variable5 = x + 2;
+        z = variable5;
+
+        int variable6 = x + 2;
+        y = variable6;
+
+        int dummy1 = variable5 * 1;
+    }
+
+    int res1 = suma(y, x);
+    r1 = res1;
+    
+    int res2 = suma(y, x); 
+    r2 = res2;
+
+    int variable7 = x + 2;
+    z = variable7;
+
+    int denom = 2 - 2;  
+    r1 = 2 * denom;
+
+    return 0;
+}
+
+int suma(int a, int b) {
+    int i = 0;
+    int variable_a = a;      
+    int variable_b = b;     
+
+    while (i < 5) {
+        int suma_i = 1 + i;
+        i = suma_i;
+        int nuevo_a = variable_a + i;
+        variable_a = nuevo_a;
+
+        int dummy2 = nuevo_a * 1;
+    }
+
+    int resultado = variable_a + variable_b;
+    return resultado;
+}

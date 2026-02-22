@@ -9,29 +9,27 @@ import copy
 ERRORS_PATH = "output/errores.txt"
 
 class Escucha (compiladoresListener):
-    #Lista utilizada para contener todos los factores que se utilizan en una asignacion
-    variablesAsignacion = []
-    #Se crea un objeto tabla de simbolos
-    tablaSimbolos = TablaSimbolos()
-    #Lista utilizada para guardar los parametros de una funcion
-    parametros = []
-    #Lista utilizada para guardar la lista que representa el conjunto de factores utilizados en un espacio de argumentos en una llamada a funcion
-    argumentos = []
-    #Lista utilizada para guardar el conjunto de factores utilizados en un espacio de argumentos en una llamada a funcion
-    conjunto_argumento = []
-    #Lista utilizada como pila para guardar la cantidad de espacios de argumentos que tiene una llamada a la funcio, sirve para poder anidar llamadas de funcion
-    pila_contador_arg = []
-    #Variable que sirve como bandera para saber si estamos en una llamada a funcion, se utiliza para hacer las listas de argumentos
-    uso_func = False
-    EsFuncion = False
-    tipo_declaracion = None
-    errores_semanticos = False
-    errores_sintacticos = False
+    def __init__(self):
+        #Lista utilizada para contener todos los factores que se utilizan en una asignacion
+        self.variablesAsignacion = []
+        #Se crea un objeto tabla de simbolos
+        self.tablaSimbolos = TablaSimbolos()
+        #Lista utilizada para guardar los parametros de una funcion
+        self.parametros = []
+        #Lista utilizada para guardar la lista que representa el conjunto de factores utilizados en un espacio de argumentos en una llamada a funcion
+        self.argumentos = []
+        #Lista utilizada para guardar el conjunto de factores utilizados en un espacio de argumentos en una llamada a funcion
+        self.conjunto_argumento = []
+        #Lista utilizada como pila para guardar la cantidad de espacios de argumentos que tiene una llamada a la funcio, sirve para poder anidar llamadas de funcion
+        self.pila_contador_arg = []
+        #Variable que sirve como bandera para saber si estamos en una llamada a funcion, se utiliza para hacer las listas de argumentos
+        self.uso_func = False
+        self.EsFuncion = False
+        self.tipo_declaracion = None
+        self.errores_semanticos = False
     def _write_error(self, mensaje: str, linea: int | None = None):
-        if "Error Semantico" in mensaje:
+        if mensaje.strip().upper().startswith("ERROR"):
             self.errores_semanticos = True
-        if "Error Sintactico" in mensaje or "ERROR [Sintactico]" in mensaje:
-            self.errores_sintacticos = True
         if linea is not None:
             mensaje = mensaje.rstrip("\n")
             mensaje = f"{mensaje} (linea {linea})"
@@ -42,7 +40,8 @@ class Escucha (compiladoresListener):
                 f.write(mensaje)
         except OSError:
             pass
-
+    def tieneErrores(self):
+        return self.errores_semanticos
     def identificarTipo(self, cadena):
         #Verifica si la cadena ingresada es tipo int
         try:

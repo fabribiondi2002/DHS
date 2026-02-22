@@ -1,0 +1,58 @@
+x = 10
+y = 5
+variable1 = 10
+variable2 = 5
+w = 50
+p = 60
+r1 = 60
+m = 50
+n = 80
+r2 = 80
+variable3 = 10
+variable4 = 10
+cond = 1
+x = 1
+dummy = 1
+r1 = 1
+r1 = 1
+z = 0
+i = 0
+k = 0
+j = 0
+label l2
+t20 = j < 5
+ifntjmp t20 , l3
+t21 = x + 2
+variable5 = t21
+t22 = variable5
+z = t22
+t23 = x + 2
+variable6 = t23
+t24 = variable6
+y = t24
+t25 = variable5 * 1
+dummy1 = t25
+t26 = j + 1
+t27 = t26
+j = t27
+jump l2
+label l3
+param y
+param x
+t28 = call suma, 2
+res1 = t28
+t29 = res1
+r1 = t29
+param y
+param x
+t30 = call suma, 2
+res2 = t30
+t31 = res2
+r2 = t31
+t32 = x + 2
+variable7 = t32
+t33 = variable7
+z = t33
+denom = 0
+r1 = 0
+return 0

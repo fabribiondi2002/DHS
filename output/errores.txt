@@ -1,91 +1,874 @@
-WARNING: La funcion restar no ha sido accedida.
-WARNING[línea 5]: El tipo de dato de retorno de la funcion es double. Segun el prototipo de la misma, se espera un tipo de dato de retorno int. (linea 5)
-ERROR[línea 5]: Hay mas parametros en el prototipo de la funcion que en su declaracion. (linea 5)
-WARNING[línea 8]: El tipo de dato de retorno de la funcion es double. Segun el prototipo de la misma, se espera un tipo de dato de retorno int. (linea 8)
-WARNING[línea 12]: La variable a es de tipo double. Se espera una variable tipo int (linea 12)
-WARNING[línea 14]: La variable o funcion 10 es de tipo int. Se espera una variable tipo double (linea 14)
-WARNING[línea 15]: El argumento y es de tipo double. Se espera un argumento de tipo int. (linea 15)
-WARNING[línea 15]: Sobran argumentos en la llamada a la funcion. (linea 15)
-WARNING[línea 15]: El argumento y es de tipo double. Se espera un argumento de tipo int. (linea 15)
-WARNING[línea 15]: Sobran argumentos en la llamada a la funcion. (linea 15)
-WARNING[línea 15]: La variable o funcion sumar es de tipo double. Se espera una variable tipo int (linea 15)
-WARNING[línea 15]: La variable o funcion y es de tipo double. Se espera una variable tipo int (linea 15)
-WARNING[línea 15]: La variable o funcion sumar es de tipo double. Se espera una variable tipo int (linea 15)
-WARNING: La variable z no ha sido inicializada.
-WARNING[línea 26]: Sobran argumentos en la llamada a la funcion. (linea 26)
-WARNING[línea 28]: Sobran argumentos en la llamada a la funcion. (linea 28)
 WARNING: La variable c no ha sido accedida.
-WARNING: La variable f no ha sido accedida.
-WARNING: La funcion restar no ha sido accedida.
-WARNING[línea 5]: El tipo de dato de retorno de la funcion es double. Segun el prototipo de la misma, se espera un tipo de dato de retorno int. (linea 5)
-ERROR[línea 5]: Hay mas parametros en el prototipo de la funcion que en su declaracion. (linea 5)
-WARNING[línea 8]: El tipo de dato de retorno de la funcion es double. Segun el prototipo de la misma, se espera un tipo de dato de retorno int. (linea 8)
-WARNING[línea 12]: La variable a es de tipo double. Se espera una variable tipo int (linea 12)
-WARNING[línea 14]: La variable o funcion 10 es de tipo int. Se espera una variable tipo double (linea 14)
-WARNING[línea 15]: El argumento y es de tipo double. Se espera un argumento de tipo int. (linea 15)
-WARNING[línea 15]: Sobran argumentos en la llamada a la funcion. (linea 15)
-WARNING[línea 15]: El argumento y es de tipo double. Se espera un argumento de tipo int. (linea 15)
-WARNING[línea 15]: Sobran argumentos en la llamada a la funcion. (linea 15)
-WARNING[línea 15]: La variable o funcion sumar es de tipo double. Se espera una variable tipo int (linea 15)
-WARNING[línea 15]: La variable o funcion y es de tipo double. Se espera una variable tipo int (linea 15)
-WARNING[línea 15]: La variable o funcion sumar es de tipo double. Se espera una variable tipo int (linea 15)
-WARNING: La variable z no ha sido inicializada.
-WARNING[línea 26]: Sobran argumentos en la llamada a la funcion. (linea 26)
-WARNING[línea 28]: Sobran argumentos en la llamada a la funcion. (linea 28)
+WARNING: La variable y no ha sido accedida.
+WARNING: La funcion pot no ha sido accedida.
+WARNING: La funcion mul no ha sido accedida.
 WARNING: La variable c no ha sido accedida.
-WARNING: La variable f no ha sido accedida.
-WARNING: La funcion restar no ha sido accedida.
-WARNING[línea 5]: El tipo de dato de retorno de la funcion es double. Segun el prototipo de la misma, se espera un tipo de dato de retorno int. (linea 5)
-ERROR[línea 5]: Hay mas parametros en el prototipo de la funcion que en su declaracion. (linea 5)
-WARNING[línea 8]: El tipo de dato de retorno de la funcion es double. Segun el prototipo de la misma, se espera un tipo de dato de retorno int. (linea 8)
-WARNING[línea 12]: La variable a es de tipo double. Se espera una variable tipo int (linea 12)
-WARNING[línea 14]: La variable o funcion 10 es de tipo int. Se espera una variable tipo double (linea 14)
-WARNING[línea 15]: El argumento y es de tipo double. Se espera un argumento de tipo int. (linea 15)
-WARNING[línea 15]: Sobran argumentos en la llamada a la funcion. (linea 15)
-WARNING[línea 15]: El argumento y es de tipo double. Se espera un argumento de tipo int. (linea 15)
-WARNING[línea 15]: Sobran argumentos en la llamada a la funcion. (linea 15)
-WARNING[línea 15]: La variable o funcion sumar es de tipo double. Se espera una variable tipo int (linea 15)
-WARNING[línea 15]: La variable o funcion y es de tipo double. Se espera una variable tipo int (linea 15)
-WARNING[línea 15]: La variable o funcion sumar es de tipo double. Se espera una variable tipo int (linea 15)
-WARNING: La variable z no ha sido inicializada.
-WARNING[línea 26]: Sobran argumentos en la llamada a la funcion. (linea 26)
-WARNING[línea 28]: Sobran argumentos en la llamada a la funcion. (linea 28)
+WARNING: La variable y no ha sido accedida.
+WARNING: La funcion pot no ha sido accedida.
+WARNING: La funcion mul no ha sido accedida.
 WARNING: La variable c no ha sido accedida.
-WARNING: La variable f no ha sido accedida.
-WARNING: La funcion restar no ha sido accedida.
-WARNING[línea 5]: El tipo de dato de retorno de la funcion es double. Segun el prototipo de la misma, se espera un tipo de dato de retorno int. (linea 5)
-ERROR[línea 5]: Hay mas parametros en el prototipo de la funcion que en su declaracion. (linea 5)
-WARNING[línea 8]: El tipo de dato de retorno de la funcion es double. Segun el prototipo de la misma, se espera un tipo de dato de retorno int. (linea 8)
-WARNING[línea 12]: La variable a es de tipo double. Se espera una variable tipo int (linea 12)
-WARNING[línea 14]: La variable o funcion 10 es de tipo int. Se espera una variable tipo double (linea 14)
-WARNING[línea 15]: El argumento y es de tipo double. Se espera un argumento de tipo int. (linea 15)
-WARNING[línea 15]: Sobran argumentos en la llamada a la funcion. (linea 15)
-WARNING[línea 15]: El argumento y es de tipo double. Se espera un argumento de tipo int. (linea 15)
-WARNING[línea 15]: Sobran argumentos en la llamada a la funcion. (linea 15)
-WARNING[línea 15]: La variable o funcion sumar es de tipo double. Se espera una variable tipo int (linea 15)
-WARNING[línea 15]: La variable o funcion y es de tipo double. Se espera una variable tipo int (linea 15)
-WARNING[línea 15]: La variable o funcion sumar es de tipo double. Se espera una variable tipo int (linea 15)
-WARNING: La variable z no ha sido inicializada.
-WARNING[línea 26]: Sobran argumentos en la llamada a la funcion. (linea 26)
-WARNING[línea 28]: Sobran argumentos en la llamada a la funcion. (linea 28)
+WARNING: La variable y no ha sido accedida.
+WARNING: La funcion pot no ha sido accedida.
+WARNING: La funcion mul no ha sido accedida.
 WARNING: La variable c no ha sido accedida.
-WARNING: La variable f no ha sido accedida.
-WARNING: La funcion restar no ha sido accedida.
-WARNING[línea 5]: El tipo de dato de retorno de la funcion es double. Segun el prototipo de la misma, se espera un tipo de dato de retorno int. (linea 5)
-ERROR[línea 5]: Hay mas parametros en el prototipo de la funcion que en su declaracion. (linea 5)
-WARNING[línea 8]: El tipo de dato de retorno de la funcion es double. Segun el prototipo de la misma, se espera un tipo de dato de retorno int. (linea 8)
-WARNING[línea 12]: La variable a es de tipo double. Se espera una variable tipo int (linea 12)
-WARNING[línea 14]: La variable o funcion 10 es de tipo int. Se espera una variable tipo double (linea 14)
-WARNING[línea 15]: El argumento y es de tipo double. Se espera un argumento de tipo int. (linea 15)
-WARNING[línea 15]: Sobran argumentos en la llamada a la funcion. (linea 15)
-WARNING[línea 15]: El argumento y es de tipo double. Se espera un argumento de tipo int. (linea 15)
-WARNING[línea 15]: Sobran argumentos en la llamada a la funcion. (linea 15)
-WARNING[línea 15]: La variable o funcion sumar es de tipo double. Se espera una variable tipo int (linea 15)
-WARNING[línea 15]: La variable o funcion y es de tipo double. Se espera una variable tipo int (linea 15)
-WARNING[línea 15]: La variable o funcion sumar es de tipo double. Se espera una variable tipo int (linea 15)
-WARNING: La variable z no ha sido inicializada.
-WARNING[línea 26]: Sobran argumentos en la llamada a la funcion. (linea 26)
-WARNING[línea 28]: Sobran argumentos en la llamada a la funcion. (linea 28)
+WARNING: La variable y no ha sido accedida.
+WARNING: La funcion pot no ha sido accedida.
+WARNING: La funcion mul no ha sido accedida.
 WARNING: La variable c no ha sido accedida.
-WARNING: La variable f no ha sido accedida.
-WARNING: La funcion restar no ha sido accedida.
+WARNING: La variable y no ha sido accedida.
+WARNING: La funcion pot no ha sido accedida.
+WARNING: La funcion mul no ha sido accedida.
+WARNING: La variable c no ha sido accedida.
+WARNING: La variable y no ha sido accedida.
+WARNING: La funcion pot no ha sido accedida.
+WARNING: La funcion mul no ha sido accedida.
+WARNING: La variable c no ha sido accedida.
+WARNING: La variable y no ha sido accedida.
+WARNING: La funcion pot no ha sido accedida.
+WARNING: La funcion mul no ha sido accedida.
+WARNING: La variable c no ha sido accedida.
+WARNING: La variable y no ha sido accedida.
+WARNING: La funcion pot no ha sido accedida.
+WARNING: La funcion mul no ha sido accedida.
+WARNING: La variable c no ha sido accedida.
+WARNING: La variable y no ha sido accedida.
+WARNING: La funcion pot no ha sido accedida.
+WARNING: La funcion mul no ha sido accedida.
+WARNING: La variable c no ha sido accedida.
+WARNING: La variable y no ha sido accedida.
+WARNING: La funcion pot no ha sido accedida.
+WARNING: La funcion mul no ha sido accedida.
+WARNING: La variable c no ha sido accedida.
+WARNING: La variable y no ha sido accedida.
+WARNING: La funcion pot no ha sido accedida.
+WARNING: La funcion mul no ha sido accedida.
+WARNING: La variable c no ha sido accedida.
+WARNING: La variable y no ha sido accedida.
+WARNING: La funcion pot no ha sido accedida.
+WARNING: La funcion mul no ha sido accedida.
+WARNING: La variable c no ha sido accedida.
+WARNING: La variable y no ha sido accedida.
+WARNING: La funcion pot no ha sido accedida.
+WARNING: La funcion mul no ha sido accedida.
+WARNING: La variable c no ha sido accedida.
+WARNING: La variable y no ha sido accedida.
+WARNING: La funcion pot no ha sido accedida.
+WARNING: La funcion mul no ha sido accedida.
+WARNING: La variable c no ha sido accedida.
+WARNING: La variable y no ha sido accedida.
+WARNING: La funcion pot no ha sido accedida.
+WARNING: La funcion mul no ha sido accedida.
+WARNING: La variable c no ha sido accedida.
+WARNING: La variable y no ha sido accedida.
+WARNING: La funcion pot no ha sido accedida.
+WARNING: La funcion mul no ha sido accedida.
+WARNING: La variable c no ha sido accedida.
+WARNING: La variable y no ha sido accedida.
+WARNING: La funcion pot no ha sido accedida.
+WARNING: La funcion mul no ha sido accedida.
+WARNING: La variable c no ha sido accedida.
+WARNING: La variable y no ha sido accedida.
+WARNING: La funcion pot no ha sido accedida.
+WARNING: La funcion mul no ha sido accedida.
+WARNING: La variable c no ha sido accedida.
+WARNING: La variable y no ha sido accedida.
+WARNING: La funcion pot no ha sido accedida.
+WARNING: La funcion mul no ha sido accedida.
+WARNING: La variable c no ha sido accedida.
+WARNING: La variable y no ha sido accedida.
+WARNING: La funcion pot no ha sido accedida.
+WARNING: La funcion mul no ha sido accedida.
+WARNING: La variable c no ha sido accedida.
+WARNING: La variable y no ha sido accedida.
+WARNING: La funcion pot no ha sido accedida.
+WARNING: La funcion mul no ha sido accedida.
+WARNING: La variable c no ha sido accedida.
+WARNING: La variable y no ha sido accedida.
+WARNING: La funcion pot no ha sido accedida.
+WARNING: La funcion mul no ha sido accedida.
+WARNING: La variable c no ha sido accedida.
+WARNING: La variable y no ha sido accedida.
+WARNING: La funcion pot no ha sido accedida.
+WARNING: La funcion mul no ha sido accedida.
+WARNING: La variable dummy no ha sido accedida.
+WARNING: La variable variable1 no ha sido accedida.
+WARNING: La variable variable2 no ha sido accedida.
+WARNING: La variable z no ha sido inicializada.
+WARNING: La variable r1 no ha sido accedida.
+WARNING: La variable r2 no ha sido accedida.
+WARNING: La variable variable4 no ha sido accedida.
+WARNING: La variable cond no ha sido accedida.
+ERROR[línea 25]: La variable x no esta declarada. (linea 25)
+ERROR[línea 28]: La variable x no esta declarada (linea 28)
+ERROR[línea 28]: La variable r1 no esta declarada. (linea 28)
+ERROR[línea 29]: La variable r1 no esta declarada. (linea 29)
+ERROR[línea 31]: La variable z no esta declarada. (linea 31)
+ERROR[línea 36]: La variable x no esta declarada (linea 36)
+ERROR[línea 37]: La variable z no esta declarada. (linea 37)
+ERROR[línea 39]: La variable x no esta declarada (linea 39)
+ERROR[línea 40]: La variable y no esta declarada. (linea 40)
+WARNING: La variable dummy1 no ha sido accedida.
+ERROR[línea 45]: La variable y no esta declarada (linea 45)
+ERROR[línea 45]: La variable x no esta declarada (linea 45)
+ERROR[línea 46]: La variable r1 no esta declarada. (linea 46)
+ERROR[línea 48]: La variable y no esta declarada (linea 48)
+ERROR[línea 48]: La variable x no esta declarada (linea 48)
+ERROR[línea 49]: La variable r2 no esta declarada. (linea 49)
+ERROR[línea 51]: La variable x no esta declarada (linea 51)
+ERROR[línea 52]: La variable z no esta declarada. (linea 52)
+ERROR[línea 55]: La variable r1 no esta declarada. (linea 55)
+WARNING: La variable i no ha sido accedida.
+WARNING: La variable k no ha sido accedida.
+WARNING: La variable dummy no ha sido accedida.
+WARNING: La variable variable1 no ha sido accedida.
+WARNING: La variable variable2 no ha sido accedida.
+WARNING: La variable z no ha sido inicializada.
+WARNING: La variable r1 no ha sido accedida.
+WARNING: La variable r2 no ha sido accedida.
+WARNING: La variable variable4 no ha sido accedida.
+WARNING: La variable cond no ha sido accedida.
+ERROR[línea 25]: La variable x no esta declarada. (linea 25)
+ERROR[línea 28]: La variable x no esta declarada (linea 28)
+ERROR[línea 28]: La variable r1 no esta declarada. (linea 28)
+ERROR[línea 29]: La variable r1 no esta declarada. (linea 29)
+ERROR[línea 31]: La variable z no esta declarada. (linea 31)
+ERROR[línea 36]: La variable x no esta declarada (linea 36)
+ERROR[línea 37]: La variable z no esta declarada. (linea 37)
+ERROR[línea 39]: La variable x no esta declarada (linea 39)
+ERROR[línea 40]: La variable y no esta declarada. (linea 40)
+WARNING: La variable dummy1 no ha sido accedida.
+ERROR[línea 45]: La variable y no esta declarada (linea 45)
+ERROR[línea 45]: La variable x no esta declarada (linea 45)
+ERROR[línea 46]: La variable r1 no esta declarada. (linea 46)
+ERROR[línea 48]: La variable y no esta declarada (linea 48)
+ERROR[línea 48]: La variable x no esta declarada (linea 48)
+ERROR[línea 49]: La variable r2 no esta declarada. (linea 49)
+ERROR[línea 51]: La variable x no esta declarada (linea 51)
+ERROR[línea 52]: La variable z no esta declarada. (linea 52)
+ERROR[línea 55]: La variable r1 no esta declarada. (linea 55)
+WARNING: La variable i no ha sido accedida.
+WARNING: La variable k no ha sido accedida.
+WARNING: La variable dummy no ha sido accedida.
+WARNING: La variable variable1 no ha sido accedida.
+WARNING: La variable variable2 no ha sido accedida.
+WARNING: La variable z no ha sido inicializada.
+WARNING: La variable r1 no ha sido accedida.
+WARNING: La variable r2 no ha sido accedida.
+WARNING: La variable variable4 no ha sido accedida.
+WARNING: La variable cond no ha sido accedida.
+ERROR[línea 25]: La variable x no esta declarada. (linea 25)
+ERROR[línea 28]: La variable x no esta declarada (linea 28)
+ERROR[línea 28]: La variable r1 no esta declarada. (linea 28)
+ERROR[línea 29]: La variable r1 no esta declarada. (linea 29)
+ERROR[línea 31]: La variable z no esta declarada. (linea 31)
+ERROR[línea 36]: La variable x no esta declarada (linea 36)
+ERROR[línea 37]: La variable z no esta declarada. (linea 37)
+ERROR[línea 39]: La variable x no esta declarada (linea 39)
+ERROR[línea 40]: La variable y no esta declarada. (linea 40)
+WARNING: La variable dummy1 no ha sido accedida.
+ERROR[línea 45]: La variable y no esta declarada (linea 45)
+ERROR[línea 45]: La variable x no esta declarada (linea 45)
+ERROR[línea 46]: La variable r1 no esta declarada. (linea 46)
+ERROR[línea 48]: La variable y no esta declarada (linea 48)
+ERROR[línea 48]: La variable x no esta declarada (linea 48)
+ERROR[línea 49]: La variable r2 no esta declarada. (linea 49)
+ERROR[línea 51]: La variable x no esta declarada (linea 51)
+ERROR[línea 52]: La variable z no esta declarada. (linea 52)
+ERROR[línea 55]: La variable r1 no esta declarada. (linea 55)
+WARNING: La variable i no ha sido accedida.
+WARNING: La variable k no ha sido accedida.
+WARNING: La variable dummy no ha sido accedida.
+WARNING: La variable variable1 no ha sido accedida.
+WARNING: La variable variable2 no ha sido accedida.
+WARNING: La variable z no ha sido inicializada.
+WARNING: La variable r1 no ha sido accedida.
+WARNING: La variable r2 no ha sido accedida.
+WARNING: La variable variable4 no ha sido accedida.
+WARNING: La variable cond no ha sido accedida.
+ERROR[línea 25]: La variable x no esta declarada. (linea 25)
+ERROR[línea 28]: La variable x no esta declarada (linea 28)
+ERROR[línea 28]: La variable r1 no esta declarada. (linea 28)
+ERROR[línea 29]: La variable r1 no esta declarada. (linea 29)
+ERROR[línea 31]: La variable z no esta declarada. (linea 31)
+ERROR[línea 36]: La variable x no esta declarada (linea 36)
+ERROR[línea 37]: La variable z no esta declarada. (linea 37)
+ERROR[línea 39]: La variable x no esta declarada (linea 39)
+ERROR[línea 40]: La variable y no esta declarada. (linea 40)
+WARNING: La variable dummy1 no ha sido accedida.
+ERROR[línea 45]: La variable y no esta declarada (linea 45)
+ERROR[línea 45]: La variable x no esta declarada (linea 45)
+ERROR[línea 46]: La variable r1 no esta declarada. (linea 46)
+ERROR[línea 48]: La variable y no esta declarada (linea 48)
+ERROR[línea 48]: La variable x no esta declarada (linea 48)
+ERROR[línea 49]: La variable r2 no esta declarada. (linea 49)
+ERROR[línea 51]: La variable x no esta declarada (linea 51)
+ERROR[línea 52]: La variable z no esta declarada. (linea 52)
+ERROR[línea 55]: La variable r1 no esta declarada. (linea 55)
+WARNING: La variable i no ha sido accedida.
+WARNING: La variable k no ha sido accedida.
+WARNING: La variable dummy no ha sido accedida.
+WARNING: La variable variable1 no ha sido accedida.
+WARNING: La variable variable2 no ha sido accedida.
+WARNING: La variable z no ha sido inicializada.
+WARNING: La variable r1 no ha sido accedida.
+WARNING: La variable r2 no ha sido accedida.
+WARNING: La variable variable4 no ha sido accedida.
+WARNING: La variable cond no ha sido accedida.
+ERROR[línea 25]: La variable x no esta declarada. (linea 25)
+ERROR[línea 28]: La variable x no esta declarada (linea 28)
+ERROR[línea 28]: La variable r1 no esta declarada. (linea 28)
+ERROR[línea 29]: La variable r1 no esta declarada. (linea 29)
+ERROR[línea 31]: La variable z no esta declarada. (linea 31)
+ERROR[línea 36]: La variable x no esta declarada (linea 36)
+ERROR[línea 37]: La variable z no esta declarada. (linea 37)
+ERROR[línea 39]: La variable x no esta declarada (linea 39)
+ERROR[línea 40]: La variable y no esta declarada. (linea 40)
+WARNING: La variable dummy1 no ha sido accedida.
+ERROR[línea 45]: La variable y no esta declarada (linea 45)
+ERROR[línea 45]: La variable x no esta declarada (linea 45)
+ERROR[línea 46]: La variable r1 no esta declarada. (linea 46)
+ERROR[línea 48]: La variable y no esta declarada (linea 48)
+ERROR[línea 48]: La variable x no esta declarada (linea 48)
+ERROR[línea 49]: La variable r2 no esta declarada. (linea 49)
+ERROR[línea 51]: La variable x no esta declarada (linea 51)
+ERROR[línea 52]: La variable z no esta declarada. (linea 52)
+ERROR[línea 55]: La variable r1 no esta declarada. (linea 55)
+WARNING: La variable i no ha sido accedida.
+WARNING: La variable k no ha sido accedida.
+WARNING: La variable dummy no ha sido accedida.
+WARNING: La variable variable1 no ha sido accedida.
+WARNING: La variable variable2 no ha sido accedida.
+WARNING: La variable z no ha sido inicializada.
+WARNING: La variable r1 no ha sido accedida.
+WARNING: La variable r2 no ha sido accedida.
+WARNING: La variable variable4 no ha sido accedida.
+WARNING: La variable cond no ha sido accedida.
+ERROR[línea 25]: La variable x no esta declarada. (linea 25)
+ERROR[línea 28]: La variable x no esta declarada (linea 28)
+ERROR[línea 28]: La variable r1 no esta declarada. (linea 28)
+ERROR[línea 29]: La variable r1 no esta declarada. (linea 29)
+ERROR[línea 31]: La variable z no esta declarada. (linea 31)
+ERROR[línea 36]: La variable x no esta declarada (linea 36)
+ERROR[línea 37]: La variable z no esta declarada. (linea 37)
+ERROR[línea 39]: La variable x no esta declarada (linea 39)
+ERROR[línea 40]: La variable y no esta declarada. (linea 40)
+WARNING: La variable dummy1 no ha sido accedida.
+ERROR[línea 45]: La variable y no esta declarada (linea 45)
+ERROR[línea 45]: La variable x no esta declarada (linea 45)
+ERROR[línea 46]: La variable r1 no esta declarada. (linea 46)
+ERROR[línea 48]: La variable y no esta declarada (linea 48)
+ERROR[línea 48]: La variable x no esta declarada (linea 48)
+ERROR[línea 49]: La variable r2 no esta declarada. (linea 49)
+ERROR[línea 51]: La variable x no esta declarada (linea 51)
+ERROR[línea 52]: La variable z no esta declarada. (linea 52)
+ERROR[línea 55]: La variable r1 no esta declarada. (linea 55)
+WARNING: La variable i no ha sido accedida.
+WARNING: La variable k no ha sido accedida.
+WARNING: La variable dummy no ha sido accedida.
+WARNING: La variable variable1 no ha sido accedida.
+WARNING: La variable variable2 no ha sido accedida.
+WARNING: La variable z no ha sido inicializada.
+WARNING: La variable r1 no ha sido accedida.
+WARNING: La variable r2 no ha sido accedida.
+WARNING: La variable variable4 no ha sido accedida.
+WARNING: La variable cond no ha sido accedida.
+ERROR[línea 25]: La variable x no esta declarada. (linea 25)
+ERROR[línea 28]: La variable x no esta declarada (linea 28)
+ERROR[línea 28]: La variable r1 no esta declarada. (linea 28)
+ERROR[línea 29]: La variable r1 no esta declarada. (linea 29)
+ERROR[línea 31]: La variable z no esta declarada. (linea 31)
+ERROR[línea 36]: La variable x no esta declarada (linea 36)
+ERROR[línea 37]: La variable z no esta declarada. (linea 37)
+ERROR[línea 39]: La variable x no esta declarada (linea 39)
+ERROR[línea 40]: La variable y no esta declarada. (linea 40)
+WARNING: La variable dummy1 no ha sido accedida.
+ERROR[línea 45]: La variable y no esta declarada (linea 45)
+ERROR[línea 45]: La variable x no esta declarada (linea 45)
+ERROR[línea 46]: La variable r1 no esta declarada. (linea 46)
+ERROR[línea 48]: La variable y no esta declarada (linea 48)
+ERROR[línea 48]: La variable x no esta declarada (linea 48)
+ERROR[línea 49]: La variable r2 no esta declarada. (linea 49)
+ERROR[línea 51]: La variable x no esta declarada (linea 51)
+ERROR[línea 52]: La variable z no esta declarada. (linea 52)
+ERROR[línea 55]: La variable r1 no esta declarada. (linea 55)
+WARNING: La variable i no ha sido accedida.
+WARNING: La variable k no ha sido accedida.
+WARNING: La variable dummy no ha sido accedida.
+WARNING: La variable variable1 no ha sido accedida.
+WARNING: La variable variable2 no ha sido accedida.
+WARNING: La variable z no ha sido inicializada.
+WARNING: La variable r1 no ha sido accedida.
+WARNING: La variable r2 no ha sido accedida.
+WARNING: La variable variable4 no ha sido accedida.
+WARNING: La variable cond no ha sido accedida.
+ERROR[línea 25]: La variable x no esta declarada. (linea 25)
+ERROR[línea 28]: La variable x no esta declarada (linea 28)
+ERROR[línea 28]: La variable r1 no esta declarada. (linea 28)
+ERROR[línea 29]: La variable r1 no esta declarada. (linea 29)
+ERROR[línea 31]: La variable z no esta declarada. (linea 31)
+ERROR[línea 36]: La variable x no esta declarada (linea 36)
+ERROR[línea 37]: La variable z no esta declarada. (linea 37)
+ERROR[línea 39]: La variable x no esta declarada (linea 39)
+ERROR[línea 40]: La variable y no esta declarada. (linea 40)
+WARNING: La variable dummy1 no ha sido accedida.
+ERROR[línea 45]: La variable y no esta declarada (linea 45)
+ERROR[línea 45]: La variable x no esta declarada (linea 45)
+ERROR[línea 46]: La variable r1 no esta declarada. (linea 46)
+ERROR[línea 48]: La variable y no esta declarada (linea 48)
+ERROR[línea 48]: La variable x no esta declarada (linea 48)
+ERROR[línea 49]: La variable r2 no esta declarada. (linea 49)
+ERROR[línea 51]: La variable x no esta declarada (linea 51)
+ERROR[línea 52]: La variable z no esta declarada. (linea 52)
+ERROR[línea 55]: La variable r1 no esta declarada. (linea 55)
+WARNING: La variable i no ha sido accedida.
+WARNING: La variable k no ha sido accedida.
+WARNING: La variable dummy no ha sido accedida.
+WARNING: La variable variable1 no ha sido accedida.
+WARNING: La variable variable2 no ha sido accedida.
+WARNING: La variable z no ha sido inicializada.
+WARNING: La variable r1 no ha sido accedida.
+WARNING: La variable r2 no ha sido accedida.
+WARNING: La variable variable4 no ha sido accedida.
+WARNING: La variable cond no ha sido accedida.
+ERROR[línea 25]: La variable x no esta declarada. (linea 25)
+ERROR[línea 28]: La variable x no esta declarada (linea 28)
+ERROR[línea 28]: La variable r1 no esta declarada. (linea 28)
+ERROR[línea 29]: La variable r1 no esta declarada. (linea 29)
+ERROR[línea 31]: La variable z no esta declarada. (linea 31)
+ERROR[línea 36]: La variable x no esta declarada (linea 36)
+ERROR[línea 37]: La variable z no esta declarada. (linea 37)
+ERROR[línea 39]: La variable x no esta declarada (linea 39)
+ERROR[línea 40]: La variable y no esta declarada. (linea 40)
+WARNING: La variable dummy1 no ha sido accedida.
+ERROR[línea 45]: La variable y no esta declarada (linea 45)
+ERROR[línea 45]: La variable x no esta declarada (linea 45)
+ERROR[línea 46]: La variable r1 no esta declarada. (linea 46)
+ERROR[línea 48]: La variable y no esta declarada (linea 48)
+ERROR[línea 48]: La variable x no esta declarada (linea 48)
+ERROR[línea 49]: La variable r2 no esta declarada. (linea 49)
+ERROR[línea 51]: La variable x no esta declarada (linea 51)
+ERROR[línea 52]: La variable z no esta declarada. (linea 52)
+ERROR[línea 55]: La variable r1 no esta declarada. (linea 55)
+WARNING: La variable i no ha sido accedida.
+WARNING: La variable k no ha sido accedida.
+WARNING: La variable dummy no ha sido accedida.
+WARNING: La variable variable1 no ha sido accedida.
+WARNING: La variable variable2 no ha sido accedida.
+WARNING: La variable z no ha sido inicializada.
+WARNING: La variable r1 no ha sido accedida.
+WARNING: La variable r2 no ha sido accedida.
+WARNING: La variable variable4 no ha sido accedida.
+WARNING: La variable cond no ha sido accedida.
+ERROR[línea 25]: La variable x no esta declarada. (linea 25)
+ERROR[línea 28]: La variable x no esta declarada (linea 28)
+ERROR[línea 28]: La variable r1 no esta declarada. (linea 28)
+ERROR[línea 29]: La variable r1 no esta declarada. (linea 29)
+ERROR[línea 31]: La variable z no esta declarada. (linea 31)
+ERROR[línea 36]: La variable x no esta declarada (linea 36)
+ERROR[línea 37]: La variable z no esta declarada. (linea 37)
+ERROR[línea 39]: La variable x no esta declarada (linea 39)
+ERROR[línea 40]: La variable y no esta declarada. (linea 40)
+WARNING: La variable dummy1 no ha sido accedida.
+ERROR[línea 45]: La variable y no esta declarada (linea 45)
+ERROR[línea 45]: La variable x no esta declarada (linea 45)
+ERROR[línea 46]: La variable r1 no esta declarada. (linea 46)
+ERROR[línea 48]: La variable y no esta declarada (linea 48)
+ERROR[línea 48]: La variable x no esta declarada (linea 48)
+ERROR[línea 49]: La variable r2 no esta declarada. (linea 49)
+ERROR[línea 51]: La variable x no esta declarada (linea 51)
+ERROR[línea 52]: La variable z no esta declarada. (linea 52)
+ERROR[línea 55]: La variable r1 no esta declarada. (linea 55)
+WARNING: La variable i no ha sido accedida.
+WARNING: La variable k no ha sido accedida.
+WARNING: La variable dummy no ha sido accedida.
+WARNING: La variable variable1 no ha sido accedida.
+WARNING: La variable variable2 no ha sido accedida.
+WARNING: La variable z no ha sido inicializada.
+WARNING: La variable r1 no ha sido accedida.
+WARNING: La variable r2 no ha sido accedida.
+WARNING: La variable variable4 no ha sido accedida.
+WARNING: La variable cond no ha sido accedida.
+ERROR[línea 25]: La variable x no esta declarada. (linea 25)
+ERROR[línea 28]: La variable x no esta declarada (linea 28)
+ERROR[línea 28]: La variable r1 no esta declarada. (linea 28)
+ERROR[línea 29]: La variable r1 no esta declarada. (linea 29)
+ERROR[línea 31]: La variable z no esta declarada. (linea 31)
+ERROR[línea 36]: La variable x no esta declarada (linea 36)
+ERROR[línea 37]: La variable z no esta declarada. (linea 37)
+ERROR[línea 39]: La variable x no esta declarada (linea 39)
+ERROR[línea 40]: La variable y no esta declarada. (linea 40)
+WARNING: La variable dummy1 no ha sido accedida.
+ERROR[línea 45]: La variable y no esta declarada (linea 45)
+ERROR[línea 45]: La variable x no esta declarada (linea 45)
+ERROR[línea 46]: La variable r1 no esta declarada. (linea 46)
+ERROR[línea 48]: La variable y no esta declarada (linea 48)
+ERROR[línea 48]: La variable x no esta declarada (linea 48)
+ERROR[línea 49]: La variable r2 no esta declarada. (linea 49)
+ERROR[línea 51]: La variable x no esta declarada (linea 51)
+ERROR[línea 52]: La variable z no esta declarada. (linea 52)
+ERROR[línea 55]: La variable r1 no esta declarada. (linea 55)
+WARNING: La variable i no ha sido accedida.
+WARNING: La variable k no ha sido accedida.
+WARNING: La variable dummy no ha sido accedida.
+WARNING: La variable variable1 no ha sido accedida.
+WARNING: La variable variable2 no ha sido accedida.
+WARNING: La variable z no ha sido inicializada.
+WARNING: La variable r1 no ha sido accedida.
+WARNING: La variable r2 no ha sido accedida.
+WARNING: La variable variable4 no ha sido accedida.
+WARNING: La variable cond no ha sido accedida.
+ERROR[línea 25]: La variable x no esta declarada. (linea 25)
+ERROR[línea 28]: La variable x no esta declarada (linea 28)
+ERROR[línea 28]: La variable r1 no esta declarada. (linea 28)
+ERROR[línea 29]: La variable r1 no esta declarada. (linea 29)
+ERROR[línea 31]: La variable z no esta declarada. (linea 31)
+ERROR[línea 36]: La variable x no esta declarada (linea 36)
+ERROR[línea 37]: La variable z no esta declarada. (linea 37)
+ERROR[línea 39]: La variable x no esta declarada (linea 39)
+ERROR[línea 40]: La variable y no esta declarada. (linea 40)
+WARNING: La variable dummy1 no ha sido accedida.
+ERROR[línea 45]: La variable y no esta declarada (linea 45)
+ERROR[línea 45]: La variable x no esta declarada (linea 45)
+ERROR[línea 46]: La variable r1 no esta declarada. (linea 46)
+ERROR[línea 48]: La variable y no esta declarada (linea 48)
+ERROR[línea 48]: La variable x no esta declarada (linea 48)
+ERROR[línea 49]: La variable r2 no esta declarada. (linea 49)
+ERROR[línea 51]: La variable x no esta declarada (linea 51)
+ERROR[línea 52]: La variable z no esta declarada. (linea 52)
+ERROR[línea 55]: La variable r1 no esta declarada. (linea 55)
+WARNING: La variable i no ha sido accedida.
+WARNING: La variable k no ha sido accedida.
+WARNING: La variable dummy no ha sido accedida.
+WARNING: La variable variable1 no ha sido accedida.
+WARNING: La variable variable2 no ha sido accedida.
+WARNING: La variable z no ha sido inicializada.
+WARNING: La variable r1 no ha sido accedida.
+WARNING: La variable r2 no ha sido accedida.
+WARNING: La variable variable4 no ha sido accedida.
+WARNING: La variable cond no ha sido accedida.
+ERROR[línea 25]: La variable x no esta declarada. (linea 25)
+ERROR[línea 28]: La variable x no esta declarada (linea 28)
+ERROR[línea 28]: La variable r1 no esta declarada. (linea 28)
+ERROR[línea 29]: La variable r1 no esta declarada. (linea 29)
+ERROR[línea 31]: La variable z no esta declarada. (linea 31)
+ERROR[línea 36]: La variable x no esta declarada (linea 36)
+ERROR[línea 37]: La variable z no esta declarada. (linea 37)
+ERROR[línea 39]: La variable x no esta declarada (linea 39)
+ERROR[línea 40]: La variable y no esta declarada. (linea 40)
+WARNING: La variable dummy1 no ha sido accedida.
+ERROR[línea 45]: La variable y no esta declarada (linea 45)
+ERROR[línea 45]: La variable x no esta declarada (linea 45)
+ERROR[línea 46]: La variable r1 no esta declarada. (linea 46)
+ERROR[línea 48]: La variable y no esta declarada (linea 48)
+ERROR[línea 48]: La variable x no esta declarada (linea 48)
+ERROR[línea 49]: La variable r2 no esta declarada. (linea 49)
+ERROR[línea 51]: La variable x no esta declarada (linea 51)
+ERROR[línea 52]: La variable z no esta declarada. (linea 52)
+ERROR[línea 55]: La variable r1 no esta declarada. (linea 55)
+WARNING: La variable i no ha sido accedida.
+WARNING: La variable k no ha sido accedida.
+WARNING: La variable dummy no ha sido accedida.
+WARNING: La variable variable1 no ha sido accedida.
+WARNING: La variable variable2 no ha sido accedida.
+WARNING: La variable z no ha sido inicializada.
+WARNING: La variable r1 no ha sido accedida.
+WARNING: La variable r2 no ha sido accedida.
+WARNING: La variable variable4 no ha sido accedida.
+WARNING: La variable cond no ha sido accedida.
+ERROR[línea 25]: La variable x no esta declarada. (linea 25)
+ERROR[línea 28]: La variable x no esta declarada (linea 28)
+ERROR[línea 28]: La variable r1 no esta declarada. (linea 28)
+ERROR[línea 29]: La variable r1 no esta declarada. (linea 29)
+ERROR[línea 31]: La variable z no esta declarada. (linea 31)
+ERROR[línea 35]: La variable j no esta declarada. (linea 35)
+ERROR[línea 35]: La variable j no esta declarada (linea 35)
+ERROR[línea 35]: La variable j no esta declarada (linea 35)
+ERROR[línea 35]: La variable j no esta declarada. (linea 35)
+ERROR[línea 36]: La variable x no esta declarada (linea 36)
+ERROR[línea 37]: La variable z no esta declarada. (linea 37)
+ERROR[línea 39]: La variable x no esta declarada (linea 39)
+ERROR[línea 40]: La variable y no esta declarada. (linea 40)
+WARNING: La variable dummy1 no ha sido accedida.
+ERROR[línea 45]: La variable y no esta declarada (linea 45)
+ERROR[línea 45]: La variable x no esta declarada (linea 45)
+ERROR[línea 46]: La variable r1 no esta declarada. (linea 46)
+ERROR[línea 48]: La variable y no esta declarada (linea 48)
+ERROR[línea 48]: La variable x no esta declarada (linea 48)
+ERROR[línea 49]: La variable r2 no esta declarada. (linea 49)
+ERROR[línea 51]: La variable x no esta declarada (linea 51)
+ERROR[línea 52]: La variable z no esta declarada. (linea 52)
+ERROR[línea 55]: La variable r1 no esta declarada. (linea 55)
+WARNING: La variable i no ha sido accedida.
+WARNING: La variable k no ha sido accedida.
+WARNING: La variable dummy no ha sido accedida.
+WARNING: La variable variable1 no ha sido accedida.
+WARNING: La variable variable2 no ha sido accedida.
+WARNING: La variable z no ha sido inicializada.
+WARNING: La variable r1 no ha sido accedida.
+WARNING: La variable r2 no ha sido accedida.
+WARNING: La variable variable4 no ha sido accedida.
+WARNING: La variable cond no ha sido accedida.
+ERROR[línea 25]: La variable x no esta declarada. (linea 25)
+ERROR[línea 28]: La variable x no esta declarada (linea 28)
+ERROR[línea 28]: La variable r1 no esta declarada. (linea 28)
+ERROR[línea 29]: La variable r1 no esta declarada. (linea 29)
+ERROR[línea 31]: La variable z no esta declarada. (linea 31)
+ERROR[línea 36]: La variable x no esta declarada (linea 36)
+ERROR[línea 37]: La variable z no esta declarada. (linea 37)
+ERROR[línea 39]: La variable x no esta declarada (linea 39)
+ERROR[línea 40]: La variable y no esta declarada. (linea 40)
+WARNING: La variable dummy1 no ha sido accedida.
+ERROR[línea 45]: La variable y no esta declarada (linea 45)
+ERROR[línea 45]: La variable x no esta declarada (linea 45)
+ERROR[línea 46]: La variable r1 no esta declarada. (linea 46)
+ERROR[línea 48]: La variable y no esta declarada (linea 48)
+ERROR[línea 48]: La variable x no esta declarada (linea 48)
+ERROR[línea 49]: La variable r2 no esta declarada. (linea 49)
+ERROR[línea 51]: La variable x no esta declarada (linea 51)
+ERROR[línea 52]: La variable z no esta declarada. (linea 52)
+ERROR[línea 55]: La variable r1 no esta declarada. (linea 55)
+WARNING: La variable i no ha sido accedida.
+WARNING: La variable k no ha sido accedida.
+WARNING: La variable dummy no ha sido accedida.
+WARNING: La variable variable1 no ha sido accedida.
+WARNING: La variable variable2 no ha sido accedida.
+WARNING: La variable z no ha sido inicializada.
+WARNING: La variable r1 no ha sido accedida.
+WARNING: La variable r2 no ha sido accedida.
+WARNING: La variable variable4 no ha sido accedida.
+WARNING: La variable cond no ha sido accedida.
+ERROR[línea 25]: La variable x no esta declarada. (linea 25)
+ERROR[línea 28]: La variable x no esta declarada (linea 28)
+ERROR[línea 28]: La variable r1 no esta declarada. (linea 28)
+ERROR[línea 29]: La variable r1 no esta declarada. (linea 29)
+ERROR[línea 31]: La variable z no esta declarada. (linea 31)
+ERROR[línea 36]: La variable x no esta declarada (linea 36)
+ERROR[línea 37]: La variable z no esta declarada. (linea 37)
+ERROR[línea 39]: La variable x no esta declarada (linea 39)
+ERROR[línea 40]: La variable y no esta declarada. (linea 40)
+WARNING: La variable dummy1 no ha sido accedida.
+ERROR[línea 45]: La variable y no esta declarada (linea 45)
+ERROR[línea 45]: La variable x no esta declarada (linea 45)
+ERROR[línea 46]: La variable r1 no esta declarada. (linea 46)
+ERROR[línea 48]: La variable y no esta declarada (linea 48)
+ERROR[línea 48]: La variable x no esta declarada (linea 48)
+ERROR[línea 49]: La variable r2 no esta declarada. (linea 49)
+ERROR[línea 51]: La variable x no esta declarada (linea 51)
+ERROR[línea 52]: La variable z no esta declarada. (linea 52)
+ERROR[línea 55]: La variable r1 no esta declarada. (linea 55)
+WARNING: La variable i no ha sido accedida.
+WARNING: La variable k no ha sido accedida.
+WARNING: La variable dummy no ha sido accedida.
+WARNING: La variable variable1 no ha sido accedida.
+WARNING: La variable variable2 no ha sido accedida.
+WARNING: La variable z no ha sido inicializada.
+WARNING: La variable r1 no ha sido accedida.
+WARNING: La variable r2 no ha sido accedida.
+WARNING: La variable variable4 no ha sido accedida.
+WARNING: La variable cond no ha sido accedida.
+ERROR[línea 25]: La variable x no esta declarada. (linea 25)
+ERROR[línea 28]: La variable x no esta declarada (linea 28)
+ERROR[línea 28]: La variable r1 no esta declarada. (linea 28)
+ERROR[línea 29]: La variable r1 no esta declarada. (linea 29)
+ERROR[línea 31]: La variable z no esta declarada. (linea 31)
+ERROR[línea 36]: La variable x no esta declarada (linea 36)
+ERROR[línea 37]: La variable z no esta declarada. (linea 37)
+ERROR[línea 39]: La variable x no esta declarada (linea 39)
+ERROR[línea 40]: La variable y no esta declarada. (linea 40)
+WARNING: La variable dummy1 no ha sido accedida.
+ERROR[línea 45]: La variable y no esta declarada (linea 45)
+ERROR[línea 45]: La variable x no esta declarada (linea 45)
+ERROR[línea 46]: La variable r1 no esta declarada. (linea 46)
+ERROR[línea 48]: La variable y no esta declarada (linea 48)
+ERROR[línea 48]: La variable x no esta declarada (linea 48)
+ERROR[línea 49]: La variable r2 no esta declarada. (linea 49)
+ERROR[línea 51]: La variable x no esta declarada (linea 51)
+ERROR[línea 52]: La variable z no esta declarada. (linea 52)
+ERROR[línea 55]: La variable r1 no esta declarada. (linea 55)
+WARNING: La variable i no ha sido accedida.
+WARNING: La variable k no ha sido accedida.
+WARNING: La variable dummy no ha sido accedida.
+WARNING: La variable variable1 no ha sido accedida.
+WARNING: La variable variable2 no ha sido accedida.
+WARNING: La variable z no ha sido inicializada.
+WARNING: La variable r1 no ha sido accedida.
+WARNING: La variable r2 no ha sido accedida.
+WARNING: La variable variable4 no ha sido accedida.
+WARNING: La variable cond no ha sido accedida.
+ERROR[línea 25]: La variable x no esta declarada. (linea 25)
+ERROR[línea 28]: La variable x no esta declarada (linea 28)
+ERROR[línea 28]: La variable r1 no esta declarada. (linea 28)
+ERROR[línea 29]: La variable r1 no esta declarada. (linea 29)
+ERROR[línea 31]: La variable z no esta declarada. (linea 31)
+ERROR[línea 36]: La variable x no esta declarada (linea 36)
+ERROR[línea 37]: La variable z no esta declarada. (linea 37)
+ERROR[línea 39]: La variable x no esta declarada (linea 39)
+ERROR[línea 40]: La variable y no esta declarada. (linea 40)
+WARNING: La variable dummy1 no ha sido accedida.
+ERROR[línea 45]: La variable y no esta declarada (linea 45)
+ERROR[línea 45]: La variable x no esta declarada (linea 45)
+ERROR[línea 46]: La variable r1 no esta declarada. (linea 46)
+ERROR[línea 48]: La variable y no esta declarada (linea 48)
+ERROR[línea 48]: La variable x no esta declarada (linea 48)
+ERROR[línea 49]: La variable r2 no esta declarada. (linea 49)
+ERROR[línea 51]: La variable x no esta declarada (linea 51)
+ERROR[línea 52]: La variable z no esta declarada. (linea 52)
+ERROR[línea 55]: La variable r1 no esta declarada. (linea 55)
+WARNING: La variable i no ha sido accedida.
+WARNING: La variable k no ha sido accedida.
+WARNING: La variable dummy no ha sido accedida.
+WARNING: La variable variable1 no ha sido accedida.
+WARNING: La variable variable2 no ha sido accedida.
+WARNING: La variable z no ha sido inicializada.
+WARNING: La variable r1 no ha sido accedida.
+WARNING: La variable r2 no ha sido accedida.
+WARNING: La variable variable4 no ha sido accedida.
+WARNING: La variable cond no ha sido accedida.
+ERROR[línea 25]: La variable x no esta declarada. (linea 25)
+ERROR[línea 28]: La variable x no esta declarada (linea 28)
+ERROR[línea 28]: La variable r1 no esta declarada. (linea 28)
+ERROR[línea 29]: La variable r1 no esta declarada. (linea 29)
+ERROR[línea 31]: La variable z no esta declarada. (linea 31)
+ERROR[línea 36]: La variable x no esta declarada (linea 36)
+ERROR[línea 37]: La variable z no esta declarada. (linea 37)
+ERROR[línea 39]: La variable x no esta declarada (linea 39)
+ERROR[línea 40]: La variable y no esta declarada. (linea 40)
+WARNING: La variable dummy1 no ha sido accedida.
+ERROR[línea 45]: La variable y no esta declarada (linea 45)
+ERROR[línea 45]: La variable x no esta declarada (linea 45)
+ERROR[línea 46]: La variable r1 no esta declarada. (linea 46)
+ERROR[línea 48]: La variable y no esta declarada (linea 48)
+ERROR[línea 48]: La variable x no esta declarada (linea 48)
+ERROR[línea 49]: La variable r2 no esta declarada. (linea 49)
+ERROR[línea 51]: La variable x no esta declarada (linea 51)
+ERROR[línea 52]: La variable z no esta declarada. (linea 52)
+ERROR[línea 55]: La variable r1 no esta declarada. (linea 55)
+WARNING: La variable i no ha sido accedida.
+WARNING: La variable k no ha sido accedida.
+WARNING: La variable local2 no ha sido inicializada.
+WARNING: La variable z no ha sido accedida.
+WARNING: La variable g1 no ha sido inicializada.
+WARNING: La variable local2 no ha sido inicializada.
+WARNING: La variable z no ha sido accedida.
+WARNING: La variable g1 no ha sido inicializada.
+WARNING: La variable local2 no ha sido inicializada.
+WARNING: La variable z no ha sido accedida.
+WARNING: La variable g1 no ha sido inicializada.
+WARNING: La variable local2 no ha sido inicializada.
+WARNING: La variable z no ha sido accedida.
+WARNING: La variable g1 no ha sido inicializada.
+WARNING: La variable local2 no ha sido inicializada.
+WARNING: La variable z no ha sido accedida.
+WARNING: La variable g1 no ha sido inicializada.
+WARNING: La variable local2 no ha sido inicializada.
+WARNING: La variable z no ha sido accedida.
+WARNING: La variable g1 no ha sido inicializada.
+ERROR[línea 2]: La variable n no esta declarada (linea 2)
+ERROR[línea 2]: La variable n no esta declarada. (linea 2)
+ERROR[línea 2]: La variable n no esta declarada (linea 2)
+ERROR[línea 2]: La variable n no esta declarada. (linea 2)
+ERROR[línea 1]: La variable n no esta declarada (linea 1)
+ERROR[línea 2]: La variable n no esta declarada (linea 2)
+ERROR[línea 2]: La variable n no esta declarada. (linea 2)
+ERROR[línea 1]: La variable n no esta declarada (linea 1)
+ERROR[línea 1]: La variable n no esta declarada (linea 1)
+ERROR[línea 2]: La variable n no esta declarada (linea 2)
+ERROR[línea 2]: La variable n no esta declarada. (linea 2)
+ERROR[línea 1]: La variable n no esta declarada (linea 1)
+ERROR[línea 1]: La variable n no esta declarada (linea 1)
+ERROR[línea 2]: La variable n no esta declarada (linea 2)
+ERROR[línea 2]: La variable n no esta declarada. (linea 2)
+ERROR[línea 1]: La variable n no esta declarada (linea 1)
+ERROR[línea 1]: La variable n no esta declarada (linea 1)
+ERROR[línea 2]: La variable n no esta declarada (linea 2)
+ERROR[línea 2]: La variable n no esta declarada. (linea 2)
+ERROR[línea 1]: La variable n no esta declarada (linea 1)
+ERROR[línea 1]: La variable n no esta declarada (linea 1)
+ERROR[línea 2]: La variable n no esta declarada (linea 2)
+ERROR[línea 2]: La variable n no esta declarada. (linea 2)
+ERROR[línea 1]: La variable n no esta declarada (linea 1)
+ERROR[línea 2]: La variable n no esta declarada (linea 2)
+ERROR[línea 2]: La variable n no esta declarada. (linea 2)
+ERROR[línea 1]: La variable n no esta declarada (linea 1)
+ERROR[línea 2]: La variable n no esta declarada (linea 2)
+ERROR[línea 2]: La variable n no esta declarada. (linea 2)
+ERROR[línea 2]: La variable n no esta declarada (linea 2)
+ERROR[línea 2]: La variable n no esta declarada. (linea 2)
+ERROR[línea 2]: La variable n no esta declarada (linea 2)
+ERROR[línea 2]: La variable n no esta declarada. (linea 2)
+ERROR[línea 2]: La variable n no esta declarada (linea 2)
+ERROR[línea 2]: La variable n no esta declarada. (linea 2)
+ERROR[línea 2]: La variable n no esta declarada (linea 2)
+ERROR[línea 2]: La variable n no esta declarada. (linea 2)
+ERROR[línea 3]: La variable n no esta inicializada. (linea 3)
+ERROR[línea 3]: La variable n no esta inicializada. (linea 3)
+ERROR[línea 3]: La variable n no esta inicializada. (linea 3)
+ERROR[línea 3]: La variable n no esta inicializada. (linea 3)
+ERROR[línea 3]: La variable n no esta inicializada. (linea 3)
+ERROR[línea 3]: La variable n no esta inicializada. (linea 3)
+ERROR[línea 3]: La variable n no esta inicializada. (linea 3)
+ERROR[línea 2]: La variable n no esta inicializada. (linea 2)
+ERROR[línea 3]: La variable n no esta inicializada. (linea 3)
+ERROR[línea 2]: La variable n no esta inicializada. (linea 2)
+ERROR[línea 3]: La variable n no esta inicializada. (linea 3)
+ERROR[línea 2]: La variable n no esta inicializada. (linea 2)
+ERROR[línea 3]: La variable n no esta inicializada. (linea 3)
+ERROR[línea 2]: La variable n no esta inicializada. (linea 2)
+ERROR[línea 2]: La variable x no esta declarada (linea 2)
+WARNING: La variable dummy no ha sido accedida.
+WARNING: La variable dummy1 no ha sido accedida.
+WARNING: La variable variable1 no ha sido accedida.
+WARNING: La variable variable2 no ha sido accedida.
+WARNING: La variable variable4 no ha sido accedida.
+WARNING: La variable i no ha sido accedida.
+WARNING: La variable k no ha sido accedida.
+WARNING: La variable r2 no ha sido accedida.
+WARNING: La variable z no ha sido accedida.
+WARNING: La variable r1 no ha sido accedida.
+WARNING: La variable dummy2 no ha sido accedida.
+WARNING: La funcion suma no ha sido accedida.
+WARNING: La variable dummy no ha sido accedida.
+ERROR[línea 35]: La variable j no esta declarada. (linea 35)
+ERROR[línea 35]: La variable j no esta declarada (linea 35)
+ERROR[línea 35]: La variable j no esta declarada (linea 35)
+ERROR[línea 35]: La variable j no esta declarada. (linea 35)
+WARNING: La variable dummy1 no ha sido accedida.
+WARNING: La variable variable1 no ha sido accedida.
+WARNING: La variable variable2 no ha sido accedida.
+WARNING: La variable variable4 no ha sido accedida.
+WARNING: La variable i no ha sido accedida.
+WARNING: La variable k no ha sido accedida.
+WARNING: La variable r2 no ha sido accedida.
+WARNING: La variable z no ha sido accedida.
+WARNING: La variable r1 no ha sido accedida.
+WARNING: La variable dummy2 no ha sido accedida.
+WARNING: La funcion suma no ha sido accedida.
+WARNING: La variable dummy no ha sido accedida.
+ERROR[línea 35]: La variable j no esta declarada. (linea 35)
+ERROR[línea 35]: La variable j no esta declarada (linea 35)
+ERROR[línea 35]: La variable j no esta declarada (linea 35)
+ERROR[línea 35]: La variable j no esta declarada. (linea 35)
+WARNING: La variable dummy1 no ha sido accedida.
+WARNING: La variable variable1 no ha sido accedida.
+WARNING: La variable variable2 no ha sido accedida.
+WARNING: La variable variable4 no ha sido accedida.
+WARNING: La variable i no ha sido accedida.
+WARNING: La variable k no ha sido accedida.
+WARNING: La variable r2 no ha sido accedida.
+WARNING: La variable z no ha sido accedida.
+WARNING: La variable r1 no ha sido accedida.
+WARNING: La variable dummy2 no ha sido accedida.
+WARNING: La funcion suma no ha sido accedida.
+WARNING: La variable dummy no ha sido accedida.
+ERROR[línea 35]: La variable j no esta declarada. (linea 35)
+ERROR[línea 35]: La variable j no esta declarada (linea 35)
+ERROR[línea 35]: La variable j no esta declarada (linea 35)
+ERROR[línea 35]: La variable j no esta declarada. (linea 35)
+WARNING: La variable dummy1 no ha sido accedida.
+WARNING: La variable variable1 no ha sido accedida.
+WARNING: La variable variable2 no ha sido accedida.
+WARNING: La variable variable4 no ha sido accedida.
+WARNING: La variable i no ha sido accedida.
+WARNING: La variable k no ha sido accedida.
+WARNING: La variable r2 no ha sido accedida.
+WARNING: La variable z no ha sido accedida.
+WARNING: La variable r1 no ha sido accedida.
+WARNING: La variable dummy2 no ha sido accedida.
+WARNING: La variable dummy no ha sido accedida.
+WARNING: La variable dummy1 no ha sido accedida.
+WARNING: La variable variable1 no ha sido accedida.
+WARNING: La variable variable2 no ha sido accedida.
+WARNING: La variable variable4 no ha sido accedida.
+WARNING: La variable i no ha sido accedida.
+WARNING: La variable k no ha sido accedida.
+WARNING: La variable r2 no ha sido accedida.
+WARNING: La variable z no ha sido accedida.
+WARNING: La variable r1 no ha sido accedida.
+WARNING: La variable dummy2 no ha sido accedida.
+WARNING: La variable dummy no ha sido accedida.
+WARNING: La variable dummy1 no ha sido accedida.
+WARNING: La variable variable1 no ha sido accedida.
+WARNING: La variable variable2 no ha sido accedida.
+WARNING: La variable variable4 no ha sido accedida.
+WARNING: La variable i no ha sido accedida.
+WARNING: La variable k no ha sido accedida.
+WARNING: La variable r2 no ha sido accedida.
+WARNING: La variable z no ha sido accedida.
+WARNING: La variable r1 no ha sido accedida.
+WARNING: La variable dummy2 no ha sido accedida.
+WARNING: La variable dummy no ha sido accedida.
+WARNING: La variable dummy1 no ha sido accedida.
+WARNING: La variable variable1 no ha sido accedida.
+WARNING: La variable variable2 no ha sido accedida.
+WARNING: La variable variable4 no ha sido accedida.
+WARNING: La variable i no ha sido accedida.
+WARNING: La variable k no ha sido accedida.
+WARNING: La variable r2 no ha sido accedida.
+WARNING: La variable z no ha sido accedida.
+WARNING: La variable r1 no ha sido accedida.
+WARNING: La variable dummy2 no ha sido accedida.
+WARNING: La variable dummy no ha sido accedida.
+WARNING: La variable dummy1 no ha sido accedida.
+WARNING: La variable variable1 no ha sido accedida.
+WARNING: La variable variable2 no ha sido accedida.
+WARNING: La variable variable4 no ha sido accedida.
+WARNING: La variable i no ha sido accedida.
+WARNING: La variable k no ha sido accedida.
+WARNING: La variable r2 no ha sido accedida.
+WARNING: La variable z no ha sido accedida.
+WARNING: La variable r1 no ha sido accedida.
+WARNING: La variable dummy2 no ha sido accedida.
+WARNING: La variable dummy no ha sido accedida.
+ERROR [Sintactico] línea 31:4 - no viable alternative at input 'intaz'
+WARNING: La variable variable1 no ha sido accedida.
+WARNING: La variable variable2 no ha sido accedida.
+WARNING: La variable z no ha sido inicializada.
+WARNING: La variable r2 no ha sido accedida.
+WARNING: La variable variable4 no ha sido accedida.
+WARNING: La variable r1 no ha sido accedida.
+WARNING: La funcion suma no ha sido accedida.
+WARNING: La variable dummy no ha sido accedida.
+ERROR [Sintactico] línea 31:4 - no viable alternative at input 'intaz'
+WARNING: La variable variable1 no ha sido accedida.
+WARNING: La variable variable2 no ha sido accedida.
+WARNING: La variable z no ha sido inicializada.
+WARNING: La variable r2 no ha sido accedida.
+WARNING: La variable variable4 no ha sido accedida.
+WARNING: La variable r1 no ha sido accedida.
+WARNING: La funcion suma no ha sido accedida.
+WARNING: La variable dummy no ha sido accedida.
+ERROR[línea 30]: Ya existe una variable llamada z. (linea 30)
+WARNING: La variable dummy1 no ha sido accedida.
+WARNING: La variable variable1 no ha sido accedida.
+WARNING: La variable variable2 no ha sido accedida.
+WARNING: La variable variable4 no ha sido accedida.
+WARNING: La variable i no ha sido accedida.
+WARNING: La variable k no ha sido accedida.
+WARNING: La variable r2 no ha sido accedida.
+WARNING: La variable z no ha sido accedida.
+WARNING: La variable r1 no ha sido accedida.
+WARNING: La variable dummy2 no ha sido accedida.
+WARNING: La variable dummy no ha sido accedida.
+ERROR[línea 30]: Ya existe una variable llamada z. (linea 30)
+WARNING: La variable dummy1 no ha sido accedida.
+WARNING: La variable variable1 no ha sido accedida.
+WARNING: La variable variable2 no ha sido accedida.
+WARNING: La variable variable4 no ha sido accedida.
+WARNING: La variable i no ha sido accedida.
+WARNING: La variable k no ha sido accedida.
+WARNING: La variable r2 no ha sido accedida.
+WARNING: La variable z no ha sido accedida.
+WARNING: La variable r1 no ha sido accedida.
+WARNING: La variable dummy2 no ha sido accedida.
+WARNING: La variable dummy no ha sido accedida.
+ERROR[línea 30]: Ya existe una variable llamada z. (linea 30)
+WARNING: La variable dummy1 no ha sido accedida.
+WARNING: La variable variable1 no ha sido accedida.
+WARNING: La variable variable2 no ha sido accedida.
+WARNING: La variable variable4 no ha sido accedida.
+WARNING: La variable i no ha sido accedida.
+WARNING: La variable k no ha sido accedida.
+WARNING: La variable r2 no ha sido accedida.
+WARNING: La variable z no ha sido accedida.
+WARNING: La variable r1 no ha sido accedida.
+WARNING: La variable dummy2 no ha sido accedida.

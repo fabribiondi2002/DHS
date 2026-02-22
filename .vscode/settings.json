@@ -11,5 +11,6 @@
     "antlr4.debug": {
         "visualParseTreeHorizontal": false,
         "visualParseTreeClustered": true
-    }
+    },
+    "github.copilot.chat.localeOverride": "es"
 }
