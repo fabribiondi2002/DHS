@@ -872,3 +872,15 @@ WARNING: La variable r2 no ha sido accedida.
 WARNING: La variable z no ha sido accedida.
 WARNING: La variable r1 no ha sido accedida.
 WARNING: La variable dummy2 no ha sido accedida.
+WARNING: La variable dummy no ha sido accedida.
+ERROR[línea 30]: Ya existe una variable llamada z. (linea 30)
+WARNING: La variable dummy1 no ha sido accedida.
+WARNING: La variable variable1 no ha sido accedida.
+WARNING: La variable variable2 no ha sido accedida.
+WARNING: La variable variable4 no ha sido accedida.
+WARNING: La variable i no ha sido accedida.
+WARNING: La variable k no ha sido accedida.
+WARNING: La variable r2 no ha sido accedida.
+WARNING: La variable z no ha sido accedida.
+WARNING: La variable r1 no ha sido accedida.
+WARNING: La variable dummy2 no ha sido accedida.

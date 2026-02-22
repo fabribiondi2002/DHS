@@ -17,7 +17,6 @@ def main(argv):
 
     input_stream = FileStream(archivo)
 
-    # 🔥 INSTANCIA UNICA DEL LISTENER
     error_listener = CustomErrorListener()
 
     lexer = compiladoresLexer(input_stream)
