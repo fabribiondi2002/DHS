@@ -55,12 +55,13 @@ class Walker(compiladoresVisitor):
 
     # Recorre recursivamente la lista de instrucciones
     def visitInstrucciones(self, ctx):
+        #Si el contexto es None, no hay instrucciones que procesar
         if ctx is None:
             return
-
+        # Procesa la instrucción actual
         if ctx.instruccion():
             self.visit(ctx.instruccion())
-
+        # Procesa la siguiente instrucción (instrucciones')
         # Evita recursión infinita
         if ctx.instrucciones() and ctx.instrucciones() != ctx:
             self.visit(ctx.instrucciones())
@@ -73,11 +74,11 @@ class Walker(compiladoresVisitor):
     # Procesa factores: números, IDs, post-incremento, llamadas, etc.
     def visitFactor(self, ctx):
 
-        # Caso número literal
+        # Caso número literal 
         if ctx.NUMERO():
             return ctx.NUMERO().getText()
 
-        # Caso variable simple
+        # Caso variable simple (ej: x)
         if ctx.ID() and ctx.getChildCount() == 1:
             return ctx.ID().getText()
 
@@ -113,10 +114,13 @@ class Walker(compiladoresVisitor):
 
     # Manejo de multiplicaciones, divisiones y módulo
     def visitTerm(self, ctx):
+        #Guarda el resultado del primer factor
         left = self.visit(ctx.factor())
+        # Recorre recursivamente los factores adicionales (t' -> t op factor)
         tctx = ctx.t()
 
         while tctx and tctx.getChildCount() > 0:
+            # Extrae el operador y el siguiente factor
             op = tctx.getChild(0).getText()
             right = self.visit(tctx.factor())
 
@@ -131,10 +135,12 @@ class Walker(compiladoresVisitor):
 
     # Manejo de suma y resta
     def visitExp(self, ctx):
+        #Guarda el resultado del primer término
         left = self.visit(ctx.term())
         ectx = ctx.e()
 
         while ectx and ectx.getChildCount() > 0:
+            # Extrae el operador y el siguiente término
             op = ectx.getChild(0).getText()
             right = self.visit(ectx.term())
 
@@ -166,10 +172,12 @@ class Walker(compiladoresVisitor):
 
     # Manejo operador &&
     def visitLand(self, ctx):
+        # Guarda el resultado del primer comparador
         left = self.visit(ctx.comp())
         lp = ctx.landp()
 
         while lp and lp.getChildCount() > 0:
+            # Extrae el siguiente comparador
             right = self.visit(lp.comp())
             t = self.newTemp()
             self.emit(f"{t} = {left} && {right}")
@@ -181,10 +189,12 @@ class Walker(compiladoresVisitor):
 
     # Manejo operador ||
     def visitLor(self, ctx):
+        # Guarda el resultado del primer operador &&
         left = self.visit(ctx.land())
         lp = ctx.lorp()
 
         while lp and lp.getChildCount() > 0:
+            # Extrae el siguiente operador &&
             right = self.visit(lp.land())
             t = self.newTemp()
             self.emit(f"{t} = {left} || {right}")
@@ -205,6 +215,7 @@ class Walker(compiladoresVisitor):
 
     # Generación de código para asignaciones
     def visitAsignacion(self, ctx):
+        # Asume que el contexto es del tipo: ID opal
         var = ctx.ID().getText()
         val = self.visit(ctx.opal())
 
@@ -266,15 +277,16 @@ class Walker(compiladoresVisitor):
 
     # IF / IF-ELSE
     def visitIif(self, ctx):
+        # Evalúa la condición y genera etiquetas para el bloque else y el final del if
         cond = self.visit(ctx.cond().opal())
         then = ctx.instruccion()
 
         elseLabel = self.newLabel()
         endLabel = self.newLabel()
-
+        # Genera salto condicional al bloque else si la condición es falsa
         self.emit(f"ifntjmp {cond} , {elseLabel}")
         self.visit(then)
-
+        # Si hay un bloque else, genera salto incondicional al final del if después del bloque then
         if ctx.ielse():
             self.emit(f"jump {endLabel}")
             self.emit(f"label {elseLabel}")
@@ -286,13 +298,15 @@ class Walker(compiladoresVisitor):
 
     # WHILE
     def visitIwhile(self, ctx):
+        # Genera etiquetas para el inicio y el final del ciclo
         start = self.newLabel()
         end = self.newLabel()
-
+        # Genera etiqueta de inicio del ciclo
         self.emit(f"label {start}")
+        # Evalúa la condición y genera salto condicional al final del ciclo si la condición es falsa
         cond = self.visit(ctx.cond().opal())
         self.emit(f"ifntjmp {cond} , {end}")
-
+        # Genera el cuerpo del ciclo
         self.visit(ctx.instruccion())
         self.emit(f"jump {start}")
         self.emit(f"label {end}")
@@ -304,7 +318,7 @@ class Walker(compiladoresVisitor):
         # INIT
         if ctx.init():
             self.visit(ctx.init())
-
+        
         start = self.newLabel()
         end = self.newLabel()
 
@@ -332,6 +346,7 @@ class Walker(compiladoresVisitor):
 
     # Llamada a función
     def visitUsofuncion(self, ctx):
+        # Extrae el nombre de la función y recolecta los argumentos
         nombre = ctx.ID().getText()
         args = []
 

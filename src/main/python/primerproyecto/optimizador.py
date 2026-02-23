@@ -160,7 +160,12 @@ class Optimizador:
     # ===============================
     # CONSTANT PROPAGATION + FOLDING
     # ===============================
-    # Propaga constantes conocidas a lo largo del código y evalúa operaciones con operandos constantes (constant folding). También simplifica saltos condicionales con condiciones constantes.
+    # Constant propagation: Reemplaza variables por sus valores constantes conocidos. Por ejemplo:
+    # x = 5
+    # y = x → y = 5
+    # Constant folding: Evalúa expresiones constantes en tiempo de compilación. Por ejemplo:
+    # t1 = 3 + 4 → t1 = 7
+
     def constant_propagation(self):
 
         # Entorno que guarda constantes conocidas
@@ -307,6 +312,9 @@ class Optimizador:
     # SIMPLIFICACIÓN DE SALTOS
     # ===============================
     # Convierte saltos condicionales con condiciones constantes en saltos incondicionales o los elimina si la condición es siempre verdadera.
+    # Por ejemplo:
+    # ifntjmp 0 , L1 → jump L1
+    # ifntjmp 1 , L1 → (eliminar, ya que la condición es siempre verdadera y no se salta)
 
     def simplify_jumps(self):
 
@@ -339,7 +347,9 @@ class Optimizador:
     # ELIMINAR CÓDIGO INALCANZABLE
     # ===============================
     # Elimina instrucciones que no pueden ser alcanzadas debido a saltos incondicionales JUMP o retornos anteriores RETURN.
-
+    # Por ejemplo:
+    # jump L1
+    # t1 = 5  (instrucción inalcanzable, se elimina
     def remove_unreachable(self):
 
         new_code = []
@@ -366,6 +376,9 @@ class Optimizador:
     # ELIMINAR JUMPS REDUNDANTES
     # ===============================
     # Elimina saltos incondicionales que van directamente a una etiqueta que sigue inmediatamente después.
+    # Por ejemplo:
+    # jump L1
+    # label L1  (eliminar el jump)
     def remove_redundant_jumps(self):
 
         new_code = []
@@ -441,6 +454,8 @@ class Optimizador:
     # ELIMINAR LABELS MUERTOS
     # ===============================
     # Elimina etiquetas que no son el destino de ningún salto (JUMP o COND JUMP) y que no son el punto de entrada del programa. 
+    # Por ejemplo:
+    # label L1  (si no hay ningún jump a L1, esta etiqueta se elimina)
     def remove_unused_labels(self):
 
         used = set()
